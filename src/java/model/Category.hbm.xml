@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 25, 2023 3:16:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Category" table="category" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="systemUserByCreatedBy" class="model.SystemUser" fetch="select">
+            <column name="created_by" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUserByUpdatedBy" class="model.SystemUser" fetch="select">
+            <column name="updated_by" not-null="true" />
+        </many-to-one>
+        <property name="categoryName" type="string">
+            <column name="category_name" length="50" />
+        </property>
+        <property name="categoryIcon" type="string">
+            <column name="category_icon" length="45" />
+        </property>
+        <property name="categoryDesc" type="string">
+            <column name="category_desc" length="145" />
+        </property>
+        <property name="isActive" type="java.lang.Boolean">
+            <column name="is_active" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+        <set name="brands" table="brand" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="category_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Brand" />
+        </set>
+    </class>
+</hibernate-mapping>

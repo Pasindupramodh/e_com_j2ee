@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 25, 2023 3:16:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.SystemUser" table="system_user" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="login" class="model.Login" fetch="select">
+            <column name="login_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUserByUpdatedBy" class="model.SystemUser" fetch="select">
+            <column name="updated_by" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUserByCreatedBy" class="model.SystemUser" fetch="select">
+            <column name="created_by" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userType" class="model.UserType" fetch="select">
+            <column name="user_type_id" not-null="true" />
+        </many-to-one>
+        <property name="fname" type="string">
+            <column name="fname" length="145" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="145" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="245" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+        <property name="isActive" type="boolean">
+            <column name="is_active" not-null="true" />
+        </property>
+        <set name="categoriesForCreatedBy" table="category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Category" />
+        </set>
+        <set name="categoriesForUpdatedBy" table="category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Category" />
+        </set>
+        <set name="orderStatuses" table="order_status" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" />
+            </key>
+            <one-to-many class="model.OrderStatus" />
+        </set>
+        <set name="systemUsersForUpdatedBy" table="system_user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" not-null="true" />
+            </key>
+            <one-to-many class="model.SystemUser" />
+        </set>
+        <set name="systemUsersForCreatedBy" table="system_user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" not-null="true" />
+            </key>
+            <one-to-many class="model.SystemUser" />
+        </set>
+        <set name="brandsForUpdatedBy" table="brand" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Brand" />
+        </set>
+        <set name="brandsForCreatedBy" table="brand" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Brand" />
+        </set>
+        <set name="productsForCreatedBy" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Product" />
+        </set>
+        <set name="productsForUpdatedBy" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Product" />
+        </set>
+    </class>
+</hibernate-mapping>
