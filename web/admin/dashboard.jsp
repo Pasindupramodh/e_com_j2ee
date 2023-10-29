@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,7 @@
         <%@include file="style.jsp" %>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
+        <%@include file="checkLogin.jsp" %>
         <div class="wrapper">
 
             <!-- Preloader -->

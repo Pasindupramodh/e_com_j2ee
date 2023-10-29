@@ -107,7 +107,7 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="updated_by", nullable=false)
+    @JoinColumn(name="updated_by", nullable=true)
     public SystemUser getSystemUserByUpdatedBy() {
         return this.systemUserByUpdatedBy;
     }
@@ -117,7 +117,7 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="created_by", nullable=false)
+    @JoinColumn(name="created_by", nullable=true)
     public SystemUser getSystemUserByCreatedBy() {
         return this.systemUserByCreatedBy;
     }

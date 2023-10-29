@@ -4,7 +4,11 @@
     Author     : pasin
 --%>
 
+<%@page import="dto.UserData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    UserData userData = (UserData) session.getAttribute("user");
+%>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-olive elevation-4" style="background-color: #EAF9E7; ">
     <!-- Brand Logo -->
@@ -21,7 +25,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block text-color" style=" font-weight: bold">Alexander Pierce</a>
+                <a href="#" class="d-block text-color" style=" font-weight: bold"><%= userData.getFname()+" "+userData.getLname() %></a>
             </div>
         </div>
 
@@ -72,7 +76,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="viewUsers.jsp" class="nav-link">
                                 <i class="far fa-eye nav-icon text-color"></i>
                                 <p  class="text-color">View All</p>
                             </a>
