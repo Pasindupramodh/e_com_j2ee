@@ -14,7 +14,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text text-color" style="font-weight: bold">Green Tech</span>
+        <span class="brand-text text-color" style="font-weight: bold">${BASE_URL}</span>
     </a>
 
     <!-- Sidebar -->
@@ -84,7 +84,30 @@
                         
                     </ul>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-color"></i>
+                        <p class="text-color">
+                            Category & Brand
+                            <i class="fas fa-angle-left right text-color"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="category.jsp" class="nav-link">
+                                <i class="fas fa-tags nav-icon text-color"></i>
+                                <p  class="text-color">Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="subCategory.jsp" class="nav-link">
+                                <i class="fas fa-code-branch nav-icon text-color"></i>
+                                <p  class="text-color">Brand / Sub Category</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
               
                 
                

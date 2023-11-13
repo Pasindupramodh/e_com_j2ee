@@ -54,19 +54,20 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <form id="useEditForm">
                         <div class="row">
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <input type="hidden" class="form-control" id="id" value="<%= systemUser.getId()%>" placeholder="Enter ...">
                                 <div class="form-group">
                                     <label class="text-color">First Name</label>
-                                    <input type="text" class="form-control" id="fname" value="<%= systemUser.getFname()%>" placeholder="Enter ...">
+                                    <input type="text" class="form-control" id="fname" name="fname" value="<%= systemUser.getFname()%>" placeholder="Enter ...">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="text-color">Last Name</label>
-                                    <input type="text" class="form-control" id="lname" value="<%= systemUser.getLname()%>" placeholder="Enter ..." >
+                                    <input type="text" class="form-control" id="lname" name="lname" value="<%= systemUser.getLname()%>" placeholder="Enter ..." >
                                 </div>
                             </div>
                         </div>
@@ -75,13 +76,13 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label class="text-color">Mobile Number</label>
-                                    <input type="text" class="form-control" id="mobile" value="<%= systemUser.getMobile()%>" placeholder="Enter ...">
+                                    <input type="text" class="form-control" id="mobile" name="mobile" value="<%= systemUser.getMobile()%>" placeholder="Enter ...">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="text-color">Email</label>
-                                    <input type="text" class="form-control" id="email" value="<%= systemUser.getEmail()%>" placeholder="Enter ..." >
+                                    <input type="text" class="form-control" id="email" name="email" value="<%= systemUser.getEmail()%>" placeholder="Enter ..." >
                                 </div>
                             </div>
                         </div>
@@ -110,31 +111,37 @@
                             </div>
                         </div>
                         <div class="row justify-content-center mb-4">
-                            <button type="button" id="update-user" class="btn btn-success bg-color" >Update User</button>
+                            <button type="submit" id="update-user" class="btn btn-success bg-color" >Update User</button>
                         </div>
+                                     
+                        </form>   
                         <div class="card-header bg-color" style="">
                             <h3 class="card-title text-white" >Login Details</h3>
                         </div>
+                                    <form id="loginUpdateForm">
+                                        
+                                    
                         <div class="row mt-4">
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <input type="hidden" id="login-id" value="<%= systemUser.getLogin().getId()%>"/>
                                 <div class="form-group">
                                     <label class="text-color">Username</label>
-                                    <input type="text"  value="<%= systemUser.getLogin().getUsername()%>" id="username" class="form-control" placeholder="Enter ...">
+                                    <input type="text"  value="<%= systemUser.getLogin().getUsername()%>" name="username" id="username" class="form-control" placeholder="Enter ...">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="text-color">Password</label>
-                                    <input type="password" id="password" class="form-control" placeholder="Enter ..." >
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Enter ..." >
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="row justify-content-center ">
-                            <button type="button" id="update-login" class="btn btn-success bg-color" >Update Login Details</button>
+                            <button type="submit" id="update-login" class="btn btn-success bg-color" >Update Login Details</button>
                         </div>
+                        </form>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -153,8 +160,14 @@
         <!-- /.content-wrapper -->
     </body>
     <script>
-        document.querySelector('#update-user').addEventListener('click', (evt) => {
-            let id = document.getElementById('id').value;
+        
+        
+
+        $(function () {
+            $.validator.setDefaults({
+                submitHandler: function (form, event) {
+                    event.preventDefault();
+                    let id = document.getElementById('id').value;
             let fname = document.getElementById('fname').value;
             let lname = document.getElementById('lname').value;
             let mobile = document.getElementById('mobile').value;
@@ -162,7 +175,7 @@
             let user_type = document.getElementById('user_type').value;
             $.ajax({
                 type: 'PUT',
-                url: '/e_com_j2ee/SystemUser?' + 'id=' + id + '&fname=' + fname + '&lname=' + lname + '&mobile=' + mobile + '&email=' + email + '&user_type=' + user_type + '',
+                url: '${BASE_URL}SystemUser?' + 'id=' + id + '&fname=' + fname + '&lname=' + lname + '&mobile=' + mobile + '&email=' + email + '&user_type=' + user_type + '',
                 success: function (data) {
                     if (data == "Success") {
                         Swal.fire({
@@ -201,15 +214,56 @@
                 }
             });
 
+                }
+            });
+            $('#useEditForm').validate({
+                rules: {
+                    fname: {
+                        required: true,
+                    },
+                    lname: {
+                        required: true,
+                    },
+                    mobile: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                    
+                },
+                messages: {
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
         });
-        document.querySelector('#update-login').addEventListener('click', (evt) => {
-            let id = document.getElementById('login-id').value;
+        
+        
+        
+
+        $(function () {
+            $.validator.setDefaults({
+                submitHandler: function (form, event) {
+                    event.preventDefault();
+                    let id = document.getElementById('login-id').value;
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
 
             $.ajax({
                 type: 'PUT',
-                url: '/e_com_j2ee/Login?' + 'id=' + id + '&username=' + username + '&password=' + password + '',
+                url: '${BASE_URL}Login?' + 'id=' + id + '&username=' + username + '&password=' + password + '',
 
                 success: function (data) {
                     console.log(data);
@@ -249,6 +303,36 @@
                 }
             });
 
+                }
+            });
+            $('#loginUpdateForm').validate({
+                rules: {
+                    
+                    username: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                },
+                messages: {
+
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
         });
+        
+       
     </script>
 </html>

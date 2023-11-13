@@ -46,7 +46,7 @@ public class LoginDAO {
 
         return (Login) criteria.uniqueResult();
     }
-     
+    
     public boolean update(String username, String password, String idq) {
         try {
             String encPassword = Encryption.encrypt(password);
@@ -59,7 +59,8 @@ public class LoginDAO {
             Login login = getById(id);
 
             if (login != null) {
-                login.setUsername(username);
+                if(getByUserName(username)==null){
+                    login.setUsername(username);
                 login.setPassword(encPassword);
                 login.setUpdatedAt(currentDate);
                 
@@ -69,6 +70,10 @@ public class LoginDAO {
                 session.merge(login);
                 transaction.commit();
                 return true;
+                }else{
+                    return false;
+                }
+                
             }else{
                 return false;
             }

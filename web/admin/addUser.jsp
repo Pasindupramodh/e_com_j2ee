@@ -150,7 +150,7 @@
                     let password = document.getElementById('password').value;
                     $.ajax({
                         type: 'POST',
-                        url: '/e_com_j2ee/SystemUser',
+                        url: '${BASE_URL}SystemUser',
                         data: {
                             fname: fname,
                             lname: lname,

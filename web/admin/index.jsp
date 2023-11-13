@@ -116,7 +116,7 @@
                 let password = document.getElementById('password').value;
                 $.ajax({
                 type: 'POST',
-                        url: '/e_com_j2ee/Login',
+                        url: '${BASE_URL}Login',
                         data: {
                         username: username,
                                 password: password,
