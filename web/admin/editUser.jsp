@@ -16,7 +16,6 @@
         <%@include file="style.jsp" %>
     </head>
     <body>
-        <%@include file="checkLogin.jsp" %>
         <%@include file="navs/nav.jsp" %>
         <%@include file="navs/sidebar.jsp" %>
         <!-- Content Wrapper. Contains page content -->

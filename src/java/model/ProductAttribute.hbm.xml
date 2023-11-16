@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 25, 2023 3:16:18 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 15, 2023 10:22:11 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.ProduvtAttribute" table="produvt_attribute" catalog="j2e_ecom_db" optimistic-lock="version">
+    <class name="model.ProductAttribute" table="product_attribute" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="product" class="model.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
         <property name="attributeName" type="string">
             <column name="attribute_name" length="50" />
         </property>
@@ -19,14 +22,6 @@
                 <column name="produvt_attribute_id" not-null="true" />
             </key>
             <one-to-many class="model.AttributeVariant" />
-        </set>
-        <set name="products" table="product_has_produvt_attribute" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="produvt_attribute_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="model.Product">
-                <column name="product_id" not-null="true" />
-            </many-to-many>
         </set>
     </class>
 </hibernate-mapping>

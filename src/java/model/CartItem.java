@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -23,22 +23,26 @@ public class CartItem  implements java.io.Serializable {
 
 
      private Integer id;
+     private AttributeVariant attributeVariant;
      private Cart cart;
-     private Product product;
      private String qty;
+     private Double unitprice;
+     private Double total;
 
     public CartItem() {
     }
 
 	
-    public CartItem(Cart cart, Product product) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart) {
+        this.attributeVariant = attributeVariant;
         this.cart = cart;
-        this.product = product;
     }
-    public CartItem(Cart cart, Product product, String qty) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, String qty, Double unitprice, Double total) {
+       this.attributeVariant = attributeVariant;
        this.cart = cart;
-       this.product = product;
        this.qty = qty;
+       this.unitprice = unitprice;
+       this.total = total;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -54,6 +58,16 @@ public class CartItem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="attribute_variant_id", nullable=false)
+    public AttributeVariant getAttributeVariant() {
+        return this.attributeVariant;
+    }
+    
+    public void setAttributeVariant(AttributeVariant attributeVariant) {
+        this.attributeVariant = attributeVariant;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cart_id", nullable=false)
     public Cart getCart() {
         return this.cart;
@@ -61,16 +75,6 @@ public class CartItem  implements java.io.Serializable {
     
     public void setCart(Cart cart) {
         this.cart = cart;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_id", nullable=false)
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     
@@ -81,6 +85,26 @@ public class CartItem  implements java.io.Serializable {
     
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    
+    @Column(name="unitprice", precision=22, scale=0)
+    public Double getUnitprice() {
+        return this.unitprice;
+    }
+    
+    public void setUnitprice(Double unitprice) {
+        this.unitprice = unitprice;
+    }
+
+    
+    @Column(name="total", precision=22, scale=0)
+    public Double getTotal() {
+        return this.total;
+    }
+    
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
 

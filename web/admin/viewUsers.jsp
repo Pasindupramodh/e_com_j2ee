@@ -17,13 +17,7 @@
         <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     </head>
     <body>
-        <%
-
-            if (session.getAttribute("user") == null) {
-                response.sendRedirect("index.jsp");
-            } else {
-
-        %>
+        
         <%@include file="navs/nav.jsp" %>
         <%@include file="navs/sidebar.jsp" %>
         <div class="content-wrapper">
@@ -194,6 +188,5 @@
         }
         loadProducts();
     </script>
-    <%        }
-    %>
+    
 </html>

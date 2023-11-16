@@ -18,7 +18,6 @@
         <%@include file="style.jsp" %>
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
-        <%@include file="checkLogin.jsp" %>
         <div class="wrapper">
 
             <!-- Preloader -->

@@ -13,11 +13,7 @@
         <%@include file="style.jsp" %>
     </head>
     <body>
-        <%
-            if (session.getAttribute("user") == null) {
-                response.sendRedirect("index.jsp");
-            } else {
-        %>
+        
         <%@include file="navs/nav.jsp" %>
         <%@include file="navs/sidebar.jsp" %>
         <!-- Content Wrapper. Contains page content -->
@@ -243,8 +239,7 @@
         </script>
         <!-- /.content-wrapper -->
     </body>
-    <%        }
-    %>
+    
     <script>
 
 

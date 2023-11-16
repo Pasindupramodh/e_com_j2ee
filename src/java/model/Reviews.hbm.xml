@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 15, 2023 10:22:11 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Reviews" table="reviews" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="attributeVariant" class="model.AttributeVariant" fetch="select">
+            <column name="attribute_variant_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="model.Customer" fetch="select">
+            <column name="customer" not-null="true" />
+        </many-to-one>
+        <property name="starCount" type="java.lang.Integer">
+            <column name="star_count" />
+        </property>
+        <property name="review" type="string">
+            <column name="review" length="450" />
+        </property>
+        <property name="isAnonymous" type="java.lang.Boolean">
+            <column name="is_anonymous" />
+        </property>
+        <set name="reviewimageses" table="reviewimages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="reviews_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Reviewimages" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 12:07:55 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,16 +28,20 @@ public class ProduvtAttribute  implements java.io.Serializable {
      private Integer id;
      private String attributeName;
      private String attributeType;
-     private Set<AttributeVariant> attributeVariants = new HashSet<AttributeVariant>(0);
+     private int productId;
      private Set<Product> products = new HashSet<Product>(0);
 
     public ProduvtAttribute() {
     }
 
-    public ProduvtAttribute(String attributeName, String attributeType, Set<AttributeVariant> attributeVariants, Set<Product> products) {
+	
+    public ProduvtAttribute(int productId) {
+        this.productId = productId;
+    }
+    public ProduvtAttribute(String attributeName, String attributeType, int productId, Set<Product> products) {
        this.attributeName = attributeName;
        this.attributeType = attributeType;
-       this.attributeVariants = attributeVariants;
+       this.productId = productId;
        this.products = products;
     }
    
@@ -74,13 +77,14 @@ public class ProduvtAttribute  implements java.io.Serializable {
         this.attributeType = attributeType;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="produvtAttribute")
-    public Set<AttributeVariant> getAttributeVariants() {
-        return this.attributeVariants;
+    
+    @Column(name="product_id", nullable=false)
+    public int getProductId() {
+        return this.productId;
     }
     
-    public void setAttributeVariants(Set<AttributeVariant> attributeVariants) {
-        this.attributeVariants = attributeVariants;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
 @ManyToMany(fetch=FetchType.LAZY)

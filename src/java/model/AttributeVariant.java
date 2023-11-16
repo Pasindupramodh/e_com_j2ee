@@ -1,7 +1,9 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,25 +26,34 @@ public class AttributeVariant  implements java.io.Serializable {
 
 
      private Integer id;
-     private ProduvtAttribute produvtAttribute;
+     private Gallery gallery;
+     private ProductAttribute productAttribute;
      private String variantName;
      private Double price;
      private Double discountPrice;
      private Integer qty;
+     private Set<Reviews> reviewses = new HashSet<Reviews>(0);
+     private Set<CartItem> cartItems = new HashSet<CartItem>(0);
+     private Set<Order> orders = new HashSet<Order>(0);
 
     public AttributeVariant() {
     }
 
 	
-    public AttributeVariant(ProduvtAttribute produvtAttribute) {
-        this.produvtAttribute = produvtAttribute;
+    public AttributeVariant(Gallery gallery, ProductAttribute productAttribute) {
+        this.gallery = gallery;
+        this.productAttribute = productAttribute;
     }
-    public AttributeVariant(ProduvtAttribute produvtAttribute, String variantName, Double price, Double discountPrice, Integer qty) {
-       this.produvtAttribute = produvtAttribute;
+    public AttributeVariant(Gallery gallery, ProductAttribute productAttribute, String variantName, Double price, Double discountPrice, Integer qty, Set<Reviews> reviewses, Set<CartItem> cartItems, Set<Order> orders) {
+       this.gallery = gallery;
+       this.productAttribute = productAttribute;
        this.variantName = variantName;
        this.price = price;
        this.discountPrice = discountPrice;
        this.qty = qty;
+       this.reviewses = reviewses;
+       this.cartItems = cartItems;
+       this.orders = orders;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -57,13 +69,23 @@ public class AttributeVariant  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="produvt_attribute_id", nullable=false)
-    public ProduvtAttribute getProduvtAttribute() {
-        return this.produvtAttribute;
+    @JoinColumn(name="gallery_id", nullable=false)
+    public Gallery getGallery() {
+        return this.gallery;
     }
     
-    public void setProduvtAttribute(ProduvtAttribute produvtAttribute) {
-        this.produvtAttribute = produvtAttribute;
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="produvt_attribute_id", nullable=false)
+    public ProductAttribute getProductAttribute() {
+        return this.productAttribute;
+    }
+    
+    public void setProductAttribute(ProductAttribute productAttribute) {
+        this.productAttribute = productAttribute;
     }
 
     
@@ -104,6 +126,33 @@ public class AttributeVariant  implements java.io.Serializable {
     
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
+    public Set<Reviews> getReviewses() {
+        return this.reviewses;
+    }
+    
+    public void setReviewses(Set<Reviews> reviewses) {
+        this.reviewses = reviewses;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
+    public Set<CartItem> getCartItems() {
+        return this.cartItems;
+    }
+    
+    public void setCartItems(Set<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
+    public Set<Order> getOrders() {
+        return this.orders;
+    }
+    
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
 

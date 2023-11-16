@@ -5,18 +5,18 @@
  */
 package dto;
 
-import model.Category;
+import lombok.Data;
 
 /**
  *
  * @author pasin
  */
+@Data
 public class BrandDTO {
 
     private Integer id;
-    private Category category;
+    private CategoryDTO category;
     private String brandName;
     private String brandDesc;
     private String brandImage;
-    private Boolean isActive;
 }

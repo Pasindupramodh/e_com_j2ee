@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 25, 2023 3:16:18 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 15, 2023 10:22:11 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Product" table="product" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -44,39 +44,23 @@
         <property name="updatedAt" type="timestamp">
             <column name="updated_at" length="19" />
         </property>
+        <set name="tags" table="tag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Tag" />
+        </set>
         <set name="solds" table="sold" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="product_id" not-null="true" />
             </key>
             <one-to-many class="model.Sold" />
         </set>
-        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+        <set name="productAttributes" table="product_attribute" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="product_id" not-null="true" />
             </key>
-            <one-to-many class="model.Order" />
-        </set>
-        <set name="cartItems" table="cart_item" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="product_id" not-null="true" />
-            </key>
-            <one-to-many class="model.CartItem" />
-        </set>
-        <set name="produvtAttributes" table="product_has_produvt_attribute" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="product_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="model.ProduvtAttribute">
-                <column name="produvt_attribute_id" not-null="true" />
-            </many-to-many>
-        </set>
-        <set name="tags" table="product_has_tag" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="product_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="model.Tag">
-                <column name="tag_id" not-null="true" />
-            </many-to-many>
+            <one-to-many class="model.ProductAttribute" />
         </set>
         <set name="galleries" table="gallery" inverse="true" lazy="true" fetch="select">
             <key>

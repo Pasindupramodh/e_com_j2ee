@@ -1,7 +1,10 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,8 +30,9 @@ public class Gallery  implements java.io.Serializable {
      private Product product;
      private String imgPath;
      private Boolean thumbnail;
-     private String createdAt;
-     private String updatedAt;
+     private Date createdAt;
+     private Date updatedAt;
+     private Set<AttributeVariant> attributeVariants = new HashSet<AttributeVariant>(0);
 
     public Gallery() {
     }
@@ -36,12 +41,13 @@ public class Gallery  implements java.io.Serializable {
     public Gallery(Product product) {
         this.product = product;
     }
-    public Gallery(Product product, String imgPath, Boolean thumbnail, String createdAt, String updatedAt) {
+    public Gallery(Product product, String imgPath, Boolean thumbnail, Date createdAt, Date updatedAt, Set<AttributeVariant> attributeVariants) {
        this.product = product;
        this.imgPath = imgPath;
        this.thumbnail = thumbnail;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.attributeVariants = attributeVariants;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -88,22 +94,31 @@ public class Gallery  implements java.io.Serializable {
 
     
     @Column(name="created_at", length=45)
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return this.createdAt;
     }
     
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
     
     @Column(name="updated_at", length=45)
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return this.updatedAt;
     }
     
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="gallery")
+    public Set<AttributeVariant> getAttributeVariants() {
+        return this.attributeVariants;
+    }
+    
+    public void setAttributeVariants(Set<AttributeVariant> attributeVariants) {
+        this.attributeVariants = attributeVariants;
     }
 
 

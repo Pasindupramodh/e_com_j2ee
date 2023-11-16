@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 15, 2023 12:07:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Gallery" table="gallery" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="product" class="model.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <property name="imgPath" type="string">
+            <column name="img_path" length="445" />
+        </property>
+        <property name="thumbnail" type="java.lang.Boolean">
+            <column name="thumbnail" />
+        </property>
+        <property name="createdAt" type="string">
+            <column name="created_at" length="45" />
+        </property>
+        <property name="updatedAt" type="string">
+            <column name="updated_at" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

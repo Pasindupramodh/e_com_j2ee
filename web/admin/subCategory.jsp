@@ -25,11 +25,7 @@
         <%@include file="style.jsp" %>
     </head>
     <body>
-        <%
-            if (session.getAttribute("user") == null) {
-                response.sendRedirect("index.jsp");
-            } else {
-        %>
+        
         <%@include file="navs/nav.jsp" %>
         <%@include file="navs/sidebar.jsp" %>
         <!-- Content Wrapper. Contains page content -->
@@ -177,21 +173,37 @@
                                     </div>
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane" id="sub">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" id="subCategory">
 
                                             <div class="form-group row">
                                                 <label for="sub-name" class="col-sm-2 col-form-label">Sub Category Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="sub-name" name="sub-name" placeholder="Enter...">
+                                                    <input type="text" class="form-control" id="sub_name" name="sub_name" placeholder="Enter...">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="sub-desc" class="col-sm-2 col-form-label">Sub Category Desc</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="sub-desc" name="sub-desc" placeholder="Enter...">
+                                                    <input type="text" class="form-control" id="sub_desc" name="sub_desc" placeholder="Enter...">
                                                 </div>
                                             </div>
-
+                                            <div class="form-group row">
+                                                <label for="category" class="col-sm-2 col-form-label">Brand Image</label>
+                                                <div class="col-sm-10">
+                                                    <select class=" form-control" id="subcategory" name="subcategory" style="width: 100%">
+                                                        <option value="">Select Category</option>
+                                                        <%                                                           
+                                                            if (categorys != null) {
+                                                                for (Category categoryDTO : categorys) {
+                                                        %>
+                                                        <option value="<%= categoryDTO.getId()%>"><%= categoryDTO.getCategoryName()%></option>
+                                                        <%
+                                                                }
+                                                            }
+                                                        %>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">
                                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -212,7 +224,7 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="table-categories">
+                                                <tbody id="table-sub-categories">
 
                                                 </tbody>
                                                 <tfoot>
@@ -324,8 +336,7 @@
         </div>
         <!-- /.content-wrapper -->
     </body>
-    <%        }
-    %>
+   
     <script>
         document.getElementById('update_brand_image').onchange = function (evt) {
             var tgt = evt.target || window.event.srcElement,
@@ -587,6 +598,99 @@
             });
         });
 
+
+        $(function () {
+            $.validator.setDefaults({
+                submitHandler: function (form, event) {
+                    event.preventDefault();
+                    let brand_name = document.getElementById('brand_name').value;
+//                    let brand_img = document.getElementById('brand_img').value;
+                    let brand_desc = document.getElementById('brand_desc').value;
+                    let category = document.getElementById('category').value;
+//                    let brand_img = $('#brand_img')[0].files[0];
+
+                    var formData = new FormData();
+                    formData.append('brand_img', $('#brand_img')[0].files[0]);
+                    formData.append('brand_name', brand_name);
+                    formData.append('brand_desc', brand_desc);
+                    formData.append('category', category);
+                    $.ajax({
+                        type: 'POST',
+                        url: '${BASE_URL}Brand',
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        data: formData,
+                        enctype: 'multipart/form-data',
+                        success: function (data) {
+                            console.log(data);
+                            if (data == "Success") {
+                                Swal.fire({
+                                    title: 'Saved',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'success'
+                                }).then((result) => {
+
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Cannot Save Brand try again',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'error'
+                                }).then((result) => {
+
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Cannot save try again',
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                icon: 'error'
+                            }).then((result) => {
+                            });
+                        }
+                    })
+
+                }
+            });
+            $('#subCategory').validate({
+                rules: {
+                    brand_name: {
+                        required: true,
+                    },
+                    brand_desc: {
+                        required: true,
+                    },
+                    
+                    subcategory: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    subcategory: {
+                        required: "Select a Category",
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.col-sm-10').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
     </script>
 </html>
 

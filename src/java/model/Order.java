@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,8 +29,8 @@ public class Order  implements java.io.Serializable {
 
 
      private Integer id;
+     private AttributeVariant attributeVariant;
      private Customer customer;
-     private Product product;
      private String qty;
      private Double total;
      private Date orderDeliveredCarrierDate;
@@ -42,13 +42,13 @@ public class Order  implements java.io.Serializable {
     }
 
 	
-    public Order(Customer customer, Product product) {
+    public Order(AttributeVariant attributeVariant, Customer customer) {
+        this.attributeVariant = attributeVariant;
         this.customer = customer;
-        this.product = product;
     }
-    public Order(Customer customer, Product product, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
+    public Order(AttributeVariant attributeVariant, Customer customer, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
+       this.attributeVariant = attributeVariant;
        this.customer = customer;
-       this.product = product;
        this.qty = qty;
        this.total = total;
        this.orderDeliveredCarrierDate = orderDeliveredCarrierDate;
@@ -70,6 +70,16 @@ public class Order  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="attribute_variant_id", nullable=false)
+    public AttributeVariant getAttributeVariant() {
+        return this.attributeVariant;
+    }
+    
+    public void setAttributeVariant(AttributeVariant attributeVariant) {
+        this.attributeVariant = attributeVariant;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="customer_id", nullable=false)
     public Customer getCustomer() {
         return this.customer;
@@ -77,16 +87,6 @@ public class Order  implements java.io.Serializable {
     
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_id", nullable=false)
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     

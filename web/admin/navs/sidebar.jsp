@@ -47,7 +47,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item ">
-                    <a href="#" class="nav-link active">
+                    <a href="dashboard.jsp" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -60,7 +60,7 @@
                
                
                 
-                <li class="nav-item menu-open">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shield-alt text-color"></i>
                         <p class="text-color">
@@ -108,9 +108,30 @@
                         
                     </ul>
                 </li>
-              
-                
-               
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fab fa-buffer text-color"></i>
+                        <p class="text-color">
+                            Products
+                            <i class="fas fa-angle-left right text-color"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="addNewProduct.jsp" class="nav-link">
+                                <i class="fas fa-plus nav-icon text-color"></i>
+                                <p  class="text-color">Add New</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="viewUsers.jsp" class="nav-link">
+                                <i class="far fa-eye nav-icon text-color"></i>
+                                <p  class="text-color">View All</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

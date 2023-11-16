@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -54,10 +54,8 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 	
-    public SystemUser(Login login, SystemUser systemUserByUpdatedBy, SystemUser systemUserByCreatedBy, UserType userType, boolean isActive) {
+    public SystemUser(Login login, UserType userType, boolean isActive) {
         this.login = login;
-        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
-        this.systemUserByCreatedBy = systemUserByCreatedBy;
         this.userType = userType;
         this.isActive = isActive;
     }
@@ -107,7 +105,7 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="updated_by", nullable=true)
+    @JoinColumn(name="updated_by")
     public SystemUser getSystemUserByUpdatedBy() {
         return this.systemUserByUpdatedBy;
     }
@@ -117,7 +115,7 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="created_by", nullable=true)
+    @JoinColumn(name="created_by")
     public SystemUser getSystemUserByCreatedBy() {
         return this.systemUserByCreatedBy;
     }

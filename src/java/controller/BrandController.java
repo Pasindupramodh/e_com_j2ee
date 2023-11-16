@@ -7,14 +7,15 @@ package controller;
 
 import dao.BrandDao;
 import dao.CategoryDAO;
-import dao.FileUpload;
+import services.FileUpload;
 import dao.SystemUserDAO;
+import dto.BrandDTO;
 import dto.UserData;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -23,9 +24,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.ws.rs.WebApplicationException;
 import model.Brand;
 import model.Category;
 import model.SystemUser;
+import org.json.JSONArray;
 
 /**
  *
@@ -118,6 +121,26 @@ public class BrandController extends HttpServlet {
         
         System.out.println("Date "+brandName);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String category = req.getParameter("category");
+        BrandDao brandDao = new BrandDao();
+        PrintWriter out = resp.getWriter();
+        List<BrandDTO> brandDTOs = brandDao.getByCategory(category);
+        JSONArray array;
+        if(brandDTOs == null){
+            throw new WebApplicationException("Brand Not Found");
+        }else{
+            
+            array = new JSONArray(brandDTOs);
+                out.print(array);
+        }
+        } catch (Exception e) {
+        }
+    }
+    
     
     
 

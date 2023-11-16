@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 15, 2023 12:07:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Address" table="address" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="model.City" fetch="select">
+            <column name="city_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="customer" class="model.Customer" fetch="select">
+            <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <property name="addressLine1" type="string">
+            <column name="address_line_1" length="245" />
+        </property>
+        <property name="addressLine2" type="string">
+            <column name="address_line_2" length="245" />
+        </property>
+        <property name="isDefault" type="java.lang.Boolean">
+            <column name="is_default" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

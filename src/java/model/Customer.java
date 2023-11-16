@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,7 +27,6 @@ public class Customer  implements java.io.Serializable {
 
 
      private Integer id;
-     private Login login;
      private String fname;
      private String lname;
      private String mobile;
@@ -37,6 +34,7 @@ public class Customer  implements java.io.Serializable {
      private String gender;
      private Date createdAt;
      private Date updatedAt;
+     private Set<Reviews> reviewses = new HashSet<Reviews>(0);
      private Set<Cart> carts = new HashSet<Cart>(0);
      private Set<Order> orders = new HashSet<Order>(0);
      private Set<Address> addresses = new HashSet<Address>(0);
@@ -44,12 +42,7 @@ public class Customer  implements java.io.Serializable {
     public Customer() {
     }
 
-	
-    public Customer(Login login) {
-        this.login = login;
-    }
-    public Customer(Login login, String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Cart> carts, Set<Order> orders, Set<Address> addresses) {
-       this.login = login;
+    public Customer(String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Reviews> reviewses, Set<Cart> carts, Set<Order> orders, Set<Address> addresses) {
        this.fname = fname;
        this.lname = lname;
        this.mobile = mobile;
@@ -57,6 +50,7 @@ public class Customer  implements java.io.Serializable {
        this.gender = gender;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.reviewses = reviewses;
        this.carts = carts;
        this.orders = orders;
        this.addresses = addresses;
@@ -72,16 +66,6 @@ public class Customer  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="login_id", nullable=false)
-    public Login getLogin() {
-        return this.login;
-    }
-    
-    public void setLogin(Login login) {
-        this.login = login;
     }
 
     
@@ -152,6 +136,15 @@ public class Customer  implements java.io.Serializable {
     
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
+    public Set<Reviews> getReviewses() {
+        return this.reviewses;
+    }
+    
+    public void setReviewses(Set<Reviews> reviewses) {
+        this.reviewses = reviewses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="customer")

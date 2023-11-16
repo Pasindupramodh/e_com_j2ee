@@ -41,26 +41,26 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="j2e_ecom_db"/>
-  <table-filter match-name="customer" package="model" />
-  <table-filter match-name="user_type" package="model"/>
-  <table-filter match-name="product" package="model"/>
-  <table-filter match-name="system_user" package="model"/>
-  <table-filter match-name="produvt_attribute" package="model"/>
-  <table-filter match-name="city" package="model"/>
-  <table-filter match-name="category" package="model"/>
-  <table-filter match-name="new_table" package="model"/>
-  <table-filter match-name="gallery" package="model"/>
-  <table-filter match-name="cart_item" package="model"/>
-  <table-filter match-name="sold" package="model"/>
-  <table-filter match-name="address" package="model"/>
-  <table-filter match-name="cart" package="model"/>
-  <table-filter match-name="order_status" package="model"/>
-  <table-filter match-name="attribute_variant" package="model"/>
-  <table-filter match-name="province" package="model"/>
-  <table-filter match-name="product_has_tag" package="model"/>
-  <table-filter match-name="product_has_produvt_attribute" package="model"/>
-  <table-filter match-name="tag" package="model"/>
-  <table-filter match-name="order" package="model"/>
-  <table-filter match-name="login" package="model"/>
-  <table-filter match-name="brand" package="model"/>
+  <table-filter match-name="product"/>
+  <table-filter match-name="attribute_variant"/>
+  <table-filter match-name="order"/>
+  <table-filter match-name="city"/>
+  <table-filter match-name="cart_item"/>
+  <table-filter match-name="new_table"/>
+  <table-filter match-name="tag"/>
+  <table-filter match-name="brand"/>
+  <table-filter match-name="sold"/>
+  <table-filter match-name="product_attribute"/>
+  <table-filter match-name="category"/>
+  <table-filter match-name="address"/>
+  <table-filter match-name="reviews"/>
+  <table-filter match-name="order_status"/>
+  <table-filter match-name="reviewimages"/>
+  <table-filter match-name="customer"/>
+  <table-filter match-name="login"/>
+  <table-filter match-name="cart"/>
+  <table-filter match-name="gallery"/>
+  <table-filter match-name="user_type"/>
+  <table-filter match-name="province"/>
+  <table-filter match-name="system_user"/>
 </hibernate-reverse-engineering>

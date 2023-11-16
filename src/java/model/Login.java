@@ -1,5 +1,5 @@
 package model;
-// Generated Oct 25, 2023 3:16:17 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,19 +32,17 @@ public class Login  implements java.io.Serializable {
      private String status;
      private Date createdAt;
      private Date updatedAt;
-     private Set<Customer> customers = new HashSet<Customer>(0);
      private Set<SystemUser> systemUsers = new HashSet<SystemUser>(0);
 
     public Login() {
     }
 
-    public Login(String username, String password, String status, Date createdAt, Date updatedAt, Set<Customer> customers, Set<SystemUser> systemUsers) {
+    public Login(String username, String password, String status, Date createdAt, Date updatedAt, Set<SystemUser> systemUsers) {
        this.username = username;
        this.password = password;
        this.status = status;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
-       this.customers = customers;
        this.systemUsers = systemUsers;
     }
    
@@ -108,15 +106,6 @@ public class Login  implements java.io.Serializable {
     
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="login")
-    public Set<Customer> getCustomers() {
-        return this.customers;
-    }
-    
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="login")

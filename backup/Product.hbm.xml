@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 15, 2023 12:07:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Product" table="product" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="brand" class="model.Brand" fetch="select">
+            <column name="brand_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUserByCreatedBy" class="model.SystemUser" fetch="select">
+            <column name="created_by" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUserByUpdatedBy" class="model.SystemUser" fetch="select">
+            <column name="updated_by" not-null="true" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="product_name" length="245" />
+        </property>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="productPrice" type="java.lang.Double">
+            <column name="product_price" precision="22" scale="0" />
+        </property>
+        <property name="discountPrice" type="java.lang.Double">
+            <column name="discount_price" precision="22" scale="0" />
+        </property>
+        <property name="shortDescription" type="string">
+            <column name="short_description" length="245" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="published" type="java.lang.Boolean">
+            <column name="published" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+        <set name="solds" table="sold" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Sold" />
+        </set>
+        <set name="productAttributes" table="product_attribute" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="model.ProductAttribute" />
+        </set>
+        <set name="produvtAttributes" table="product_has_produvt_attribute" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.ProduvtAttribute">
+                <column name="produvt_attribute_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="tags" table="product_has_tag" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.Tag">
+                <column name="tag_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="galleries" table="gallery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Gallery" />
+        </set>
+    </class>
+</hibernate-mapping>

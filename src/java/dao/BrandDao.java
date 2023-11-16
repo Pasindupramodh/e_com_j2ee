@@ -5,7 +5,11 @@
  */
 package dao;
 
+import services.FileUpload;
 import connection.HibernateUtil;
+import dto.BrandDTO;
+import dto.CategoryDTO;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +20,11 @@ import model.Brand;
 import model.Category;
 import model.SystemUser;
 import org.apache.commons.io.FilenameUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -83,7 +89,7 @@ public class BrandDao {
         }
     }
 
-    public boolean update(SystemUser systemUser,int id, String brandName, String brandDesc, int category, Part part, ServletContext context) {
+    public boolean update(SystemUser systemUser, int id, String brandName, String brandDesc, int category, Part part, ServletContext context) {
         try {
             Brand brand = getById(id);
             if (brand != null) {
@@ -111,7 +117,7 @@ public class BrandDao {
                     brand.setBrandName(brandName);
                     brand.setUpdatedAt(currentDate);
                     brand.setSystemUserByUpdatedBy(systemUser);
-                    
+
                     Session session = HibernateUtil.getSessionFactory().openSession();
                     Transaction transaction = session.beginTransaction();
                     session.merge(brand);
@@ -127,34 +133,78 @@ public class BrandDao {
     }
 
     public boolean update(SystemUser systemUser, int id, String brandName, String brandDesc, int category) {
-      try {
+        try {
             Brand brand = getById(id);
             if (brand != null) {
-                
-                    Category categoryMoel = new CategoryDAO().getById(category);
 
-                    //Get current date of Sri Lanka
-                    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
-                    Date currentDate = calendar.getTime();
+                Category categoryMoel = new CategoryDAO().getById(category);
 
-                    brand.setCategory(categoryMoel);
-                    brand.setBrandDesc(brandDesc);
-                    brand.setBrandName(brandName);
-                    brand.setUpdatedAt(currentDate);
-                    brand.setSystemUserByUpdatedBy(systemUser);
-                    
-                    Session session = HibernateUtil.getSessionFactory().openSession();
-                    Transaction transaction = session.beginTransaction();
-                    session.merge(brand);
-                    transaction.commit();
-                    return true;
-                
+                //Get current date of Sri Lanka
+                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
+                Date currentDate = calendar.getTime();
+
+                brand.setCategory(categoryMoel);
+                brand.setBrandDesc(brandDesc);
+                brand.setBrandName(brandName);
+                brand.setUpdatedAt(currentDate);
+                brand.setSystemUserByUpdatedBy(systemUser);
+
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                Transaction transaction = session.beginTransaction();
+                session.merge(brand);
+                transaction.commit();
+                return true;
+
             }
             return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<BrandDTO> getByCategory(String category) {
+        try {
+            List<Brand> brands;
+        if (category == null) {
+            brands = getAllBrands();
+        } else {
+            Category categoryModel = new CategoryDAO().getById(Integer.parseInt(category));
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Criteria criteria = session.createCriteria(Brand.class);
+            criteria.add(Restrictions.eq("category", categoryModel));
+            brands = criteria.list();
+        }
+        if (!brands.isEmpty()) {
+            List<BrandDTO> brandDTOs = new ArrayList<>();
+            for (Brand brand : brands) {
+                BrandDTO brandDTO = new BrandDTO();
+                brandDTO.setId(brand.getId());
+                brandDTO.setBrandDesc(brand.getBrandDesc());
+                brandDTO.setBrandImage(brand.getBrandImage());
+                brandDTO.setBrandName(brand.getBrandName());
+                
+                Category categoryModel = brand.getCategory();
+                
+                CategoryDTO categoryDTO = new CategoryDTO();
+                
+                categoryDTO.setId(categoryModel.getId());
+                categoryDTO.setCategoryDesc(categoryModel.getCategoryDesc());
+                categoryDTO.setCategoryIcon(categoryModel.getCategoryIcon());
+                categoryDTO.setCategoryName(categoryModel.getCategoryName());
+                categoryDTO.setStatus(categoryModel.getIsActive());
+                brandDTO.setCategory(categoryDTO);
+                brandDTOs.add(brandDTO);
+            }
+            return brandDTOs;
+        }else{
+            return null;
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 }
