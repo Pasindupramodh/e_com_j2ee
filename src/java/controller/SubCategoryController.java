@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
  *
  * @author pasin
  */
-@WebServlet(name = "SubCategoryController", urlPatterns = {"/SubCategoryController"})
+@WebServlet(name = "SubCategoryController", urlPatterns = {"/admin/api/SubCategoryController"})
 public class SubCategoryController extends HttpServlet {
 
     

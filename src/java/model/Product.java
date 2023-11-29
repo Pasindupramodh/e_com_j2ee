@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
+// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -43,7 +43,10 @@ public class Product  implements java.io.Serializable {
      private Date updatedAt;
      private Set<Tag> tags = new HashSet<Tag>(0);
      private Set<Sold> solds = new HashSet<Sold>(0);
-     private Set<ProductAttribute> productAttributes = new HashSet<ProductAttribute>(0);
+     private Set<Order> orders = new HashSet<Order>(0);
+     private Set<Reviews> reviewses = new HashSet<Reviews>(0);
+     private Set<CartItem> cartItems = new HashSet<CartItem>(0);
+     private Set<AttributeVariant> attributeVariants = new HashSet<AttributeVariant>(0);
      private Set<Gallery> galleries = new HashSet<Gallery>(0);
 
     public Product() {
@@ -55,7 +58,7 @@ public class Product  implements java.io.Serializable {
         this.systemUserByCreatedBy = systemUserByCreatedBy;
         this.systemUserByUpdatedBy = systemUserByUpdatedBy;
     }
-    public Product(Brand brand, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, String productName, Double qty, Double productPrice, Double discountPrice, String shortDescription, String description, Boolean published, Date createdAt, Date updatedAt, Set<Tag> tags, Set<Sold> solds, Set<ProductAttribute> productAttributes, Set<Gallery> galleries) {
+    public Product(Brand brand, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, String productName, Double qty, Double productPrice, Double discountPrice, String shortDescription, String description, Boolean published, Date createdAt, Date updatedAt, Set<Tag> tags, Set<Sold> solds, Set<Order> orders, Set<Reviews> reviewses, Set<CartItem> cartItems, Set<AttributeVariant> attributeVariants, Set<Gallery> galleries) {
        this.brand = brand;
        this.systemUserByCreatedBy = systemUserByCreatedBy;
        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
@@ -70,7 +73,10 @@ public class Product  implements java.io.Serializable {
        this.updatedAt = updatedAt;
        this.tags = tags;
        this.solds = solds;
-       this.productAttributes = productAttributes;
+       this.orders = orders;
+       this.reviewses = reviewses;
+       this.cartItems = cartItems;
+       this.attributeVariants = attributeVariants;
        this.galleries = galleries;
     }
    
@@ -225,12 +231,39 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
-    public Set<ProductAttribute> getProductAttributes() {
-        return this.productAttributes;
+    public Set<Order> getOrders() {
+        return this.orders;
     }
     
-    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
-        this.productAttributes = productAttributes;
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    public Set<Reviews> getReviewses() {
+        return this.reviewses;
+    }
+    
+    public void setReviewses(Set<Reviews> reviewses) {
+        this.reviewses = reviewses;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    public Set<CartItem> getCartItems() {
+        return this.cartItems;
+    }
+    
+    public void setCartItems(Set<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    public Set<AttributeVariant> getAttributeVariants() {
+        return this.attributeVariants;
+    }
+    
+    public void setAttributeVariants(Set<AttributeVariant> attributeVariants) {
+        this.attributeVariants = attributeVariants;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")

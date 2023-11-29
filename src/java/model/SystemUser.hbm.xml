@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 15, 2023 10:22:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 25, 2023 12:13:47 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.SystemUser" table="system_user" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -71,11 +71,23 @@
             </key>
             <one-to-many class="model.SystemUser" />
         </set>
+        <set name="attributeVariantsForUpdatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updatedby" not-null="true" />
+            </key>
+            <one-to-many class="model.AttributeVariant" />
+        </set>
         <set name="brandsForUpdatedBy" table="brand" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="updated_by" not-null="true" />
             </key>
             <one-to-many class="model.Brand" />
+        </set>
+        <set name="attributeVariantsForCreatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="createdby" not-null="true" />
+            </key>
+            <one-to-many class="model.AttributeVariant" />
         </set>
         <set name="brandsForCreatedBy" table="brand" inverse="true" lazy="true" fetch="select">
             <key>

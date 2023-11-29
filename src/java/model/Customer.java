@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
+// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,6 +29,7 @@ public class Customer  implements java.io.Serializable {
 
 
      private Integer id;
+     private CusLogin cusLogin;
      private String fname;
      private String lname;
      private String mobile;
@@ -42,7 +45,12 @@ public class Customer  implements java.io.Serializable {
     public Customer() {
     }
 
-    public Customer(String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Reviews> reviewses, Set<Cart> carts, Set<Order> orders, Set<Address> addresses) {
+	
+    public Customer(CusLogin cusLogin) {
+        this.cusLogin = cusLogin;
+    }
+    public Customer(CusLogin cusLogin, String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Reviews> reviewses, Set<Cart> carts, Set<Order> orders, Set<Address> addresses) {
+       this.cusLogin = cusLogin;
        this.fname = fname;
        this.lname = lname;
        this.mobile = mobile;
@@ -66,6 +74,16 @@ public class Customer  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cus_login_id", nullable=false)
+    public CusLogin getCusLogin() {
+        return this.cusLogin;
+    }
+    
+    public void setCusLogin(CusLogin cusLogin) {
+        this.cusLogin = cusLogin;
     }
 
     

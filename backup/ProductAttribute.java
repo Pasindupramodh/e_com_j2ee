@@ -1,7 +1,9 @@
 package model;
-// Generated Nov 15, 2023 12:07:55 AM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +29,7 @@ public class ProductAttribute  implements java.io.Serializable {
      private Product product;
      private String attributeName;
      private String attributeType;
+     private Set<AttributeVariant> attributeVariants = new HashSet<AttributeVariant>(0);
 
     public ProductAttribute() {
     }
@@ -34,10 +38,11 @@ public class ProductAttribute  implements java.io.Serializable {
     public ProductAttribute(Product product) {
         this.product = product;
     }
-    public ProductAttribute(Product product, String attributeName, String attributeType) {
+    public ProductAttribute(Product product, String attributeName, String attributeType, Set<AttributeVariant> attributeVariants) {
        this.product = product;
        this.attributeName = attributeName;
        this.attributeType = attributeType;
+       this.attributeVariants = attributeVariants;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -80,6 +85,15 @@ public class ProductAttribute  implements java.io.Serializable {
     
     public void setAttributeType(String attributeType) {
         this.attributeType = attributeType;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="productAttribute")
+    public Set<AttributeVariant> getAttributeVariants() {
+        return this.attributeVariants;
+    }
+    
+    public void setAttributeVariants(Set<AttributeVariant> attributeVariants) {
+        this.attributeVariants = attributeVariants;
     }
 
 

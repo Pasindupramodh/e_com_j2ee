@@ -15,7 +15,7 @@
         <%
 
             if (session.getAttribute("user") != null) {
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("pages/dashboard.jsp");
             }
 
         %>
@@ -61,7 +61,7 @@
                         <!-- /.social-auth-links -->
 
                         <p class="mb-1" >
-                            <a href="forgot-password.html" style="color: #4CA771 !important">I forgot my password</a>
+                            <a href="forgotPassword.jsp" style="color: #4CA771 !important">I forgot my password</a>
                         </p>
                     </form>
                 </div>
@@ -108,69 +108,69 @@
 //
 //        })
 
-                $(function () {
-                $.validator.setDefaults({
+        $(function () {
+            $.validator.setDefaults({
                 submitHandler: function (form, event) {
-                event.preventDefault();
-                let username = document.getElementById('username').value;
-                let password = document.getElementById('password').value;
-                $.ajax({
-                type: 'POST',
-                        url: '${BASE_URL}Login',
+                    event.preventDefault();
+                    let username = document.getElementById('username').value;
+                    let password = document.getElementById('password').value;
+                    $.ajax({
+                        type: 'POST',
+                        url: '${ADMIN_BASE_URL}Login',
                         data: {
-                        username: username,
-                                password: password,
+                            username: username,
+                            password: password,
                         },
                         success: function (data) {
-                        if (data === "Sucess") {
-                        window.location = '/e_com_j2ee/admin/dashboard.jsp';
-                        } else {
-                        Swal.fire(
-                                data,
-                                'Try again !',
-                                'error'
-                                )
-                        }
+                            if (data === "Sucess") {
+                                window.location = '/e_com_j2ee/admin/pages/dashboard.jsp';
+                            } else {
+                                Swal.fire(
+                                        data,
+                                        'Try again !',
+                                        'error'
+                                        )
+                            }
                         },
                         error: function () {
-                        Swal.fire(
-                                'Something went wrong',
-                                'Try again later!',
-                                'error'
-                                )
+                            Swal.fire(
+                                    'Something went wrong',
+                                    'Try again later!',
+                                    'error'
+                                    )
                         }
-                })
+                    })
                 }
-                });
-                $('#loginForm').validate({
+            });
+            $('#loginForm').validate({
                 rules: {
-                username: {
-                required: true,
-                },
-                        password: {
+                    username: {
                         required: true,
-                        },
+                    },
+                    password: {
+                        required: true,
+                    },
                 },
-                        messages: {
-                        email: {
+                messages: {
+                    email: {
                         required: "Please enter your username",
-                        },
-                                password: {
-                                required: "Please provide your password",
-                                },
-                        },
-                        errorElement: 'span',
-                        errorPlacement: function (error, element) {
-                        error.addClass('invalid-feedback');
-                        element.closest('.input-group').append(error);
-                        },
-                        highlight: function (element, errorClass, validClass) {
-                        $(element).addClass('is-invalid');
-                        },
-                        unhighlight: function (element, errorClass, validClass) {
-                        $(element).removeClass('is-invalid');
-                        }
-                });
-                });
+                    },
+                    password: {
+                        required: "Please provide your password",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.input-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
     </script>
 </html>

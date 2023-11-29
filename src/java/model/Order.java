@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
+// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,6 +31,7 @@ public class Order  implements java.io.Serializable {
      private Integer id;
      private AttributeVariant attributeVariant;
      private Customer customer;
+     private Product product;
      private String qty;
      private Double total;
      private Date orderDeliveredCarrierDate;
@@ -42,13 +43,14 @@ public class Order  implements java.io.Serializable {
     }
 
 	
-    public Order(AttributeVariant attributeVariant, Customer customer) {
-        this.attributeVariant = attributeVariant;
+    public Order(Customer customer, Product product) {
         this.customer = customer;
+        this.product = product;
     }
-    public Order(AttributeVariant attributeVariant, Customer customer, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
+    public Order(AttributeVariant attributeVariant, Customer customer, Product product, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
        this.attributeVariant = attributeVariant;
        this.customer = customer;
+       this.product = product;
        this.qty = qty;
        this.total = total;
        this.orderDeliveredCarrierDate = orderDeliveredCarrierDate;
@@ -70,7 +72,7 @@ public class Order  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="attribute_variant_id", nullable=false)
+    @JoinColumn(name="attribute_variant_id")
     public AttributeVariant getAttributeVariant() {
         return this.attributeVariant;
     }
@@ -87,6 +89,16 @@ public class Order  implements java.io.Serializable {
     
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", nullable=false)
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 15, 2023 10:22:11 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 25, 2023 12:13:47 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Order" table="order" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -9,10 +9,13 @@
             <generator class="identity" />
         </id>
         <many-to-one name="attributeVariant" class="model.AttributeVariant" fetch="select">
-            <column name="attribute_variant_id" not-null="true" />
+            <column name="attribute_variant_id" />
         </many-to-one>
         <many-to-one name="customer" class="model.Customer" fetch="select">
             <column name="customer_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="model.Product" fetch="select">
+            <column name="product_id" not-null="true" />
         </many-to-one>
         <property name="qty" type="string">
             <column name="qty" length="45" />

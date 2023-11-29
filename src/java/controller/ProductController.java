@@ -7,11 +7,13 @@ package controller;
 
 import dao.ProductDAO;
 import dao.SystemUserDAO;
+import dto.ProductDTO;
 import dto.UserData;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,14 +22,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.ws.rs.core.Request;
 import model.SystemUser;
-
+import org.json.JSONArray;
 /**
  *
  * @author pasin
  */
-@WebServlet(name = "ProductController", urlPatterns = {"/Product"})
+@WebServlet(name = "ProductController", urlPatterns = {"/admin/api/Product"})
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 15,
         maxFileSize = 1024 * 1024 * 15,
@@ -59,7 +60,7 @@ public class ProductController extends HttpServlet {
             if (productImage.getSubmittedFileName() != null) {
                 try {
                     double dis = Double.parseDouble(discount);
-                    int qt = Integer.parseInt(qty);
+                    double qt = Double.parseDouble(qty);
                     double pri = Double.parseDouble(price);
                     int brandId = Integer.parseInt(brand);
 
@@ -85,10 +86,10 @@ public class ProductController extends HttpServlet {
                         SystemUser systemUser = new SystemUserDAO().getUserById(userData.getId());
 
                         ProductDAO productDAO = new ProductDAO();
-                        boolean status = productDAO.save(getServletContext(), productImage, productName, dis, qt, pri, brandId, tags, publishe, shortDesc, productDescription , currentDate ,systemUser);
-                        if(status){
+                        boolean status = productDAO.save(getServletContext(), productImage, productName, dis, qt, pri, brandId, tags, publishe, shortDesc, productDescription, currentDate, systemUser);
+                        if (status) {
                             out.write("Success");
-                        }else{
+                        } else {
                             out.write("Cant save Product");
                         }
                     }
@@ -103,6 +104,17 @@ public class ProductController extends HttpServlet {
             out.write("Fill all fields");
         }
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<ProductDTO> products = new ProductDAO().getAllProducts();
+        if (products == null) {
+            resp.sendError(404);
+        } else {
+            JSONArray array = new JSONArray(products);
+            resp.getWriter().print(array);
+        }
     }
 
     boolean validateInputs(String... s) {

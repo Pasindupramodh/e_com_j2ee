@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 10:22:10 PM by Hibernate Tools 4.3.1
+// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -25,6 +25,7 @@ public class CartItem  implements java.io.Serializable {
      private Integer id;
      private AttributeVariant attributeVariant;
      private Cart cart;
+     private Product product;
      private String qty;
      private Double unitprice;
      private Double total;
@@ -33,13 +34,14 @@ public class CartItem  implements java.io.Serializable {
     }
 
 	
-    public CartItem(AttributeVariant attributeVariant, Cart cart) {
-        this.attributeVariant = attributeVariant;
+    public CartItem(Cart cart, Product product) {
         this.cart = cart;
+        this.product = product;
     }
-    public CartItem(AttributeVariant attributeVariant, Cart cart, String qty, Double unitprice, Double total) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, String qty, Double unitprice, Double total) {
        this.attributeVariant = attributeVariant;
        this.cart = cart;
+       this.product = product;
        this.qty = qty;
        this.unitprice = unitprice;
        this.total = total;
@@ -58,7 +60,7 @@ public class CartItem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="attribute_variant_id", nullable=false)
+    @JoinColumn(name="attribute_variant_id")
     public AttributeVariant getAttributeVariant() {
         return this.attributeVariant;
     }
@@ -75,6 +77,16 @@ public class CartItem  implements java.io.Serializable {
     
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", nullable=false)
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     

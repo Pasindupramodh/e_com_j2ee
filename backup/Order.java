@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 12:07:55 AM by Hibernate Tools 4.3.1
+// Generated Nov 22, 2023 10:04:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,31 +29,33 @@ public class Order  implements java.io.Serializable {
 
 
      private Integer id;
+     private AttributeVariant attributeVariant;
      private Customer customer;
+     private Product product;
      private String qty;
      private Double total;
      private Date orderDeliveredCarrierDate;
      private Date orderDeliveredCustomerDate;
      private String createdAt;
-     private int attributeVariantId;
      private Set<OrderStatus> orderStatuses = new HashSet<OrderStatus>(0);
 
     public Order() {
     }
 
 	
-    public Order(Customer customer, int attributeVariantId) {
+    public Order(Customer customer, Product product) {
         this.customer = customer;
-        this.attributeVariantId = attributeVariantId;
+        this.product = product;
     }
-    public Order(Customer customer, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, int attributeVariantId, Set<OrderStatus> orderStatuses) {
+    public Order(AttributeVariant attributeVariant, Customer customer, Product product, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
+       this.attributeVariant = attributeVariant;
        this.customer = customer;
+       this.product = product;
        this.qty = qty;
        this.total = total;
        this.orderDeliveredCarrierDate = orderDeliveredCarrierDate;
        this.orderDeliveredCustomerDate = orderDeliveredCustomerDate;
        this.createdAt = createdAt;
-       this.attributeVariantId = attributeVariantId;
        this.orderStatuses = orderStatuses;
     }
    
@@ -70,6 +72,16 @@ public class Order  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="attribute_variant_id")
+    public AttributeVariant getAttributeVariant() {
+        return this.attributeVariant;
+    }
+    
+    public void setAttributeVariant(AttributeVariant attributeVariant) {
+        this.attributeVariant = attributeVariant;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="customer_id", nullable=false)
     public Customer getCustomer() {
         return this.customer;
@@ -77,6 +89,16 @@ public class Order  implements java.io.Serializable {
     
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", nullable=false)
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     
@@ -127,16 +149,6 @@ public class Order  implements java.io.Serializable {
     
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    
-    @Column(name="attribute_variant_id", nullable=false)
-    public int getAttributeVariantId() {
-        return this.attributeVariantId;
-    }
-    
-    public void setAttributeVariantId(int attributeVariantId) {
-        this.attributeVariantId = attributeVariantId;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="order")

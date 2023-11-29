@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import model.Login;
+import model.SystemUser;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,7 +39,7 @@ public class LoginDAO {
         return (Login) session.get(Login.class, id);
     }
 
-     public Login getByUserName(String username) {
+    public Login getByUserName(String username) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Login.class);
@@ -46,7 +47,7 @@ public class LoginDAO {
 
         return (Login) criteria.uniqueResult();
     }
-    
+
     public boolean update(String username, String password, String idq) {
         try {
             String encPassword = Encryption.encrypt(password);
@@ -59,28 +60,50 @@ public class LoginDAO {
             Login login = getById(id);
 
             if (login != null) {
-                if(getByUserName(username)==null){
+                if (getByUserName(username) == null) {
                     login.setUsername(username);
-                login.setPassword(encPassword);
-                login.setUpdatedAt(currentDate);
-                
-                Session session = HibernateUtil.getSessionFactory().openSession();
-                Transaction transaction = session.getTransaction();
-                transaction.begin();
-                session.merge(login);
-                transaction.commit();
-                return true;
-                }else{
+                    login.setPassword(encPassword);
+                    login.setUpdatedAt(currentDate);
+
+                    Session session = HibernateUtil.getSessionFactory().openSession();
+                    Transaction transaction = session.getTransaction();
+                    transaction.begin();
+                    session.merge(login);
+                    transaction.commit();
+                    return true;
+                } else {
                     return false;
                 }
-                
-            }else{
+
+            } else {
                 return false;
             }
 
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public boolean updatePassword(String userName, String newPassword) {
+        SystemUserDAO systemUserDAO = new SystemUserDAO();
+        SystemUser systemUser = systemUserDAO.getUserByEmail(userName);
+        if (systemUser != null) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            try {
+                Login login = systemUser.getLogin();
+                Transaction transaction = session.beginTransaction();
+                login.setPassword(Encryption.encrypt(newPassword));
+                
+                session.merge(login);
+                
+                transaction.commit();
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
     }
 
 }

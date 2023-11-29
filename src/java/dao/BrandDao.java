@@ -100,7 +100,7 @@ public class BrandDao {
                 //delete current image
                 boolean delete = fileUpload.delete(fileName, "brands");
 
-                if (delete) {
+//                if (delete) {
 
                     Category categoryMoel = new CategoryDAO().getById(category);
 
@@ -123,7 +123,7 @@ public class BrandDao {
                     session.merge(brand);
                     transaction.commit();
                     return true;
-                }
+//                }
             }
             return false;
         } catch (Exception e) {
@@ -166,40 +166,81 @@ public class BrandDao {
     public List<BrandDTO> getByCategory(String category) {
         try {
             List<Brand> brands;
-        if (category == null) {
+            if (category == null) {
+                brands = getAllBrands();
+            } else {
+                Category categoryModel = new CategoryDAO().getById(Integer.parseInt(category));
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                Criteria criteria = session.createCriteria(Brand.class);
+                criteria.add(Restrictions.eq("category", categoryModel));
+                brands = criteria.list();
+            }
+            if (!brands.isEmpty()) {
+                List<BrandDTO> brandDTOs = new ArrayList<>();
+                for (Brand brand : brands) {
+                    BrandDTO brandDTO = new BrandDTO();
+                    brandDTO.setId(brand.getId());
+                    brandDTO.setBrandDesc(brand.getBrandDesc());
+                    brandDTO.setBrandImage(brand.getBrandImage());
+                    brandDTO.setBrandName(brand.getBrandName());
+
+                    Category categoryModel = brand.getCategory();
+
+                    CategoryDTO categoryDTO = new CategoryDTO();
+
+                    categoryDTO.setId(categoryModel.getId());
+                    categoryDTO.setCategoryDesc(categoryModel.getCategoryDesc());
+                    categoryDTO.setCategoryIcon(categoryModel.getCategoryIcon());
+                    categoryDTO.setCategoryName(categoryModel.getCategoryName());
+                    categoryDTO.setStatus(categoryModel.getIsActive());
+                    brandDTO.setCategory(categoryDTO);
+                    brandDTOs.add(brandDTO);
+                }
+                return brandDTOs;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public List<BrandDTO> getByCategory(int category) {
+        try {
+            List<Brand> brands;
             brands = getAllBrands();
-        } else {
-            Category categoryModel = new CategoryDAO().getById(Integer.parseInt(category));
+            Category categoryModel = new CategoryDAO().getById(category);
             Session session = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Brand.class);
             criteria.add(Restrictions.eq("category", categoryModel));
             brands = criteria.list();
-        }
-        if (!brands.isEmpty()) {
-            List<BrandDTO> brandDTOs = new ArrayList<>();
-            for (Brand brand : brands) {
-                BrandDTO brandDTO = new BrandDTO();
-                brandDTO.setId(brand.getId());
-                brandDTO.setBrandDesc(brand.getBrandDesc());
-                brandDTO.setBrandImage(brand.getBrandImage());
-                brandDTO.setBrandName(brand.getBrandName());
-                
-                Category categoryModel = brand.getCategory();
-                
-                CategoryDTO categoryDTO = new CategoryDTO();
-                
-                categoryDTO.setId(categoryModel.getId());
-                categoryDTO.setCategoryDesc(categoryModel.getCategoryDesc());
-                categoryDTO.setCategoryIcon(categoryModel.getCategoryIcon());
-                categoryDTO.setCategoryName(categoryModel.getCategoryName());
-                categoryDTO.setStatus(categoryModel.getIsActive());
-                brandDTO.setCategory(categoryDTO);
-                brandDTOs.add(brandDTO);
+            if (!brands.isEmpty()) {
+                List<BrandDTO> brandDTOs = new ArrayList<>();
+                for (Brand brand : brands) {
+                    BrandDTO brandDTO = new BrandDTO();
+                    brandDTO.setId(brand.getId());
+                    brandDTO.setBrandDesc(brand.getBrandDesc());
+                    brandDTO.setBrandImage(brand.getBrandImage());
+                    brandDTO.setBrandName(brand.getBrandName());
+
+                    categoryModel = brand.getCategory();
+
+                    CategoryDTO categoryDTO = new CategoryDTO();
+
+                    categoryDTO.setId(categoryModel.getId());
+                    categoryDTO.setCategoryDesc(categoryModel.getCategoryDesc());
+                    categoryDTO.setCategoryIcon(categoryModel.getCategoryIcon());
+                    categoryDTO.setCategoryName(categoryModel.getCategoryName());
+                    categoryDTO.setStatus(categoryModel.getIsActive());
+                    brandDTO.setCategory(categoryDTO);
+                    brandDTOs.add(brandDTO);
+                }
+                return brandDTOs;
+            } else {
+                return null;
             }
-            return brandDTOs;
-        }else{
-            return null;
-        }
         } catch (Exception e) {
             e.printStackTrace();
             return null;

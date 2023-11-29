@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author pasin
  */
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/admin/*"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/admin/pages/*"})
 public class AuthenticationFilter implements Filter {
 
     private static final boolean debug = true;
@@ -36,29 +36,24 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig fc) throws ServletException {
+
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
+        
+        System.out.println("Filter called");
         HttpServletRequest req = (HttpServletRequest) request;
-//
-        String requestURI = request instanceof HttpServletRequest
-                ? ((HttpServletRequest) request).getRequestURI() : "N/A";
-        String lastUrl = requestURI.substring(requestURI.lastIndexOf("/")+1, requestURI.length());
-        System.out.println(lastUrl);
-        if (!(lastUrl.equals("") || lastUrl.equals("index.jsp") || lastUrl.equals("admin"))) {
-            HttpSession session = req.getSession();
-            if (session.getAttribute("user") != null) {
-                chain.doFilter(request, response);
-            } else {
-                HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.sendRedirect("index.jsp");
-//            ((HttpServletResponse) response).sendRedirect("index.jsp");
-            }
+
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            System.out.println("No Users");
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.sendRedirect("../index.jsp");
         }else{
             chain.doFilter(request, response);
         }
+        
 
     }
 

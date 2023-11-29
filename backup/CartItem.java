@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 12:07:55 AM by Hibernate Tools 4.3.1
+// Generated Nov 22, 2023 10:04:55 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -23,9 +23,10 @@ public class CartItem  implements java.io.Serializable {
 
 
      private Integer id;
+     private AttributeVariant attributeVariant;
      private Cart cart;
+     private Product product;
      private String qty;
-     private int attributeVariantId;
      private Double unitprice;
      private Double total;
 
@@ -33,14 +34,15 @@ public class CartItem  implements java.io.Serializable {
     }
 
 	
-    public CartItem(Cart cart, int attributeVariantId) {
+    public CartItem(Cart cart, Product product) {
         this.cart = cart;
-        this.attributeVariantId = attributeVariantId;
+        this.product = product;
     }
-    public CartItem(Cart cart, String qty, int attributeVariantId, Double unitprice, Double total) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, String qty, Double unitprice, Double total) {
+       this.attributeVariant = attributeVariant;
        this.cart = cart;
+       this.product = product;
        this.qty = qty;
-       this.attributeVariantId = attributeVariantId;
        this.unitprice = unitprice;
        this.total = total;
     }
@@ -58,6 +60,16 @@ public class CartItem  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="attribute_variant_id")
+    public AttributeVariant getAttributeVariant() {
+        return this.attributeVariant;
+    }
+    
+    public void setAttributeVariant(AttributeVariant attributeVariant) {
+        this.attributeVariant = attributeVariant;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cart_id", nullable=false)
     public Cart getCart() {
         return this.cart;
@@ -65,6 +77,16 @@ public class CartItem  implements java.io.Serializable {
     
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", nullable=false)
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     
@@ -75,16 +97,6 @@ public class CartItem  implements java.io.Serializable {
     
     public void setQty(String qty) {
         this.qty = qty;
-    }
-
-    
-    @Column(name="attribute_variant_id", nullable=false)
-    public int getAttributeVariantId() {
-        return this.attributeVariantId;
-    }
-    
-    public void setAttributeVariantId(int attributeVariantId) {
-        this.attributeVariantId = attributeVariantId;
     }
 
     

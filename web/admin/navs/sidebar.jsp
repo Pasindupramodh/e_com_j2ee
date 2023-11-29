@@ -13,8 +13,8 @@
 <aside class="main-sidebar sidebar-light-olive elevation-4" style="background-color: #EAF9E7; ">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text text-color" style="font-weight: bold">${BASE_URL}</span>
+        <img src="../dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text text-color" style="font-weight: bold">${APP_NAME}</span>
     </a>
 
     <!-- Sidebar -->
@@ -22,7 +22,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block text-color" style=" font-weight: bold"><%= userData.getFname()+" "+userData.getLname() %></a>
@@ -47,7 +47,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item ">
-                    <a href="dashboard.jsp" class="nav-link active">
+                    <a href="pages/dashboard.jsp" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -124,7 +124,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="viewUsers.jsp" class="nav-link">
+                            <a href="viewProducts.jsp" class="nav-link">
                                 <i class="far fa-eye nav-icon text-color"></i>
                                 <p  class="text-color">View All</p>
                             </a>

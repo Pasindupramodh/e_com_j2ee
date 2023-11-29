@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
-import javax.ws.rs.WebApplicationException;
+import javax.xml.ws.WebServiceException;
 import org.apache.commons.io.FilenameUtils;
 
 public class FileUpload {
@@ -51,10 +51,10 @@ public class FileUpload {
             out.flush();
             out.close();
         }catch (IOException e){
-            throw new WebApplicationException("Error while uploading file try again");
+            throw new WebServiceException("Error while uploading file try again");
         }
 
-        String app_url = String.format("http://%s:%s%s","localhost","8080",context.getContextPath());
+        String app_url = String.format("http://%s:%s%s","localhost","8082",context.getContextPath());
         String url = context.getContextPath()+UPLOAD_DIR_NAME+"/"+fileName;
         String path = UPLOAD_DIR_NAME+"/"+fileName;
         String fullUrl = app_url+UPLOAD_DIR_NAME+"/"+fileName;
@@ -88,7 +88,7 @@ public class FileUpload {
             return null;
         }
 
-        String app_url = String.format("http://%s:%s%s","localhost","8080",context.getContextPath());
+        String app_url = String.format("http://%s:%s%s","localhost","8082",context.getContextPath());
         String url = context.getContextPath()+UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;
         String path = UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;
         String fullUrl = app_url+UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;

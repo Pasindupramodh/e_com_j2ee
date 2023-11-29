@@ -29,7 +29,7 @@ import util.Encryption;
  *
  * @author pasin
  */
-@WebServlet(name = "SystemUser", urlPatterns = {"/SystemUser"})
+@WebServlet(name = "SystemUser", urlPatterns = {"/admin/api/SystemUser"})
 public class SystemUserController extends HttpServlet {
 
     @Override

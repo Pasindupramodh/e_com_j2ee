@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 15, 2023 12:07:55 AM by Hibernate Tools 4.3.1
+// Generated Nov 22, 2023 10:04:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -26,8 +26,8 @@ public class Reviews  implements java.io.Serializable {
 
 
      private Integer id;
-     private AttributeVariant attributeVariant;
      private Customer customer;
+     private Product product;
      private Integer starCount;
      private String review;
      private Boolean isAnonymous;
@@ -37,13 +37,13 @@ public class Reviews  implements java.io.Serializable {
     }
 
 	
-    public Reviews(AttributeVariant attributeVariant, Customer customer) {
-        this.attributeVariant = attributeVariant;
+    public Reviews(Customer customer, Product product) {
         this.customer = customer;
+        this.product = product;
     }
-    public Reviews(AttributeVariant attributeVariant, Customer customer, Integer starCount, String review, Boolean isAnonymous, Set<Reviewimages> reviewimageses) {
-       this.attributeVariant = attributeVariant;
+    public Reviews(Customer customer, Product product, Integer starCount, String review, Boolean isAnonymous, Set<Reviewimages> reviewimageses) {
        this.customer = customer;
+       this.product = product;
        this.starCount = starCount;
        this.review = review;
        this.isAnonymous = isAnonymous;
@@ -63,16 +63,6 @@ public class Reviews  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="attribute_variant_id", nullable=false)
-    public AttributeVariant getAttributeVariant() {
-        return this.attributeVariant;
-    }
-    
-    public void setAttributeVariant(AttributeVariant attributeVariant) {
-        this.attributeVariant = attributeVariant;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="customer", nullable=false)
     public Customer getCustomer() {
         return this.customer;
@@ -80,6 +70,16 @@ public class Reviews  implements java.io.Serializable {
     
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", nullable=false)
+    public Product getProduct() {
+        return this.product;
+    }
+    
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     

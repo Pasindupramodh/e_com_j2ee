@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.ws.rs.WebApplicationException;
+import javax.xml.ws.WebServiceException;
 import model.Brand;
 import model.Category;
 import model.SystemUser;
@@ -34,11 +34,11 @@ import org.json.JSONArray;
  *
  * @author pasin
  */
-@WebServlet(name = "Brand", urlPatterns = {"/Brand"})
+@WebServlet(name = "Brand", urlPatterns = {"/admin/api/Brand"})
 @MultipartConfig(
-        fileSizeThreshold = 1024 * 1024 * 15,
-        maxFileSize = 1024 * 1024 * 15,
-        maxRequestSize = 1024 * 1024 * 15,
+        fileSizeThreshold = 1024 * 1024 * 151,
+        maxFileSize = 1024 * 1024 * 151,
+        maxRequestSize = 1024 * 1024 * 151,
         location = "/temp"
 )
 public class BrandController extends HttpServlet {
@@ -131,9 +131,8 @@ public class BrandController extends HttpServlet {
         List<BrandDTO> brandDTOs = brandDao.getByCategory(category);
         JSONArray array;
         if(brandDTOs == null){
-            throw new WebApplicationException("Brand Not Found");
+            throw new WebServiceException("Brand not found");
         }else{
-            
             array = new JSONArray(brandDTOs);
                 out.print(array);
         }

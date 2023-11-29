@@ -1,23 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 15, 2023 12:07:56 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 22, 2023 10:04:55 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Tag" table="tag" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="product" class="model.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
         <property name="tagName" type="string">
             <column name="tag_name" length="45" />
         </property>
-        <set name="products" table="product_has_tag" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="tag_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="model.Product">
-                <column name="product_id" not-null="true" />
-            </many-to-many>
-        </set>
     </class>
 </hibernate-mapping>

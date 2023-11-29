@@ -24,7 +24,7 @@ import model.SystemUser;
  *
  * @author pasin
  */
-@WebServlet(name = "UpdateBrand", urlPatterns = {"/UpdateBrand"})
+@WebServlet(name = "UpdateBrand", urlPatterns = {"/admin/api/UpdateBrand"})
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 15,
         maxFileSize = 1024 * 1024 * 15,

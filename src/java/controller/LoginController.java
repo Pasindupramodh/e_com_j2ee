@@ -22,7 +22,7 @@ import model.SystemUser;
  *
  * @author pasin
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
+@WebServlet(name = "Login", urlPatterns = {"/admin/api/Login"})
 public class LoginController extends HttpServlet {
 
     @Override

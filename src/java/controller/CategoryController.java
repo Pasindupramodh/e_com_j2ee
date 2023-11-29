@@ -28,7 +28,7 @@ import org.json.JSONArray;
  *
  * @author pasin
  */
-@WebServlet(name = "Category", urlPatterns = {"/Category"})
+@WebServlet(name = "Category", urlPatterns = {"/admin/api/Category"})
 public class CategoryController extends HttpServlet {
 
     @Override
