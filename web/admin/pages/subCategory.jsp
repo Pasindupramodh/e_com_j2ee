@@ -25,7 +25,7 @@
         <%@include file="style.jsp" %>
     </head>
     <body>
-        
+
         <%@include file="../navs/nav.jsp" %>
         <%@include file="../navs/sidebar.jsp" %>
         <!-- Content Wrapper. Contains page content -->
@@ -117,48 +117,50 @@
                                             <div class="card-header bg-color" style="">
                                                 <h3 class="card-title text-white" >Categories</h3>
                                             </div>
-                                            <div class="card-deck  m-4">
+                                            <div class="row row-cols-1 row-cols-md-3  m-4">
                                                 <%
                                                     List<Brand> brands = new BrandDao().getAllBrands();
                                                     if (brands != null) {
                                                         for (Brand brand : brands) {
                                                 %>
-                                                <div class="card">
-                                                    <img src="<%= brand.getBrandImage()%>" class="card-img-top" alt="...">
-                                                    <div class="card-title mt-2 text-center">
-                                                        <h5 class="font-weight-bold text-color"><%= brand.getBrandName()%></h5>
-                                                    </div>
-                                                    <div class="card-body">
+                                                <div class="col mb-4">
+                                                    <div class="card">
+                                                        <img src="<%= brand.getBrandImage()%>" class="card-img-top" alt="...">
+                                                        <div class="card-title mt-2 text-center">
+                                                            <h5 class="font-weight-bold text-color"><%= brand.getBrandName()%></h5>
+                                                        </div>
+                                                        <div class="card-body">
 
-                                                        <p class="card-text"><%= brand.getBrandDesc()%></p>
-                                                        <hr>
-                                                        <p class="card-text" > <strong>Category : </strong><%= brand.getCategory().getCategoryName()%> </p>
-                                                        <%
-                                                            if (brand.getIsActive()) {
-                                                        %>
-                                                        <span class="badge bg-success">Active</span>
-                                                        <%
-                                                        } else {
-                                                        %>
-                                                        <span class="badge bg-danger">Inactive</span>
-                                                        <%
-                                                            }
-                                                        %>
+                                                            <p class="card-text"><%= brand.getBrandDesc()%></p>
+                                                            <hr>
+                                                            <p class="card-text" > <strong>Category : </strong><%= brand.getCategory().getCategoryName()%> </p>
+                                                            <%
+                                                                if (brand.getIsActive()) {
+                                                            %>
+                                                            <span class="badge bg-success">Active</span>
+                                                            <%
+                                                            } else {
+                                                            %>
+                                                            <span class="badge bg-danger">Inactive</span>
+                                                            <%
+                                                                }
+                                                            %>
 
-                                                    </div>
-                                                    <div class="card-footer text-center" style="background-color: #91A3B0">
-                                                        <a type="button" class="badge bg-success mr-3" onclick="updateBrand('<%= brand.getId()%>', '<%= brand.getBrandName()%>', '<%= brand.getBrandDesc()%>', '<%= brand.getBrandImage()%>', '<%= brand.getCategory().getId()%>')" data-toggle="modal" data-target="#modal-lg" style="font-size: 16px">Edit</a>
-                                                        <%
-                                                            if (brand.getIsActive()) {
-                                                        %>
-                                                        <a class="badge bg-danger" onclick="statusBrand('<%= brand.getId()%>')"  href="javascript:;" style="font-size: 16px">Deactivate</a>
-                                                        <%
-                                                        } else {
-                                                        %>
-                                                        <a class="badge bg-danger" onclick="statusBrand('<%= brand.getId()%>')"  href="javascript:;"style="font-size: 16px" >Activate</a>
-                                                        <%
-                                                            }
-                                                        %>
+                                                        </div>
+                                                        <div class="card-footer text-center" style="background-color: #91A3B0">
+                                                            <a type="button" class="badge bg-success mr-3" onclick="updateBrand('<%= brand.getId()%>', '<%= brand.getBrandName()%>', '<%= brand.getBrandDesc()%>', '<%= brand.getBrandImage()%>', '<%= brand.getCategory().getId()%>')" data-toggle="modal" data-target="#modal-lg" style="font-size: 16px">Edit</a>
+                                                            <%
+                                                                if (brand.getIsActive()) {
+                                                            %>
+                                                            <a class="badge bg-danger" onclick="statusBrand('<%= brand.getId()%>')"  href="javascript:;" style="font-size: 16px">Deactivate</a>
+                                                            <%
+                                                            } else {
+                                                            %>
+                                                            <a class="badge bg-danger" onclick="statusBrand('<%= brand.getId()%>')"  href="javascript:;"style="font-size: 16px" >Activate</a>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <%
@@ -192,7 +194,7 @@
                                                 <div class="col-sm-10">
                                                     <select class=" form-control" id="subcategory" name="subcategory" style="width: 100%">
                                                         <option value="">Select Category</option>
-                                                        <%                                                           
+                                                        <%
                                                             if (categorys != null) {
                                                                 for (Category categoryDTO : categorys) {
                                                         %>
@@ -336,7 +338,7 @@
         </div>
         <!-- /.content-wrapper -->
     </body>
-   
+
     <script>
         document.getElementById('update_brand_image').onchange = function (evt) {
             var tgt = evt.target || window.event.srcElement,
@@ -536,7 +538,7 @@
                                     confirmButtonText: 'OK',
                                     icon: 'success'
                                 }).then((result) => {
-
+                                    window.location.reload();
                                 });
                             } else {
                                 Swal.fire({
@@ -668,7 +670,7 @@
                     brand_desc: {
                         required: true,
                     },
-                    
+
                     subcategory: {
                         required: true,
                     }

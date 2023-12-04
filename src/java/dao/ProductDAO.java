@@ -14,7 +14,9 @@ import dto.TagDTO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -29,6 +31,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import services.FileUpload;
 
@@ -76,16 +80,21 @@ public class ProductDAO {
                     Transaction transaction = session.getTransaction();
                     transaction.begin();
 
+                    Set<Tag> set = new HashSet<>();
+
+                    for (String tag : tags) {
+                        Tag t = new TagDAO().getByTagName(tag);
+                        if (t == null) {
+                            t = new Tag();
+                            t.setTagName(tag);
+                            session.persist(t);
+                        }
+                        set.add(t);
+                    }
+                    product.setTags(set);
                     session.persist(product);
 
                     session.persist(gallery);
-
-                    for (String tag : tags) {
-                        Tag t = new Tag();
-                        t.setTagName(tag);
-                        t.setProduct(product);
-                        session.persist(t);
-                    }
 
                     transaction.commit();
 
@@ -301,23 +310,24 @@ public class ProductDAO {
                         Transaction transaction = session.getTransaction();
                         transaction.begin();
 
+                        Set<Tag> set = new HashSet<>();
+
+                        for (String tag : tags) {
+                            Tag t = new TagDAO().getByTagName(tag);
+                            if (t == null) {
+                                t = new Tag();
+                                t.setTagName(tag);
+                                session.persist(t);
+                            }
+                            if (!product.getTags().contains(t)) {
+                                set.add(t);
+                            }
+                        }
+                        product.setTags(set);
+
                         session.merge(product);
 
                         session.merge(gallery);
-                        for (TagDTO tagDTO : productDTO.getTags()) {
-                            Tag t = new Tag();
-                            t.setId(tagDTO.getId());
-                            t.setTagName(tagDTO.getTagName());
-                            session.delete(t);
-
-                        }
-                        for (String tag : tags) {
-                            Tag t = new Tag();
-                            t.setTagName(tag);
-                            t.setProduct(product);
-                            session.persist(t);
-                        }
-
                         transaction.commit();
 
                         return true;
@@ -347,7 +357,6 @@ public class ProductDAO {
             Brand brand = new BrandDao().getById(brandId);
             if (brand != null) {
                 Session session = HibernateUtil.getSessionFactory().openSession();
-//        Query createQuery = session.createQuery("from Product");
                 Criteria criteria = session.createCriteria(Product.class);
                 criteria.add(Restrictions.eq("id", productId));
                 Product product = (Product) criteria.uniqueResult();
@@ -366,22 +375,21 @@ public class ProductDAO {
                 Transaction transaction = session.getTransaction();
                 transaction.begin();
 
-                session.merge(product);
-
-                for (TagDTO tagDTO : productDTO.getTags()) {
-                    Tag t = new Tag();
-                    t.setId(tagDTO.getId());
-                    t.setTagName(tagDTO.getTagName());
-                    session.delete(t);
-                }
+                Set<Tag> set = new HashSet<>();
 
                 for (String tag : tags) {
-                    Tag t = new Tag();
-                    t.setTagName(tag);
-                    t.setProduct(product);
-                    session.persist(t);
+                    Tag t = new TagDAO().getByTagName(tag);
+                    if (t == null) {
+                        t = new Tag();
+                        t.setTagName(tag);
+                        session.persist(t);
+                    }
+                    if (!product.getTags().contains(t)) {
+                        set.add(t);
+                    }
                 }
-
+                product.setTags(set);
+                session.merge(product);
                 transaction.commit();
 
                 return true;
@@ -397,7 +405,7 @@ public class ProductDAO {
 
     }
 
-    Product getById(String productId) {
+    public Product getById(String productId) {
         try {
             int id = Integer.parseInt(productId);
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -408,5 +416,49 @@ public class ProductDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Product> getAllPublished() {
+        try {
+
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            return session.createCriteria(Product.class).add(Restrictions.eq("published", true)).addOrder(Order.desc("discountPrice")).list();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Product> getAllPublished(String orderBy, int count) {
+        try {
+
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            return session.createCriteria(Product.class).add(Restrictions.eq("published", true)).addOrder(Order.desc(orderBy)).setMaxResults(count).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Product> getPaginateItems(int first, String order) {
+        Session session = connection.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+        criteria.add(Restrictions.eq("published", true));
+        if (order.equals("priceDesc")) {
+            criteria.addOrder(Order.desc("productPrice"));
+        } else if (order.equals("createdAt")) {
+            criteria.addOrder(Order.desc("createdAt"));
+        } else {
+            criteria.addOrder(Order.asc(order));
+        }
+
+        criteria.setFirstResult(first);
+        criteria.setMaxResults(12);
+        return criteria.list();
+    }
+
+    public int getCount() {
+        Session session = connection.HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Product.class);
+        return Integer.parseInt(criteria.add(Restrictions.eq("published", true)).setProjection(Projections.rowCount()).uniqueResult().toString());
     }
 }

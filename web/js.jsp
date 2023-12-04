@@ -31,3 +31,6 @@
 <script src="plugins/jquery-validation/additional-methods.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
+ <script src="plugins/universal-icon-picker/assets/js/universal-icon-picker.min.js"></script>
+ <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+ 

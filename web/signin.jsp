@@ -15,11 +15,7 @@
         <%@include file="css.jsp" %>
     </head>
     <body class="config">
-        <div class="preloader is-active">
-            <div class="preloader__wrap">
 
-                <img class="preloader__img" src="images/preloader.png" alt=""></div>
-        </div>
 
         <!--====== Main App ======-->
         <div id="app">
@@ -89,18 +85,18 @@
 
                                             <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
                                             <form class="l-f-o__form" id="login_form">
-                                                <!--                                            <div class="gl-s-api">
-                                                                                                <div class="u-s-m-b-15">
-                                                
-                                                                                                    <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
-                                                
-                                                                                                        <span>Signin with Facebook</span></button></div>
-                                                                                                <div class="u-s-m-b-15">
-                                                
-                                                                                                    <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
-                                                
-                                                                                                        <span>Signin with Google</span></button></div>
-                                                                                            </div>-->
+<!--                                                <div class="gl-s-api">
+                                                    <div class="u-s-m-b-15">
+
+                                                        <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+
+                                                            <span>Signin with Facebook</span></button></div>
+                                                    <div class="u-s-m-b-15">
+
+                                                        <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+
+                                                            <span>Signin with Google</span></button></div>
+                                                </div>-->
                                                 <div class="u-s-m-b-30">
 
                                                     <label class="gl-label" for="login_email">E-MAIL *</label>
@@ -148,29 +144,29 @@
             <!--====== Main Footer ======-->
             <%@include file="customerNavs/footer.jsp" %>
 
-            
+
         </div>
         <!--====== End - Main App ======-->
 
 
         <%@include file="js.jsp" %>
-<%
-                if (request.getParameter("status").equals("0")) {
-            %>
-            <script>
-                Swal.fire({
-                    title: "Email has verified...",
-                    showDenyButton: false,
-                    showCancelButton: false,
-                    confirmButtonText: 'OK',
-                    icon: 'success'
-                }).then((result) => {
+        <%
+            if (request.getParameter("status")!=null && request.getParameter("status").equals("0")) {
+        %>
+        <script>
+            Swal.fire({
+                title: "Email has verified...",
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'OK',
+                icon: 'success'
+            }).then((result) => {
 
-                });
-            </script>
-            <%
-                }
-            %>
+            });
+        </script>
+        <%
+            }
+        %>
         <!--====== Noscript ======-->
         <noscript>
         <div class="app-setting">
@@ -232,7 +228,7 @@
             });
             $('#login_form').validate({
                 rules: {
-                    
+
                     login_email: {
                         required: true,
                         email: true

@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,19 +29,19 @@ public class CusLogin  implements java.io.Serializable {
      private Integer id;
      private String username;
      private String password;
-     private String varifyCode;
      private Date verifiedAt;
+     private String verifyCode;
      private Boolean status;
      private Set<Customer> customers = new HashSet<Customer>(0);
 
     public CusLogin() {
     }
 
-    public CusLogin(String username, String password, String varifyCode, Date verifiedAt, Boolean status, Set<Customer> customers) {
+    public CusLogin(String username, String password, Date verifiedAt, String verifyCode, Boolean status, Set<Customer> customers) {
        this.username = username;
        this.password = password;
-       this.varifyCode = varifyCode;
        this.verifiedAt = verifiedAt;
+       this.verifyCode = verifyCode;
        this.status = status;
        this.customers = customers;
     }
@@ -59,7 +59,7 @@ public class CusLogin  implements java.io.Serializable {
     }
 
     
-    @Column(name="username", length=25)
+    @Column(name="username", length=45)
     public String getUsername() {
         return this.username;
     }
@@ -69,23 +69,13 @@ public class CusLogin  implements java.io.Serializable {
     }
 
     
-    @Column(name="password", length=300)
+    @Column(name="password", length=250)
     public String getPassword() {
         return this.password;
     }
     
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    
-    @Column(name="varify_code", length=50)
-    public String getVarifyCode() {
-        return this.varifyCode;
-    }
-    
-    public void setVarifyCode(String varifyCode) {
-        this.varifyCode = varifyCode;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -96,6 +86,16 @@ public class CusLogin  implements java.io.Serializable {
     
     public void setVerifiedAt(Date verifiedAt) {
         this.verifiedAt = verifiedAt;
+    }
+
+    
+    @Column(name="verify_code", length=50)
+    public String getVerifyCode() {
+        return this.verifyCode;
+    }
+    
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
     }
 
     

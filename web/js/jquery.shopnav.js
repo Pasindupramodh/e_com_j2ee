@@ -14,7 +14,7 @@
     $.fn.shopNav = function (options) {
 
         var defaults = {
-            mobileBreakpoint: 1024
+            mobileBreakpoint: 24
         },
         // this is now jQuery Object
         settings = $.extend({}, defaults, options),

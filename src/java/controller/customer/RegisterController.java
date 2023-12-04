@@ -63,7 +63,7 @@ public class RegisterController extends HttpServlet {
                cusLogin.setPassword(Encryption.encrypt(password));
                cusLogin.setStatus(Boolean.FALSE);
                cusLogin.setUsername(email);
-               cusLogin.setVarifyCode(verificationCode);
+               cusLogin.setVerifyCode(verificationCode);
                
                
                

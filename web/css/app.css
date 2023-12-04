@@ -699,7 +699,7 @@ body {
   background-color: #3d9970;
   transition: background-color .5s ease-in; }
   .btn--e-brand:hover {
-    background-color: #fa4400; }
+    background-color: #2d7a57; }
 
 .btn--e-brand-b-2 {
   color: #ffffff;
@@ -707,8 +707,8 @@ body {
   border: 2px solid #3d9970;
   transition: background-color 0.5s ease-in, border-color 0.5s ease-in; }
   .btn--e-brand-b-2:hover {
-    background-color: #fa4400;
-    border-color: #fa4400; }
+    background-color:#2d7a57;
+    border-color: #2d7a57; }
 
 .btn--e-grey-b-2 {
   color: #333333;
@@ -5390,7 +5390,9 @@ input::-ms-clear {
       background-color: transparent;
       color: #333333; }
   .shop-p__pagination > li.is-active > a {
-    background-color: #f7f7f7; }
+    background-color: #3d9970;
+    color: white;
+  }
   .shop-p__pagination > li:not(.is-active) > a:hover {
     color: #3d9970;
     text-decoration: underline; }

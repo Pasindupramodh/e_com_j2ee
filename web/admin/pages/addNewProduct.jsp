@@ -318,7 +318,7 @@
                                         confirmButtonText: 'OK',
                                         icon: 'success'
                                     }).then((result) => {
-
+                                        window.location.reload();
                                     });
                                 } else {
                                     Swal.fire({

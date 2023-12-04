@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 25, 2023 12:13:46 AM by Hibernate Tools 4.3.1
+// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -37,6 +37,7 @@ public class AttributeVariant  implements java.io.Serializable {
      private Double price;
      private Double discountPrice;
      private Integer qty;
+     private int produvtAttributeId;
      private Date createdat;
      private Date updatedat;
      private Set<CartItem> cartItems = new HashSet<CartItem>(0);
@@ -46,13 +47,14 @@ public class AttributeVariant  implements java.io.Serializable {
     }
 
 	
-    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby) {
+    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, int produvtAttributeId) {
         this.gallery = gallery;
         this.product = product;
         this.systemUserByUpdatedby = systemUserByUpdatedby;
         this.systemUserByCreatedby = systemUserByCreatedby;
+        this.produvtAttributeId = produvtAttributeId;
     }
-    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, String variantName, Double price, Double discountPrice, Integer qty, Date createdat, Date updatedat, Set<CartItem> cartItems, Set<Order> orders) {
+    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, String variantName, Double price, Double discountPrice, Integer qty, int produvtAttributeId, Date createdat, Date updatedat, Set<CartItem> cartItems, Set<Order> orders) {
        this.gallery = gallery;
        this.product = product;
        this.systemUserByUpdatedby = systemUserByUpdatedby;
@@ -61,6 +63,7 @@ public class AttributeVariant  implements java.io.Serializable {
        this.price = price;
        this.discountPrice = discountPrice;
        this.qty = qty;
+       this.produvtAttributeId = produvtAttributeId;
        this.createdat = createdat;
        this.updatedat = updatedat;
        this.cartItems = cartItems;
@@ -157,6 +160,16 @@ public class AttributeVariant  implements java.io.Serializable {
     
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+    
+    @Column(name="produvt_attribute_id", nullable=false)
+    public int getProduvtAttributeId() {
+        return this.produvtAttributeId;
+    }
+    
+    public void setProduvtAttributeId(int produvtAttributeId) {
+        this.produvtAttributeId = produvtAttributeId;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

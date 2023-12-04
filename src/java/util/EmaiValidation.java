@@ -20,9 +20,7 @@ public class EmaiValidation {
         return matcher.find();
         
     }
-    public static void main(String[] args) {
-        System.out.println(validate("pasindu@gmail.com"));
-    }
+    
 }
 
 class pi{

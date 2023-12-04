@@ -30,6 +30,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author pasin
  */
+
 public class BrandDao {
 
     public boolean save(Brand brand) {
