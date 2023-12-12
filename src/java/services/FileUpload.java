@@ -54,7 +54,7 @@ public class FileUpload {
             throw new WebServiceException("Error while uploading file try again");
         }
 
-        String app_url = String.format("http://%s:%s%s","localhost","8082",context.getContextPath());
+        String app_url = String.format("http://%s:%s%s","localhost","8084",context.getContextPath());
         String url = context.getContextPath()+UPLOAD_DIR_NAME+"/"+fileName;
         String path = UPLOAD_DIR_NAME+"/"+fileName;
         String fullUrl = app_url+UPLOAD_DIR_NAME+"/"+fileName;
@@ -88,7 +88,7 @@ public class FileUpload {
             return null;
         }
 
-        String app_url = String.format("http://%s:%s%s","localhost","8082",context.getContextPath());
+        String app_url = String.format("http://%s:%s%s","localhost","8084",context.getContextPath());
         String url = context.getContextPath()+UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;
         String path = UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;
         String fullUrl = app_url+UPLOAD_DIR_NAME+"/"+directoryName+"/"+fileName;

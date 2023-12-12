@@ -42,12 +42,12 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3310/j2e_ecom_db?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3308/j2e_ecom_db?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <!--<property name="hibernate.show_sql">true</property>-->
-    <!--<property name="hibernate.format_sql">true</property>-->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping resource="model/Order.hbm.xml"/>
     <mapping resource="model/Login.hbm.xml"/>

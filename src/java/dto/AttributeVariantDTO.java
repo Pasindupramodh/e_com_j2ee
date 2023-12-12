@@ -20,5 +20,4 @@ public class AttributeVariantDTO {
      private Double price;
      private Double discountPrice;
      private Integer qty;
-     
 }

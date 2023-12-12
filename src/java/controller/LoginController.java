@@ -53,7 +53,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        
+        try {
+            
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String id = req.getParameter("id");
@@ -63,6 +64,9 @@ public class LoginController extends HttpServlet {
             out.write("Success");
         }else{
             out.write("Errors");
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     

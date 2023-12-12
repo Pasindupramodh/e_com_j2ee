@@ -6,12 +6,15 @@
 package dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author pasin
  */
-@Data
+@Getter
+@Setter
 public class UserData {
     private int id;
     private String fname;

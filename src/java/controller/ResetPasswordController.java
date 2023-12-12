@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static com.sun.xml.internal.ws.api.message.Packet.Status.Response;
 import dao.LoginDAO;
 import io.fusionauth.jwt.InvalidJWTSignatureException;
 import io.fusionauth.jwt.JWTExpiredException;

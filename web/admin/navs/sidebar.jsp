@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     UserData userData = (UserData) session.getAttribute("user");
+    
 %>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-olive elevation-4" style="background-color: #EAF9E7; ">
