@@ -24,7 +24,7 @@ public class CusLoginDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             return (CusLogin) session.createCriteria(CusLogin.class)
-                    .add(Restrictions.eq("varifyCode", token))
+                    .add(Restrictions.eq("verifyCode", token))
                     .uniqueResult();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class CusLoginDAO {
             return null;
         } finally {
 
-            session.close();
+//            session.close();
 
         }
 

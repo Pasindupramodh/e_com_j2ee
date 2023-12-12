@@ -5,8 +5,6 @@
  */
 package dto;
 
-import java.util.Date;
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -14,10 +12,13 @@ import lombok.Data;
  * @author REDTECH
  */
 @Data
-public class CartDTO {
+public class CartItemDTO {
+
+    private Integer id;
+    private int variantId;
+    private Double qty;
+    private Double unitprice;
     private Double total;
-     private Double discount;
-     private Date createdAt;
-     private Date updatedAt;
-     private List<CartItemDTO> cartItemDTOs;
+    private Double discount;
+    private ProductDTO productDTO;
 }

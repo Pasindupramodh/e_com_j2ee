@@ -295,7 +295,7 @@
                                                         <a data-modal="modal" onclick="setDataToQuickLook('<%= imgPath%>', '<%= product.getProductName()%>',<%= product.getDiscountPrice()%>,<%= product.getProductPrice()%>,<%= product.getQty()%>, '<%= product.getShortDescription()%>')" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
                                                     <li>
 
-                                                        <a data-modal="modal" onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= imgPath%>')" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                        <a  onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= imgPath%>')"><i class="fas fa-plus-circle"></i></a></li>
                                                     <li>
 
                                                         <a href="signin.html"><i class="fas fa-heart"></i></a></li>
@@ -786,51 +786,8 @@
 
             <%@include file="customerNavs/footer.jsp" %>
 
-            <!--====== Add to Cart Modal ======-->
-            <div class="modal fade" id="add-to-cart">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content modal-radius modal-shadow">
-
-                        <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="success u-s-m-b-30">
-                                        <div class="success__text-wrap"><i class="fas fa-check"></i>
-
-                                            <span>Item is added successfully!</span></div>
-                                        <div class="success__img-wrap" id="cart_image">
-
-
-                                        </div>
-                                        <div class="success__info-wrap">
-
-                                            <span class="success__name" id="cart_name">proname</span>
-
-                                            <span class="success__quantity">Quantity: 1</span>
-
-                                            <span class="success__price" id="cart_price">$170.00</span></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="s-option">
-
-                                        <span class="s-option__text">1 item (s) in your cart</span>
-                                        <div class="s-option__link-box">
-
-                                            <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
-
-                                            <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--====== Quick Look Modal ======-->
+            <%@include file="common_use/cart_add.jsp" %>
+            
             <div class="modal fade" id="quick-look">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content modal--shadow">
@@ -960,54 +917,9 @@
             <!--====== End - Main App ======-->
 
 
-            <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-            <script>
-                window.ga = function () {
-                    ga.q.push(arguments)
-                };
-                ga.q = [];
-                ga.l = +new Date;
-                ga('create', 'UA-XXXXX-Y', 'auto');
-                ga('send', 'pageview')
-            </script>
-            <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+            <%@include file="js.jsp" %>
 
-            <!--====== Vendor Js ======-->
-            <script src="js/vendor.js"></script>
-
-            <!--====== jQuery Shopnav plugin ======-->
-            <script src="js/jquery.shopnav.js"></script>
-
-            <!--====== App ======-->
-            <script src="js/app.js"></script>
-
-            <script>
-                function setDataToQuickLook(imagepath, name, discount, price, qty, desc) {
-                    document.getElementById('js-product-detail-modal').innerHTML = '<div><img class="u-img-fluid" src="' + imagepath + '" alt=""></div>';
-                    document.getElementById('discount').innerHTML = discount + ' LKR';
-                    document.getElementById('product-name').innerHTML = name;
-                    document.getElementById('product-price').innerHTML = price + ' LKR';
-                    document.getElementById('afterDiscount').innerHTML = (price - discount) + ' LKR';
-                    document.getElementById('qty').innerHTML = qty + ' In Stock';
-                    document.getElementById('product_desc').innerHTML = desc;
-                    document.getElementById("max_qty").value = 1;
-                    document.getElementById("max_qty").setAttribute("data-max", qty);
-                }
-                function setDataToAddToCart(id, name, price, image) {
-                    document.getElementById("cart_image").innerHTML = ' <img class="u-img-fluid" src="' + image + '" alt="">';
-                    document.getElementById("cart_name").innerHTML = name;
-                    document.getElementById("cart_price").innerHTML = price;
-                }
-
-
-
-                function validateMax(qty) {
-                    if (document.getElementById('max_qty').value > qty) {
-                        document.getElementById('max_qty').value = qty;
-                    }
-                }
-
-            </script>
+            <%@include file="js/js.jsp" %>
             <!--====== Noscript ======-->
             <noscript>
             <div class="app-setting">

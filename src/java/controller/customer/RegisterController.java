@@ -84,9 +84,6 @@ public class RegisterController extends HttpServlet {
                
            }
        }
-       
-       out.print(req.getParameter("gender"));
-       
     }
 
     

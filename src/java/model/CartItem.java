@@ -26,8 +26,9 @@ public class CartItem  implements java.io.Serializable {
      private AttributeVariant attributeVariant;
      private Cart cart;
      private Product product;
-     private String qty;
+     private Double qty;
      private Double unitprice;
+     private Double discount;
      private Double total;
 
     public CartItem() {
@@ -38,13 +39,14 @@ public class CartItem  implements java.io.Serializable {
         this.cart = cart;
         this.product = product;
     }
-    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, String qty, Double unitprice, Double total) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, Double qty, Double unitprice,Double discount, Double total) {
        this.attributeVariant = attributeVariant;
        this.cart = cart;
        this.product = product;
        this.qty = qty;
        this.unitprice = unitprice;
        this.total = total;
+       this.discount = discount;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -91,11 +93,11 @@ public class CartItem  implements java.io.Serializable {
 
     
     @Column(name="qty", length=45)
-    public String getQty() {
+    public Double getQty() {
         return this.qty;
     }
     
-    public void setQty(String qty) {
+    public void setQty(Double qty) {
         this.qty = qty;
     }
 
@@ -109,6 +111,14 @@ public class CartItem  implements java.io.Serializable {
         this.unitprice = unitprice;
     }
 
+    @Column(name="discount", precision=22, scale=0)
+    public Double getDiscount() {
+        return this.discount;
+    }
+    
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
     
     @Column(name="total", precision=22, scale=0)
     public Double getTotal() {

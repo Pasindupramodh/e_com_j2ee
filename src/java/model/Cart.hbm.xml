@@ -14,6 +14,9 @@
         <property name="total" type="java.lang.Double">
             <column name="total" precision="22" scale="0" />
         </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="discount" precision="22" scale="0" />
+        </property>
         <property name="createdAt" type="timestamp">
             <column name="created_at" length="19" />
         </property>

@@ -84,7 +84,12 @@
                                         <div class="slider-fouc">
                                             <div id="pd-o-thumbnail">
                                                 <%
+                                                    String image = "";
                                                     for (Gallery gallery : product.getGalleries()) {
+                                                        
+                                                        if(gallery.getThumbnail()){
+                                                            image = gallery.getImgPath();
+                                                        }
                                                 %>
                                                 <div>
 
@@ -175,7 +180,7 @@
                                                 </div>
                                                 <div class="u-s-m-b-15">
 
-                                                    <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+                                                    <button class="btn btn--e-brand-b-2" type="button" onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= image %>')" >Add to Cart</button>
                                                 <button class="btn btn--e-brand-b-2" type="submit">Buy Now</button>
                                                 </div>
                                                 </div>
@@ -340,7 +345,7 @@
                                                         </li>
                                                         <li>
 
-                                                            <a data-modal="modal" onclick="setDataToAddToCart('<%= productRelated.getId()%>', '<%= productRelated.getProductName()%>', '<%= productRelated.getProductPrice() - productRelated.getDiscountPrice()%> ', '<%= imagepath %>')" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
+                                                            <a  onclick="setDataToAddToCart('<%= productRelated.getId()%>', '<%= productRelated.getProductName()%>', '<%= productRelated.getProductPrice() - productRelated.getDiscountPrice()%> ', '<%= imagepath %>')"  data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
                                                         </li>
                                                         <li>
 
@@ -517,49 +522,7 @@
 
 
             <!--====== Add to Cart Modal ======-->
-            <div class="modal fade" id="add-to-cart">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content modal-radius modal-shadow">
-
-                        <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="success u-s-m-b-30">
-                                        <div class="success__text-wrap"><i class="fas fa-check"></i>
-
-                                            <span>Item is added successfully!</span></div>
-                                        <div class="success__img-wrap" id="cart_image">
-
-
-                                        </div>
-                                        <div class="success__info-wrap">
-
-                                            <span class="success__name" id="cart_name">proname</span>
-
-                                            <span class="success__quantity">Quantity: 1</span>
-
-                                            <span class="success__price" id="cart_price">$170.00</span></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="s-option">
-
-                                        <span class="s-option__text">1 item (s) in your cart</span>
-                                        <div class="s-option__link-box">
-
-                                            <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE SHOPPING</a>
-
-                                            <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%@include file="common_use/cart_add.jsp" %>
             <!--====== End - Add to Cart Modal ======-->
     <!--====== End - Modal Section ======-->
 </div>
@@ -594,34 +557,7 @@
     </div>
 </div>
 </noscript>
-<script>
-     function setDataToQuickLook(imagepath, name, discount, price, qty, desc) {
-                    document.getElementById('js-product-detail-modal').innerHTML = '<div><img class="u-img-fluid" src="' + imagepath + '" alt=""></div>';
-                    document.getElementById('discount').innerHTML = discount + ' LKR';
-                    document.getElementById('product-name').innerHTML = name;
-                    document.getElementById('product-price').innerHTML = price + ' LKR';
-                    document.getElementById('afterDiscount').innerHTML = (price - discount) + ' LKR';
-                    document.getElementById('qty').innerHTML = qty + ' In Stock';
-                    document.getElementById('product_desc').innerHTML = desc;
-                    document.getElementById("max_qty").value=1;
-                    document.getElementById("max_qty").setAttribute("data-max",qty);
-                }
-                function setDataToAddToCart(id, name, price, image) {
-                    document.getElementById("cart_image").innerHTML = ' <img class="u-img-fluid" src="' + image + '" alt="">';
-                    document.getElementById("cart_name").innerHTML = name;
-                    document.getElementById("cart_price").innerHTML = price;
-                }
-                function changeVariant(name,price,discount,qty){
-                    document.getElementById('variant_name').innerHTML = "Variant : "+name;
-                    document.getElementById('variant_price').innerHTML = price+' LKR';
-                    document.getElementById('variant_discount').innerHTML = discount+' LKR OFF';
-                    document.getElementById('variant_last_price').innerHTML = (price - discount)+' LKR';
-                    document.getElementById('in_stock').innerHTML = qty+' In Stock';
-                    document.getElementById('qty_variant').value = 1;
-                    document.getElementById("qty_variant").setAttribute("data-max",qty);
-                    
-                }
-</script>
+<%@include file="js/js.jsp" %>
 <%
     }
 %>

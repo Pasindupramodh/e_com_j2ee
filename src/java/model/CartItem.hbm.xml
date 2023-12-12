@@ -17,11 +17,14 @@
         <many-to-one name="product" class="model.Product" fetch="select">
             <column name="product_id" not-null="true" />
         </many-to-one>
-        <property name="qty" type="string">
-            <column name="qty" length="45" />
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
         </property>
         <property name="unitprice" type="java.lang.Double">
             <column name="unitprice" precision="22" scale="0" />
+        </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="discount" precision="22" scale="0" />
         </property>
         <property name="total" type="java.lang.Double">
             <column name="total" precision="22" scale="0" />

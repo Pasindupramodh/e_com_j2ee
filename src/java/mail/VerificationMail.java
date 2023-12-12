@@ -19,7 +19,7 @@ public class VerificationMail extends Mailable{
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         message.setSubject("Please Confirm Your Email");
 
-        String appUrl = "http://localhost:8082/e_com_j2ee";
+        String appUrl = "http://localhost:8084/e_com_j2ee";
         String verifyUrl = appUrl+"/verify?token=" + verificationCode;
 
         // generate html/text content
