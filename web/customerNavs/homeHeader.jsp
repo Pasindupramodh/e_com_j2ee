@@ -354,7 +354,7 @@
                                         %>
                                         <span class="total-item-round">
                                             <%
-                                                if (cartDTO != null && cartDTO.getCartItemDTOs().isEmpty()) {
+                                                if (cartDTO == null || cartDTO.getCartItemDTOs() == null) {
                                             %>
                                             0
                                             <%

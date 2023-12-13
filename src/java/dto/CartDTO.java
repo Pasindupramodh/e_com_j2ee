@@ -15,9 +15,11 @@ import lombok.Data;
  */
 @Data
 public class CartDTO {
+
+    private int id;
     private Double total;
-     private Double discount;
-     private Date createdAt;
-     private Date updatedAt;
-     private List<CartItemDTO> cartItemDTOs;
+    private Double discount;
+    private Date createdAt;
+    private Date updatedAt;
+    private List<CartItemDTO> cartItemDTOs;
 }

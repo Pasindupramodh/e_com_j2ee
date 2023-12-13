@@ -36,7 +36,6 @@ public class CustomerDAO {
             ex.printStackTrace();
             return null;
         } finally {
-            session.close();
         }
     }
 

@@ -5,6 +5,7 @@
  */
 package controller.customer;
 
+import dao.CartDAO;
 import dao.CusLoginDAO;
 import dto.CusLoginDTO;
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class LoginController extends HttpServlet {
                            cusLoginDTO.setEmail(customer.getEmail());
                            
                            session.setAttribute("customer", cusLoginDTO);
-                           
+                           new CartDAO().saveCartDataToDB(session);
                            out.print("Success");
                            
                        }else{

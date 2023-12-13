@@ -88,7 +88,7 @@ public class SystemUserController extends HttpServlet {
         JSONArray array = new JSONArray(dtos);
         resp.getWriter().print(array);
     }
-
+ 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
