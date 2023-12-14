@@ -17,20 +17,20 @@
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
 <!--====== Vendor Js ======-->
-<script src="js/vendor.js"></script>
+<script src="${BASE_URL}js/vendor.js"></script>
 
 <!--====== jQuery Shopnav plugin ======-->
-<script src="js/jquery.shopnav.js"></script>
+<script src="${BASE_URL}js/jquery.shopnav.js"></script>
 
 <!--====== App ======-->
-<script src="js/app.js"></script>
+<script src="${BASE_URL}js/app.js"></script>
 
 <!--====== Jquery ======-->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
- <script src="plugins/universal-icon-picker/assets/js/universal-icon-picker.min.js"></script>
- <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${BASE_URL}plugins/jquery/jquery.min.js"></script>
+<script src="${BASE_URL}plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="${BASE_URL}plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="${BASE_URL}plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="${BASE_URL}plugins/sweetalert2/sweetalert2.all.min.js"></script>
+ <script src="${BASE_URL}plugins/universal-icon-picker/assets/js/universal-icon-picker.min.js"></script>
+ <script src="${BASE_URL}admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
  
