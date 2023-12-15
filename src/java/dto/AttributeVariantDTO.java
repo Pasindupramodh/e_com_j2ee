@@ -13,11 +13,13 @@ import lombok.Data;
  */
 @Data
 public class AttributeVariantDTO {
+
     private Integer id;
-     private GalleryDTO gallery;
-     private ProductAttributeDTO productAttribute;
-     private String variantName;
-     private Double price;
-     private Double discountPrice;
-     private Integer qty;
+    private GalleryDTO gallery;
+    private ProductAttributeDTO productAttribute;
+    private String variantName;
+    private Double price;
+    private Double discountPrice;
+    private Integer qty;
+    
 }

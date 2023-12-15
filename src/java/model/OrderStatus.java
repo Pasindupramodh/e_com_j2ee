@@ -1,14 +1,17 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,25 +27,27 @@ public class OrderStatus  implements java.io.Serializable {
 
 
      private int id;
-     private Order order;
      private SystemUser systemUser;
      private String status;
+     private int orderId;
      private Date createdAt;
+     private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
 
     public OrderStatus() {
     }
 
 	
-    public OrderStatus(int id, Order order) {
+    public OrderStatus(int id, int orderId) {
         this.id = id;
-        this.order = order;
+        this.orderId = orderId;
     }
-    public OrderStatus(int id, Order order, SystemUser systemUser, String status, Date createdAt) {
+    public OrderStatus(int id, SystemUser systemUser, String status, int orderId, Date createdAt, Set<OrderHasOrderStatus> orderHasOrderStatuses) {
        this.id = id;
-       this.order = order;
        this.systemUser = systemUser;
        this.status = status;
+       this.orderId = orderId;
        this.createdAt = createdAt;
+       this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
    
      @Id 
@@ -58,16 +63,6 @@ public class OrderStatus  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="order_id", nullable=false)
-    public Order getOrder() {
-        return this.order;
-    }
-    
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="created_by")
     public SystemUser getSystemUser() {
         return this.systemUser;
@@ -78,13 +73,23 @@ public class OrderStatus  implements java.io.Serializable {
     }
 
     
-    @Column(name="status", length=45)
+    @Column(name="status", length=50)
     public String getStatus() {
         return this.status;
     }
     
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    
+    @Column(name="order_id", nullable=false)
+    public int getOrderId() {
+        return this.orderId;
+    }
+    
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     @Temporal(TemporalType.DATE)
@@ -95,6 +100,15 @@ public class OrderStatus  implements java.io.Serializable {
     
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="orderStatus")
+    public Set<OrderHasOrderStatus> getOrderHasOrderStatuses() {
+        return this.orderHasOrderStatuses;
+    }
+    
+    public void setOrderHasOrderStatuses(Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+        this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
 
 

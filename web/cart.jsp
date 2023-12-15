@@ -191,7 +191,7 @@
                     <div class="table-p__box">
                         <div class="table-p__img-wrap">
 
-                            <img class="u-img-fluid" id="image" src="images/product/electronic/product3.jpg" alt=""></div>
+                            <img class="u-img-fluid" id="image" src="" alt=""></div>
                         <div class="table-p__info">
 
                             <span class="table-p__name">
@@ -201,20 +201,13 @@
                             <span class="table-p__category">
 
                                 <a href="shop-side-version-2.html" id="product-category">Electronics</a></span>
-                            <!--                            <ul class="table-p__variant-list">
-                                                            <li>
                             
-                                                                <span>Size: 22</span></li>
-                                                            <li>
-                            
-                                                                <span>Color: Red</span></li>
-                                                        </ul>-->
                         </div>
                     </div>
                 </td>
                 <td>
-
-                    <span class="table-p__price product-price"  id="product-price" >$125.00</span></td>
+                    <span class="table-p__price product-price"  id="product-price" >$125.00</span>
+                </td>
                 <td>
                     <div class="table-p__input-counter-wrap">
 
@@ -365,7 +358,6 @@
 
                                 });
                             }
-
                         },
                         error: function () {
                             Swal.fire({

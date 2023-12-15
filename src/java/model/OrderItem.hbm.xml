@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.CartItem" table="cart_item" catalog="j2e_ecom_db" optimistic-lock="version">
+    <class name="model.OrderItem" table="order_item" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
@@ -11,26 +11,20 @@
         <many-to-one name="attributeVariant" class="model.AttributeVariant" fetch="select">
             <column name="attribute_variant_id" />
         </many-to-one>
-        <many-to-one name="cart" class="model.Cart" fetch="select">
-            <column name="cart_id" not-null="true" />
-        </many-to-one>
         <many-to-one name="product" class="model.Product" fetch="select">
             <column name="product_id" not-null="true" />
         </many-to-one>
         <property name="qty" type="java.lang.Double">
-            <column name="qty"  precision="22" scale="0" />
+            <column name="qty" precision="22" scale="0" />
         </property>
         <property name="unitprice" type="java.lang.Double">
             <column name="unitprice" precision="22" scale="0" />
         </property>
-        <property name="total" type="java.lang.Double">
-            <column name="total" precision="22" scale="0" />
-        </property>
         <property name="discount" type="java.lang.Double">
             <column name="discount" precision="22" scale="0" />
         </property>
-        <property name="unitDiscount" type="java.lang.Double">
-            <column name="unit_discount" precision="22" scale="0" />
+        <property name="totaldiscount" type="java.lang.Double">
+            <column name="totaldiscount" precision="22" scale="0" />
         </property>
     </class>
 </hibernate-mapping>

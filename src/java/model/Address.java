@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,11 +28,15 @@ public class Address  implements java.io.Serializable {
      private Integer id;
      private City city;
      private Customer customer;
+     private String fname;
+     private String lname;
+     private String phone;
      private String addressLine1;
      private String addressLine2;
-     private Boolean isDefault;
+     private String zipcode;
      private Date createdAt;
      private Date updatedAt;
+     private Boolean isDefault;
 
     public Address() {
     }
@@ -42,14 +46,18 @@ public class Address  implements java.io.Serializable {
         this.city = city;
         this.customer = customer;
     }
-    public Address(City city, Customer customer, String addressLine1, String addressLine2, Boolean isDefault, Date createdAt, Date updatedAt) {
+    public Address(City city, Customer customer, String fname, String lname, String phone, String addressLine1, String addressLine2, String zipcode, Date createdAt, Date updatedAt, Boolean isDefault) {
        this.city = city;
        this.customer = customer;
+       this.fname = fname;
+       this.lname = lname;
+       this.phone = phone;
        this.addressLine1 = addressLine1;
        this.addressLine2 = addressLine2;
-       this.isDefault = isDefault;
+       this.zipcode = zipcode;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.isDefault = isDefault;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -85,6 +93,36 @@ public class Address  implements java.io.Serializable {
     }
 
     
+    @Column(name="fname", length=150)
+    public String getFname() {
+        return this.fname;
+    }
+    
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    
+    @Column(name="lname", length=250)
+    public String getLname() {
+        return this.lname;
+    }
+    
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    
+    @Column(name="phone", length=15)
+    public String getPhone() {
+        return this.phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    
     @Column(name="address_line_1", length=245)
     public String getAddressLine1() {
         return this.addressLine1;
@@ -105,13 +143,13 @@ public class Address  implements java.io.Serializable {
     }
 
     
-    @Column(name="is_default")
-    public Boolean getIsDefault() {
-        return this.isDefault;
+    @Column(name="zipcode", length=10)
+    public String getZipcode() {
+        return this.zipcode;
     }
     
-    public void setIsDefault(Boolean isDefault) {
-        this.isDefault = isDefault;
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -132,6 +170,16 @@ public class Address  implements java.io.Serializable {
     
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    
+    @Column(name="is_default")
+    public Boolean getIsDefault() {
+        return this.isDefault;
+    }
+    
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
     }
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.OrderHasOrderStatus" table="order_has_order_status" catalog="j2e_ecom_db" optimistic-lock="version">
+        <composite-id name="id" class="model.OrderHasOrderStatusId">
+            <key-property name="orderId" type="string">
+                <column name="order_id" length="150" />
+            </key-property>
+            <key-property name="orderStatusId" type="int">
+                <column name="order_status_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="order" class="model.Order" update="false" insert="false" fetch="select">
+            <column name="order_id" length="150" not-null="true" />
+        </many-to-one>
+        <many-to-one name="orderStatus" class="model.OrderStatus" update="false" insert="false" fetch="select">
+            <column name="order_status_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="systemUser" class="model.SystemUser" fetch="select">
+            <column name="updated_by" />
+        </many-to-one>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

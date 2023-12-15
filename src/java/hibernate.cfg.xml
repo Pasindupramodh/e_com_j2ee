@@ -46,29 +46,31 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping resource="model/Order.hbm.xml"/>
-    <mapping resource="model/Login.hbm.xml"/>
-    <mapping resource="model/CusLogin.hbm.xml"/>
-    <mapping resource="model/Brand.hbm.xml"/>
-    <mapping resource="model/NewTable.hbm.xml"/>
-    <mapping resource="model/Cart.hbm.xml"/>
-    <mapping resource="model/SystemUser.hbm.xml"/>
-    <mapping resource="model/Customer.hbm.xml"/>
+    <mapping resource="model/Address.hbm.xml"/>
     <mapping resource="model/AttributeVariant.hbm.xml"/>
+    <mapping resource="model/Province.hbm.xml"/>
     <mapping resource="model/Category.hbm.xml"/>
     <mapping resource="model/Gallery.hbm.xml"/>
-    <mapping resource="model/UserType.hbm.xml"/>
-    <mapping resource="model/Product.hbm.xml"/>
     <mapping resource="model/Reviews.hbm.xml"/>
-    <mapping resource="model/City.hbm.xml"/>
-    <mapping resource="model/Reviewimages.hbm.xml"/>
     <mapping resource="model/CartItem.hbm.xml"/>
-    <mapping resource="model/Tag.hbm.xml"/>
-    <mapping resource="model/Address.hbm.xml"/>
+    <mapping resource="model/Order.hbm.xml"/>
+    <mapping resource="model/City.hbm.xml"/>
     <mapping resource="model/OrderStatus.hbm.xml"/>
-    <mapping resource="model/Province.hbm.xml"/>
+    <mapping resource="model/Cart.hbm.xml"/>
+    <mapping resource="model/Reviewimages.hbm.xml"/>
+    <mapping resource="model/CusLogin.hbm.xml"/>
+    <mapping resource="model/Customer.hbm.xml"/>
+    <mapping resource="model/UserType.hbm.xml"/>
+    <mapping resource="model/PaymentStatus.hbm.xml"/>
     <mapping resource="model/Sold.hbm.xml"/>
+    <mapping resource="model/OrderHasOrderStatus.hbm.xml"/>
+    <mapping resource="model/SystemUser.hbm.xml"/>
+    <mapping resource="model/Login.hbm.xml"/>
+    <mapping resource="model/Brand.hbm.xml"/>
+    <mapping resource="model/OrderItem.hbm.xml"/>
+    <mapping resource="model/Product.hbm.xml"/>
+    <mapping resource="model/Tag.hbm.xml"/>
+    <mapping resource="model/NewTable.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

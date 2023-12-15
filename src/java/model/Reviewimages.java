@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -61,7 +61,7 @@ public class Reviewimages  implements java.io.Serializable {
     }
 
     
-    @Column(name="image_url", length=345)
+    @Column(name="image_url")
     public String getImageUrl() {
         return this.imageUrl;
     }

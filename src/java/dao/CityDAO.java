@@ -39,15 +39,60 @@ public class CityDAO {
                     provinceDTO.setId(city.getProvince().getId());
                     provinceDTO.setName(city.getProvince().getName());
                     cityDTO.setProvinceDTO(provinceDTO);
-                    
+
                     cityDTOs.add(cityDTO);
                 }
-                
+
                 return cityDTOs;
             } else {
                 return null;
             }
 
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public CityDTO getCityById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            City city = (City) session.createCriteria(City.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            if (city == null) {
+                return null;
+            } else {
+                CityDTO cityDTO = new CityDTO();
+                cityDTO.setId(city.getId());
+                cityDTO.setName(city.getName());
+                ProvinceDTO provinceDTO = new ProvinceDTO();
+                provinceDTO.setId(city.getProvince().getId());
+                provinceDTO.setName(city.getProvince().getName());
+                cityDTO.setProvinceDTO(provinceDTO);
+
+                return cityDTO;
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public City getCityModelById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            City city = (City) session.createCriteria(City.class)
+                    .add(Restrictions.eq("id", id))
+                    .uniqueResult();
+            if (city == null) {
+                return null;
+            } else {
+
+                return city;
+            }
         } catch (Exception e) {
             return null;
         } finally {

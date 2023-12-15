@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -125,7 +125,7 @@ public class Brand  implements java.io.Serializable {
     }
 
     
-    @Column(name="brand_image", length=445)
+    @Column(name="brand_image")
     public String getBrandImage() {
         return this.brandImage;
     }

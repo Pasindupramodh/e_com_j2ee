@@ -41,27 +41,30 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="j2e_ecom_db"/>
-  <table-filter match-name="brand"/>
-  <table-filter match-name="order"/>
-  <table-filter match-name="login"/>
-  <table-filter match-name="reviewimages"/>
+  <table-filter match-name="payment_status"/>
   <table-filter match-name="customer"/>
-  <table-filter match-name="reviews"/>
-  <table-filter match-name="address"/>
-  <table-filter match-name="attribute_variant"/>
-  <table-filter match-name="order_status"/>
-  <table-filter match-name="product_has_tag"/>
-  <table-filter match-name="system_user"/>
-  <table-filter match-name="cart_item"/>
-  <table-filter match-name="sold"/>
-  <table-filter match-name="user_type"/>
-  <table-filter match-name="tag"/>
+  <table-filter match-name="gallery"/>
   <table-filter match-name="cart"/>
+  <table-filter match-name="reviews"/>
+  <table-filter match-name="reviewimages"/>
+  <table-filter match-name="cart_item"/>
+  <table-filter match-name="system_user"/>
+  <table-filter match-name="product_has_tag"/>
+  <table-filter match-name="sold"/>
+  <table-filter match-name="cus_login"/>
   <table-filter match-name="category"/>
-  <table-filter match-name="province"/>
+  <table-filter match-name="order_has_order_status"/>
+  <table-filter match-name="order_item"/>
+  <table-filter match-name="order"/>
   <table-filter match-name="product"/>
+  <table-filter match-name="tag"/>
+  <table-filter match-name="login"/>
+  <table-filter match-name="attribute_variant"/>
   <table-filter match-name="city"/>
   <table-filter match-name="new_table"/>
-  <table-filter match-name="gallery"/>
-  <table-filter match-name="cus_login"/>
+  <table-filter match-name="province"/>
+  <table-filter match-name="address"/>
+  <table-filter match-name="brand"/>
+  <table-filter match-name="order_status"/>
+  <table-filter match-name="user_type"/>
 </hibernate-reverse-engineering>

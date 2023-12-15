@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,9 +31,9 @@ public class Cart  implements java.io.Serializable {
      private Integer id;
      private Customer customer;
      private Double total;
-     private Double discount;
      private Date createdAt;
      private Date updatedAt;
+     private Double discount;
      private Set<CartItem> cartItems = new HashSet<CartItem>(0);
 
     public Cart() {
@@ -43,12 +43,12 @@ public class Cart  implements java.io.Serializable {
     public Cart(Customer customer) {
         this.customer = customer;
     }
-    public Cart(Customer customer, Double total,Double discount, Date createdAt, Date updatedAt, Set<CartItem> cartItems) {
+    public Cart(Customer customer, Double total, Date createdAt, Date updatedAt, Double discount, Set<CartItem> cartItems) {
        this.customer = customer;
        this.total = total;
-       this.discount = discount;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.discount = discount;
        this.cartItems = cartItems;
     }
    
@@ -84,15 +84,6 @@ public class Cart  implements java.io.Serializable {
         this.total = total;
     }
 
-    @Column(name="discount", precision=22, scale=0)
-    public Double getDiscount() {
-        return this.discount;
-    }
-    
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
-    
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="created_at", length=19)
     public Date getCreatedAt() {
@@ -111,6 +102,16 @@ public class Cart  implements java.io.Serializable {
     
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    
+    @Column(name="discount", precision=22, scale=0)
+    public Double getDiscount() {
+        return this.discount;
+    }
+    
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="cart")

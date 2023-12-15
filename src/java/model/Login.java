@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -69,7 +69,7 @@ public class Login  implements java.io.Serializable {
     }
 
     
-    @Column(name="password", length=345)
+    @Column(name="password")
     public String getPassword() {
         return this.password;
     }

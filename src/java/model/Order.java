@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -8,8 +8,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,57 +26,65 @@ import javax.persistence.TemporalType;
 public class Order  implements java.io.Serializable {
 
 
-     private Integer id;
-     private AttributeVariant attributeVariant;
+     private String orderId;
      private Customer customer;
-     private Product product;
-     private String qty;
+     private PaymentStatus paymentStatus;
+     private Date orderDate;
+     private Date updateDate;
+     private Double estimatedDeliveryDate;
      private Double total;
+     private Double discount;
+     private String trackingNumber;
+     private int id;
+     private Integer attributeVariantId;
+     private int productId;
+     private String qty;
      private Date orderDeliveredCarrierDate;
      private Date orderDeliveredCustomerDate;
      private String createdAt;
-     private Set<OrderStatus> orderStatuses = new HashSet<OrderStatus>(0);
+     private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
 
     public Order() {
     }
 
 	
-    public Order(Customer customer, Product product) {
+    public Order(String orderId, Customer customer, PaymentStatus paymentStatus, int id, int productId) {
+        this.orderId = orderId;
         this.customer = customer;
-        this.product = product;
+        this.paymentStatus = paymentStatus;
+        this.id = id;
+        this.productId = productId;
     }
-    public Order(AttributeVariant attributeVariant, Customer customer, Product product, String qty, Double total, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderStatus> orderStatuses) {
-       this.attributeVariant = attributeVariant;
+    public Order(String orderId, Customer customer, PaymentStatus paymentStatus, Date orderDate, Date updateDate, Double estimatedDeliveryDate, Double total, Double discount, String trackingNumber, int id, Integer attributeVariantId, int productId, String qty, Date orderDeliveredCarrierDate, Date orderDeliveredCustomerDate, String createdAt, Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+       this.orderId = orderId;
        this.customer = customer;
-       this.product = product;
-       this.qty = qty;
+       this.paymentStatus = paymentStatus;
+       this.orderDate = orderDate;
+       this.updateDate = updateDate;
+       this.estimatedDeliveryDate = estimatedDeliveryDate;
        this.total = total;
+       this.discount = discount;
+       this.trackingNumber = trackingNumber;
+       this.id = id;
+       this.attributeVariantId = attributeVariantId;
+       this.productId = productId;
+       this.qty = qty;
        this.orderDeliveredCarrierDate = orderDeliveredCarrierDate;
        this.orderDeliveredCustomerDate = orderDeliveredCustomerDate;
        this.createdAt = createdAt;
-       this.orderStatuses = orderStatuses;
+       this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
-    @Column(name="id", unique=true, nullable=false)
-    public Integer getId() {
-        return this.id;
+    @Column(name="order_id", unique=true, nullable=false, length=150)
+    public String getOrderId() {
+        return this.orderId;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="attribute_variant_id")
-    public AttributeVariant getAttributeVariant() {
-        return this.attributeVariant;
-    }
-    
-    public void setAttributeVariant(AttributeVariant attributeVariant) {
-        this.attributeVariant = attributeVariant;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -92,23 +98,43 @@ public class Order  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_id", nullable=false)
-    public Product getProduct() {
-        return this.product;
+    @JoinColumn(name="payment_status_id", nullable=false)
+    public PaymentStatus getPaymentStatus() {
+        return this.paymentStatus;
     }
     
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="order_date", length=19)
+    public Date getOrderDate() {
+        return this.orderDate;
+    }
+    
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="update_date", length=19)
+    public Date getUpdateDate() {
+        return this.updateDate;
+    }
+    
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     
-    @Column(name="qty", length=45)
-    public String getQty() {
-        return this.qty;
+    @Column(name="estimated_delivery_date", precision=22, scale=0)
+    public Double getEstimatedDeliveryDate() {
+        return this.estimatedDeliveryDate;
     }
     
-    public void setQty(String qty) {
-        this.qty = qty;
+    public void setEstimatedDeliveryDate(Double estimatedDeliveryDate) {
+        this.estimatedDeliveryDate = estimatedDeliveryDate;
     }
 
     
@@ -119,6 +145,66 @@ public class Order  implements java.io.Serializable {
     
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    
+    @Column(name="discount", precision=22, scale=0)
+    public Double getDiscount() {
+        return this.discount;
+    }
+    
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    
+    @Column(name="tracking_number", length=100)
+    public String getTrackingNumber() {
+        return this.trackingNumber;
+    }
+    
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+
+    
+    @Column(name="id", nullable=false)
+    public int getId() {
+        return this.id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    @Column(name="attribute_variant_id")
+    public Integer getAttributeVariantId() {
+        return this.attributeVariantId;
+    }
+    
+    public void setAttributeVariantId(Integer attributeVariantId) {
+        this.attributeVariantId = attributeVariantId;
+    }
+
+    
+    @Column(name="product_id", nullable=false)
+    public int getProductId() {
+        return this.productId;
+    }
+    
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    
+    @Column(name="qty", length=45)
+    public String getQty() {
+        return this.qty;
+    }
+    
+    public void setQty(String qty) {
+        this.qty = qty;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -152,12 +238,12 @@ public class Order  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="order")
-    public Set<OrderStatus> getOrderStatuses() {
-        return this.orderStatuses;
+    public Set<OrderHasOrderStatus> getOrderHasOrderStatuses() {
+        return this.orderHasOrderStatuses;
     }
     
-    public void setOrderStatuses(Set<OrderStatus> orderStatuses) {
-        this.orderStatuses = orderStatuses;
+    public void setOrderHasOrderStatuses(Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+        this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
 
 

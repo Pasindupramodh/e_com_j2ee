@@ -39,7 +39,7 @@ public class CartController extends HttpServlet {
             if (session.getAttribute("customer") == null) {
                 String message = cartDAO.addToSessionCart(session, id);
                 out.print(message);
-            }else{
+            } else {
                 String message = cartDAO.addToCart(session, id);
                 out.print(message);
             }
@@ -58,7 +58,7 @@ public class CartController extends HttpServlet {
             if (session.getAttribute("customer") == null) {
                 String message = cartDAO.deleteFromSessionCart(session, id);
                 out.print(message);
-            }else{
+            } else {
                 String message = cartDAO.deleteFromCart(session, id);
                 out.print(message);
             }
@@ -72,10 +72,10 @@ public class CartController extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         Map<String, Object> map = new HashMap<>();
-
+        Gson gsone = new Gson();
         CartDAO cartDAO = new CartDAO();
         CartDTO cartDTO = cartDAO.getCart(req.getSession());
-        Gson gsone = new Gson();
+
         if (cartDTO == null) {
             map.put("isEmpty", true);
 
@@ -93,32 +93,30 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         PrintWriter out = resp.getWriter();
-         
-         try {
+        PrintWriter out = resp.getWriter();
+
+        try {
             Gson gsone = new Gson();
-             HttpSession httpSession = req.getSession();
-             
-             int id = Integer.parseInt(req.getParameter("id"));
-             int qty = Integer.parseInt(req.getParameter("qty"));
-             
-             CartDAO cartDAO = new CartDAO();
-             
-             if(httpSession.getAttribute("customer")==null){
-                 Map<String , Object> map = cartDAO.updateSessionCart(httpSession,id,qty);
-                 JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
-                 out.print(res);
-             }else{
-                 Map<String , Object> map = cartDAO.updateCart(httpSession,id,qty);
-                 JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
-                 out.print(res);
-             }
-             
+            HttpSession httpSession = req.getSession();
+
+            int id = Integer.parseInt(req.getParameter("id"));
+            int qty = Integer.parseInt(req.getParameter("qty"));
+
+            CartDAO cartDAO = new CartDAO();
+
+            if (httpSession.getAttribute("customer") == null) {
+                Map<String, Object> map = cartDAO.updateSessionCart(httpSession, id, qty);
+                JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
+                out.print(res);
+            } else {
+                Map<String, Object> map = cartDAO.updateCart(httpSession, id, qty);
+                JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
+                out.print(res);
+            }
+
         } catch (Exception e) {
             out.print("Something went wrong");
         }
     }
 
-    
-    
 }

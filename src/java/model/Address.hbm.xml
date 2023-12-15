@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Address" table="address" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -14,20 +14,32 @@
         <many-to-one name="customer" class="model.Customer" fetch="select">
             <column name="customer_id" not-null="true" />
         </many-to-one>
+        <property name="fname" type="string">
+            <column name="fname" length="150" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="250" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="15" />
+        </property>
         <property name="addressLine1" type="string">
             <column name="address_line_1" length="245" />
         </property>
         <property name="addressLine2" type="string">
             <column name="address_line_2" length="245" />
         </property>
-        <property name="isDefault" type="java.lang.Boolean">
-            <column name="is_default" />
+        <property name="zipcode" type="string">
+            <column name="zipcode" length="10" />
         </property>
         <property name="createdAt" type="timestamp">
             <column name="created_at" length="19" />
         </property>
         <property name="updatedAt" type="timestamp">
             <column name="updated_at" length="19" />
+        </property>
+        <property name="isDefault" type="java.lang.Boolean">
+            <column name="is_default" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 1, 2023 12:00:23 AM by Hibernate Tools 4.3.1
+// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -93,7 +93,7 @@ public class Reviews  implements java.io.Serializable {
     }
 
     
-    @Column(name="review", length=450)
+    @Column(name="review")
     public String getReview() {
         return this.review;
     }

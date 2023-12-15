@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.PaymentStatus" table="payment_status" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusCode" type="string">
+            <column name="status_code" length="15" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="150" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="payment_status_id" not-null="true" />
+            </key>
+            <one-to-many class="model.Order" />
+        </set>
+    </class>
+</hibernate-mapping>
