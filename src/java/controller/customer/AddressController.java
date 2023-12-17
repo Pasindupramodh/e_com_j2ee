@@ -90,4 +90,34 @@ public class AddressController extends HttpServlet {
 
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
+
+        Map<String, Object> map = new HashMap<>();
+        Gson gsone = new Gson();
+
+        try {
+            CusLoginDTO cusLoginDTO = (CusLoginDTO) req.getSession().getAttribute("customer");
+            Customer customer = new CustomerDAO().getByEmail(cusLoginDTO.getEmail());
+
+            AddressDAO addressDAO = new AddressDAO();
+            List<AddressDTO> addressDTOs = addressDAO.getAllAddressByCustomer(customer, null);
+            if (addressDTOs == null || addressDTOs.isEmpty()) {
+                map.put("isEmpty", true);
+                JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
+                out.print(res);
+            } else {
+                map.put("isEmpty", false);
+                map.put("data", addressDTOs);
+                JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
+                out.print(res);
+            }
+        } catch (Exception e) {
+            map.put("isEmpty", true);
+            JsonObject res = gsone.toJsonTree(map).getAsJsonObject();
+            out.print(res);
+        }
+    }
+
 }

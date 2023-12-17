@@ -39,11 +39,11 @@ public class AddressDAO {
 
             Transaction transaction = session.beginTransaction();
 
-            if(aDefault){
+            if (aDefault) {
                 List<Address> addresses = getAllAddressListsByCustomer(customer);
-                if(addresses !=null && !addresses.isEmpty()){
-                    for(Address addressCheck : addresses){
-                        if(addressCheck.getIsDefault()){
+                if (addresses != null && !addresses.isEmpty()) {
+                    for (Address addressCheck : addresses) {
+                        if (addressCheck.getIsDefault()) {
                             addressCheck.setIsDefault(false);
                             session.merge(addressCheck);
                             break;
@@ -51,7 +51,7 @@ public class AddressDAO {
                     }
                 }
             }
-            
+
             Address address = new Address();
             address.setAddressLine1(street);
             address.setAddressLine2(streetOptional);
@@ -125,4 +125,40 @@ public class AddressDAO {
         }
     }
 
+    public AddressDTO getById(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Address address = (Address) session.createCriteria(Address.class).add(Restrictions.eq("id", id)).uniqueResult();
+
+            AddressDTO addressDTO = new AddressDTO();
+            addressDTO.setId(address.getId());
+            addressDTO.setAddressLine1(address.getAddressLine1());
+            addressDTO.setAddressLine2(address.getAddressLine2());
+            addressDTO.setCity(new CityDAO().getCityById(address.getCity().getId()));
+            addressDTO.setFname(address.getFname());
+            addressDTO.setIsDefault(address.getIsDefault());
+            addressDTO.setLname(address.getLname());
+            addressDTO.setPhone(address.getPhone());
+            addressDTO.setZipcode(address.getZipcode());
+            
+            return addressDTO;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+    
+    public Address getAddressModelById(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+            return (Address) session.get(Address.class, id);
+        } catch (Exception e) {
+            return null;
+        }finally{
+            session.close();
+        }
+    }
+    
 }

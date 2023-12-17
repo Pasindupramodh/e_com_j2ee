@@ -9,7 +9,7 @@
             <generator class="assigned" />
         </id>
         <property name="statusCode" type="string">
-            <column name="status_code" length="15" />
+            <column name="status_code" length="150" />
         </property>
         <property name="status" type="string">
             <column name="status" length="150" />

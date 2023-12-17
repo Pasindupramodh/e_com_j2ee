@@ -463,4 +463,30 @@ public class CartDAO {
 
     }
 
+    void delete(CartDTO cart) {
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try {
+            
+            Transaction transaction = session.beginTransaction();
+            
+            Cart cart1 = (Cart) session.get(Cart.class, cart.getId());
+            
+            for(CartItemDTO cartItemDTO : cart.getCartItemDTOs()){
+                CartItem cartItem  = (CartItem) session.get(CartItem.class, cartItemDTO.getId());
+                session.delete(cartItem);
+            }
+            session.delete(cart1);
+            
+            transaction.commit();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        
+    }
+
 }

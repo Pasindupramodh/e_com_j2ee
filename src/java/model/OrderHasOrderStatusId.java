@@ -45,6 +45,7 @@ public class OrderHasOrderStatusId  implements java.io.Serializable {
     }
 
 
+     @Override
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;
@@ -55,6 +56,7 @@ public class OrderHasOrderStatusId  implements java.io.Serializable {
  && (this.getOrderStatusId()==castOther.getOrderStatusId());
    }
    
+     @Override
    public int hashCode() {
          int result = 17;
          

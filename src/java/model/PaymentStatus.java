@@ -53,7 +53,7 @@ public class PaymentStatus  implements java.io.Serializable {
     }
 
     
-    @Column(name="status_code", length=15)
+    @Column(name="status_code", length=150)
     public String getStatusCode() {
         return this.statusCode;
     }

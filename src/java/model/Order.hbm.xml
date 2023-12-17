@@ -20,8 +20,8 @@
         <property name="updateDate" type="timestamp">
             <column name="update_date" length="19" />
         </property>
-        <property name="estimatedDeliveryDate" type="java.lang.Double">
-            <column name="estimated_delivery_date" precision="22" scale="0" />
+        <property name="estimatedDeliveryDate" type="timestamp">
+            <column name="estimated_delivery_date" length="19" />
         </property>
         <property name="total" type="java.lang.Double">
             <column name="total" precision="22" scale="0" />
@@ -32,32 +32,23 @@
         <property name="trackingNumber" type="string">
             <column name="tracking_number" length="100" />
         </property>
-        <property name="id" type="int">
-            <column name="id" not-null="true" />
-        </property>
-        <property name="attributeVariantId" type="java.lang.Integer">
-            <column name="attribute_variant_id" />
-        </property>
-        <property name="productId" type="int">
-            <column name="product_id" not-null="true" />
-        </property>
-        <property name="qty" type="string">
-            <column name="qty" length="45" />
-        </property>
-        <property name="orderDeliveredCarrierDate" type="timestamp">
-            <column name="order_delivered_carrier_date" length="19" />
-        </property>
+        
         <property name="orderDeliveredCustomerDate" type="timestamp">
             <column name="order_delivered_customer_date" length="19" />
         </property>
-        <property name="createdAt" type="string">
-            <column name="created_at" length="45" />
-        </property>
+        
         <set name="orderHasOrderStatuses" table="order_has_order_status" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" length="150" not-null="true" />
             </key>
             <one-to-many class="model.OrderHasOrderStatus" />
+        </set>
+        
+        <set name="orderItems" table="order_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_id" length="150" not-null="true" />
+            </key>
+            <one-to-many class="model.OrderItem" />
         </set>
     </class>
 </hibernate-mapping>

@@ -26,5 +26,8 @@
         <property name="totaldiscount" type="java.lang.Double">
             <column name="totaldiscount" precision="22" scale="0" />
         </property>
+        <many-to-one name="order" class="model.Order" update="false" insert="false" fetch="select">
+            <column name="order_id" length="150" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

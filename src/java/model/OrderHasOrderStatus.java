@@ -48,12 +48,10 @@ public class OrderHasOrderStatus  implements java.io.Serializable {
        this.date = date;
     }
    
-     @EmbeddedId
-
-    
+    @EmbeddedId
     @AttributeOverrides( {
-        @AttributeOverride(name="orderId", column=@Column(name="order_id", nullable=false, length=150) ), 
-        @AttributeOverride(name="orderStatusId", column=@Column(name="order_status_id", nullable=false) ) } )
+    @AttributeOverride(name="orderId", column=@Column(name="order_id", nullable=false, length=150) ), 
+    @AttributeOverride(name="orderStatusId", column=@Column(name="order_status_id", nullable=false) ) } )
     public OrderHasOrderStatusId getId() {
         return this.id;
     }

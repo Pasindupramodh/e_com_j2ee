@@ -8,17 +8,8 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="systemUser" class="model.SystemUser" fetch="select">
-            <column name="created_by" />
-        </many-to-one>
         <property name="status" type="string">
             <column name="status" length="50" />
-        </property>
-        <property name="orderId" type="int">
-            <column name="order_id" not-null="true" />
-        </property>
-        <property name="createdAt" type="date">
-            <column name="created_at" length="10" />
         </property>
         <set name="orderHasOrderStatuses" table="order_has_order_status" inverse="true" lazy="true" fetch="select">
             <key>

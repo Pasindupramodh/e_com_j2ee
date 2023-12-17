@@ -82,7 +82,7 @@ public class Product  implements java.io.Serializable {
        this.cartItems = cartItems;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="id", unique=true, nullable=false)
