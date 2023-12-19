@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,8 +32,8 @@ public class Product  implements java.io.Serializable {
 
      private Integer id;
      private Brand brand;
-     private SystemUser systemUserByCreatedBy;
      private SystemUser systemUserByUpdatedBy;
+     private SystemUser systemUserByCreatedBy;
      private String productName;
      private Double qty;
      private Double productPrice;
@@ -41,27 +43,27 @@ public class Product  implements java.io.Serializable {
      private Boolean published;
      private Date createdAt;
      private Date updatedAt;
+     private Set<Gallery> galleries = new HashSet<Gallery>(0);
      private Set<Tag> tags = new HashSet<Tag>(0);
      private Set<Sold> solds = new HashSet<Sold>(0);
-     private Set<Order> orders = new HashSet<Order>(0);
+     private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
      private Set<Reviews> reviewses = new HashSet<Reviews>(0);
-     private Set<CartItem> cartItems = new HashSet<CartItem>(0);
      private Set<AttributeVariant> attributeVariants = new HashSet<AttributeVariant>(0);
-     private Set<Gallery> galleries = new HashSet<Gallery>(0);
+     private Set<CartItem> cartItems = new HashSet<CartItem>(0);
 
     public Product() {
     }
 
 	
-    public Product(Brand brand, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy) {
+    public Product(Brand brand, SystemUser systemUserByUpdatedBy, SystemUser systemUserByCreatedBy) {
         this.brand = brand;
-        this.systemUserByCreatedBy = systemUserByCreatedBy;
         this.systemUserByUpdatedBy = systemUserByUpdatedBy;
+        this.systemUserByCreatedBy = systemUserByCreatedBy;
     }
-    public Product(Brand brand, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, String productName, Double qty, Double productPrice, Double discountPrice, String shortDescription, String description, Boolean published, Date createdAt, Date updatedAt, Set<Tag> tags, Set<Sold> solds, Set<Order> orders, Set<Reviews> reviewses, Set<CartItem> cartItems, Set<AttributeVariant> attributeVariants, Set<Gallery> galleries) {
+    public Product(Brand brand, SystemUser systemUserByUpdatedBy, SystemUser systemUserByCreatedBy, String productName, Double qty, Double productPrice, Double discountPrice, String shortDescription, String description, Boolean published, Date createdAt, Date updatedAt, Set<Gallery> galleries, Set<Tag> tags, Set<Sold> solds, Set<OrderItem> orderItems, Set<Reviews> reviewses, Set<AttributeVariant> attributeVariants, Set<CartItem> cartItems) {
        this.brand = brand;
-       this.systemUserByCreatedBy = systemUserByCreatedBy;
        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
+       this.systemUserByCreatedBy = systemUserByCreatedBy;
        this.productName = productName;
        this.qty = qty;
        this.productPrice = productPrice;
@@ -71,13 +73,13 @@ public class Product  implements java.io.Serializable {
        this.published = published;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.galleries = galleries;
        this.tags = tags;
        this.solds = solds;
-       this.orders = orders;
+       this.orderItems = orderItems;
        this.reviewses = reviewses;
-       this.cartItems = cartItems;
        this.attributeVariants = attributeVariants;
-       this.galleries = galleries;
+       this.cartItems = cartItems;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -103,16 +105,6 @@ public class Product  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="created_by", nullable=false)
-    public SystemUser getSystemUserByCreatedBy() {
-        return this.systemUserByCreatedBy;
-    }
-    
-    public void setSystemUserByCreatedBy(SystemUser systemUserByCreatedBy) {
-        this.systemUserByCreatedBy = systemUserByCreatedBy;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="updated_by", nullable=false)
     public SystemUser getSystemUserByUpdatedBy() {
         return this.systemUserByUpdatedBy;
@@ -120,6 +112,16 @@ public class Product  implements java.io.Serializable {
     
     public void setSystemUserByUpdatedBy(SystemUser systemUserByUpdatedBy) {
         this.systemUserByUpdatedBy = systemUserByUpdatedBy;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="created_by", nullable=false)
+    public SystemUser getSystemUserByCreatedBy() {
+        return this.systemUserByCreatedBy;
+    }
+    
+    public void setSystemUserByCreatedBy(SystemUser systemUserByCreatedBy) {
+        this.systemUserByCreatedBy = systemUserByCreatedBy;
     }
 
     
@@ -213,6 +215,18 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    public Set<Gallery> getGalleries() {
+        return this.galleries;
+    }
+    
+    public void setGalleries(Set<Gallery> galleries) {
+        this.galleries = galleries;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="product_has_tag", catalog="j2e_ecom_db", joinColumns = { 
+        @JoinColumn(name="product_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="tag_id", nullable=false, updatable=false) })
     public Set<Tag> getTags() {
         return this.tags;
     }
@@ -231,12 +245,12 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
-    public Set<Order> getOrders() {
-        return this.orders;
+    public Set<OrderItem> getOrderItems() {
+        return this.orderItems;
     }
     
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
@@ -249,15 +263,6 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
-    public Set<CartItem> getCartItems() {
-        return this.cartItems;
-    }
-    
-    public void setCartItems(Set<CartItem> cartItems) {
-        this.cartItems = cartItems;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
     public Set<AttributeVariant> getAttributeVariants() {
         return this.attributeVariants;
     }
@@ -267,12 +272,12 @@ public class Product  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
-    public Set<Gallery> getGalleries() {
-        return this.galleries;
+    public Set<CartItem> getCartItems() {
+        return this.cartItems;
     }
     
-    public void setGalleries(Set<Gallery> galleries) {
-        this.galleries = galleries;
+    public void setCartItems(Set<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
 

@@ -1,7 +1,9 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,19 +26,15 @@ public class Tag  implements java.io.Serializable {
 
 
      private Integer id;
-     private Product product;
      private String tagName;
+     private Set<Product> products = new HashSet<Product>(0);
 
     public Tag() {
     }
 
-	
-    public Tag(Product product) {
-        this.product = product;
-    }
-    public Tag(Product product, String tagName) {
-       this.product = product;
+    public Tag(String tagName, Set<Product> products) {
        this.tagName = tagName;
+       this.products = products;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -50,16 +49,6 @@ public class Tag  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_id", nullable=false)
-    public Product getProduct() {
-        return this.product;
-    }
-    
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     
     @Column(name="tag_name", length=45)
     public String getTagName() {
@@ -68,6 +57,18 @@ public class Tag  implements java.io.Serializable {
     
     public void setTagName(String tagName) {
         this.tagName = tagName;
+    }
+
+@ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="product_has_tag", catalog="j2e_ecom_db", joinColumns = { 
+        @JoinColumn(name="tag_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="product_id", nullable=false, updatable=false) })
+    public Set<Product> getProducts() {
+        return this.products;
+    }
+    
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
 

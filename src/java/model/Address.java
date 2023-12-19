@@ -1,8 +1,10 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +40,7 @@ public class Address  implements java.io.Serializable {
      private Date createdAt;
      private Date updatedAt;
      private Boolean isDefault;
+     private Set<Order> orders = new HashSet<Order>(0);
 
     public Address() {
     }
@@ -46,7 +50,7 @@ public class Address  implements java.io.Serializable {
         this.city = city;
         this.customer = customer;
     }
-    public Address(City city, Customer customer, String fname, String lname, String phone, String addressLine1, String addressLine2, String zipcode, Date createdAt, Date updatedAt, Boolean isDefault) {
+    public Address(City city, Customer customer, String fname, String lname, String phone, String addressLine1, String addressLine2, String zipcode, Date createdAt, Date updatedAt, Boolean isDefault, Set<Order> orders) {
        this.city = city;
        this.customer = customer;
        this.fname = fname;
@@ -58,6 +62,7 @@ public class Address  implements java.io.Serializable {
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
        this.isDefault = isDefault;
+       this.orders = orders;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -180,6 +185,15 @@ public class Address  implements java.io.Serializable {
     
     public void setIsDefault(Boolean isDefault) {
         this.isDefault = isDefault;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="address")
+    public Set<Order> getOrders() {
+        return this.orders;
+    }
+    
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
 

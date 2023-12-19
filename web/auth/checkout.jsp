@@ -196,7 +196,8 @@
                                                         <div class="ship-b__box u-s-m-b-10">
                                                             <p class="ship-b__p" id="address" >Set an address first.</p>
                                                             <input type="hidden" value="" id="address-id" />
-                                                            <input type="hidden" id="product-id" value="0" />
+                                                            <input type="hidden" id="product-qty" value="<%= request.getParameter("qty")%>" />
+                                                            <input type="hidden" id="product-id" value="<%= request.getParameter("product")%>" />
                                                             <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
                                                         </div>
                                                     </div>
@@ -379,110 +380,141 @@
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
         <%@include file="../js.jsp" %>
+        <%@include file="../js/js.jsp" %>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
 
             document.getElementById('pay-now').addEventListener('click', () => {
                 let productId = document.getElementById('product-id').value;
                 let addressId = document.getElementById('address-id').value;
-                $.ajax({
-                    type: 'POST',
-                    url: '${BASE_URL}auth/Order',
-                    data: {
-                        product: productId,
-                        address: addressId
-                    },
-                    success: function (data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.message === "Success") {
-                            var options = {
-                                "key": 'rzp_test_n8CzHm5PubcRlA', // Enter the Key ID generated from the Dashboard
-                                "amount": data.order.map.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                                "currency": data.order.map.currency,
-                                "name": "GREENTECH",
-                                "description": "Test Transaction",
-                                "image": "${BASE_URL}images/logo/logo-1.png",
-                                "order_id": data.order.map.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                                "handler": function (response) {
-                                    
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: '${BASE_URL}auth/Payment',
-                                        data: {
-                                            orderId: response.razorpay_order_id,
-                                            paymentId: response.razorpay_payment_id,
-                                            productId: productId,
-                                            addressId:addressId,
-                                            paymentStatus: 'success'
-                                        },
-                                        success: function (data) {
-                                            data = JSON.parse(data);
-                                            if (data.message == "Success") {
-                                                
-                                            } else {
+                var productQTY = document.getElementById('product-qty').value;
+                if (productId === null || productId === '') {
+                    Swal.fire({
+                        title: 'Something Went Wrong',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                        icon: 'error'
+                    }).then((result) => {
+                    });
+                } else if (addressId === null || addressId === '') {
+                    Swal.fire({
+                        title: 'Add an address',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                        icon: 'error'
+                    }).then((result) => {
+                    });
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '${BASE_URL}auth/Order',
+                        data: {
+                            product: productId,
+                            address: addressId,
+                            productQTY: productQTY
+                        },
+                        success: function (data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+                            if (data.message === "Success") {
+                                var options = {
+                                    "key": 'rzp_test_n8CzHm5PubcRlA', // Enter the Key ID generated from the Dashboard
+                                    "amount": data.order.map.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                                    "currency": data.order.map.currency,
+                                    "name": "GREENTECH",
+                                    "description": "Test Transaction",
+                                    "image": "${BASE_URL}images/logo/logo-1.png",
+                                    "order_id": data.order.map.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                    "handler": function (response) {
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '${BASE_URL}auth/Payment',
+                                            data: {
+                                                orderId: response.razorpay_order_id,
+                                                paymentId: response.razorpay_payment_id,
+                                                productId: productId,
+                                                addressId: addressId,
+                                                paymentStatus: 'success',
+                                                productQTY: productQTY
+                                            },
+                                            success: function (data) {
+                                                if (data == "Success") {
+                                                    Swal.fire({
+                                                        title: "Pyment Success",
+                                                        showDenyButton: false,
+                                                        showCancelButton: false,
+                                                        confirmButtonText: 'OK',
+                                                        icon: 'success'
+                                                    }).then((result) => {
+                                                        window.location.href = ${BASE_URL};
+                                                    });
+                                                } else {
+                                                    Swal.fire({
+                                                        title: data,
+                                                        showDenyButton: false,
+                                                        showCancelButton: false,
+                                                        confirmButtonText: 'OK',
+                                                        icon: 'error'
+                                                    }).then((result) => {
+                                                        window.location.href = ${BASE_URL};
+                                                    });
+                                                }
+                                            },
+                                            error: function () {
                                                 Swal.fire({
-                                                    title: data.message,
+                                                    title: 'Something went wrong',
                                                     showDenyButton: false,
                                                     showCancelButton: false,
                                                     confirmButtonText: 'OK',
                                                     icon: 'error'
                                                 }).then((result) => {
-
                                                 });
                                             }
-                                        },
-                                        error: function () {
-                                            Swal.fire({
-                                                title: 'Something went wrong',
-                                                showDenyButton: false,
-                                                showCancelButton: false,
-                                                confirmButtonText: 'OK',
-                                                icon: 'error'
-                                            }).then((result) => {
-                                            });
-                                        }
-                                    })
-                                },
-                                "prefill": {
-                                    "name": data.address.fname + ' ' + data.address.lname,
-                                    "email": data.email,
-                                    "contact": data.address.phone
-                                },
-                                "notes": {
-                                    "address": '' + data.address.addressLine1 + ' ' + data.address.addressLine2 + ' ' + data.address.city.name + ' ' + data.address.city.provinceDTO.name
-                                },
-                                "theme": {
-                                    "color": "#3d9970"
-                                }
-                            };
-                            var rzp1 = new Razorpay(options);
-                            rzp1.on('payment.failed', function (response) {
+                                        })
+                                    },
+                                    "prefill": {
+                                        "name": data.address.fname + ' ' + data.address.lname,
+                                        "email": data.email,
+                                        "contact": data.address.phone
+                                    },
+                                    "notes": {
+                                        "address": '' + data.address.addressLine1 + ' ' + data.address.addressLine2 + ' ' + data.address.city.name + ' ' + data.address.city.provinceDTO.name
+                                    },
+                                    "theme": {
+                                        "color": "#3d9970"
+                                    }
+                                };
+                                var rzp1 = new Razorpay(options);
+                                rzp1.on('payment.failed', function (response) {
 
-                                $.ajax({
+                                    $.ajax({
                                         type: 'POST',
                                         url: '${BASE_URL}auth/Payment',
                                         data: {
                                             orderId: response.error.metadata.order_id,
                                             paymentId: response.error.metadata.payment_id,
                                             productId: productId,
-                                            addressId:addressId,
+                                            addressId: addressId,
                                             paymentStatus: 'error',
                                             reason: response.error.reason,
-                                            errorCode:response.error.code
+                                            errorCode: response.error.code,
+                                            productQTY: productQTY
                                         },
                                         success: function (data) {
-                                            data = JSON.parse(data);
-                                            if (data.message == "Success") {
-                                                
+                                            if (data == "Success") {
+                                                window.location = ${BASE_URL}
                                             } else {
                                                 Swal.fire({
-                                                    title: data.message,
+                                                    title: data,
                                                     showDenyButton: false,
                                                     showCancelButton: false,
                                                     confirmButtonText: 'OK',
                                                     icon: 'error'
                                                 }).then((result) => {
+                                                    window.location.href = ${BASE_URL};
 
                                                 });
                                             }
@@ -498,32 +530,34 @@
                                             });
                                         }
                                     })
-                            });
+                                });
 
-                            rzp1.open();
-                        } else {
+                                rzp1.open();
+                            } else {
+                                Swal.fire({
+                                    title: data.message,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'error'
+                                }).then((result) => {
+
+                                });
+                            }
+                        },
+                        error: function () {
                             Swal.fire({
-                                title: data.message,
+                                title: 'Something Unexpected happend tryagain shortly..',
                                 showDenyButton: false,
                                 showCancelButton: false,
                                 confirmButtonText: 'OK',
                                 icon: 'error'
                             }).then((result) => {
-
                             });
                         }
-                    },
-                    error: function () {
-                        Swal.fire({
-                            title: 'Something Unexpected happend tryagain shortly..',
-                            showDenyButton: false,
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            icon: 'error'
-                        }).then((result) => {
-                        });
-                    }
-                })
+                    })
+                }
+
             });
 
             function loadCartProducts() {
@@ -572,12 +606,85 @@
 
                                             orderSummary.innerHTML += checkoutProduct.innerHTML;
                                         });
+                            } else {
+                                window.location.href = ${BASE_URL};
                             }
 
                         });
             }
-            loadCartProducts();
 
+            function loadProduct() {
+                let productId = document.getElementById('product-id').value;
+                let productQTY = document.getElementById('product-qty').value;
+                fetch("${BASE_URL}/auth/GetSingleProduct?productId=" + productId + "&productQTY=" + productQTY)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log();
+                            if(data.message === "Success"){
+                                var product = data.data;
+                                var orderSummary = document.getElementById('order-summary');
+                                var checkoutProduct = document.getElementById('checkout_item');
+
+                                let total = document.getElementById('total');
+                                let discount = document.getElementById('discount');
+                                let subTotal = document.getElementById('sub-total');
+                                let grandTotal = document.getElementById('grand-total');
+
+                                total.innerHTML = product.productPrice * productQTY + ' LKR';
+                                discount.innerHTML = product.discountPrice * productQTY + ' LKR';
+                                subTotal.innerHTML = (product.productPrice * productQTY)-(product.discountPrice * productQTY) + ' LKR';
+                                grandTotal.innerHTML = ((product.productPrice * productQTY)-(product.discountPrice * productQTY) + 300) + ' LKR';
+
+                                let image = document.getElementById('image');
+                                let productName = document.getElementById('product-name');
+                                let productPrice = document.getElementsByClassName('product-price')[0];
+                                let qty = document.getElementsByClassName('qty')[0];
+
+                                document.getElementById('delete').setAttribute("style","display:none;");
+//                                
+//                                let product = cartItem.productDTO;
+
+                                product.galleries.forEach(gallery => {
+                                    if (gallery.thumbnail) {
+                                        image.setAttribute("src", gallery.imgPath);
+                                    }
+                                });
+                                productName.innerHTML = product.productName;
+                                productName.setAttribute("href", '${BASE_URL}product_detail.jsp?id=' + product.id);
+                                productPrice.innerHTML = (product.productPrice - product.discountPrice) + ' LKR';
+                                qty.innerHTML = productQTY;
+//
+//                                productPrice.setAttribute("id", 'productprice' + cartItem.id);
+
+
+                                orderSummary.innerHTML += checkoutProduct.innerHTML;
+                            
+                            }else{
+                                Swal.fire({
+                                    title: data.message,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'error'
+                                }).then((result) => {
+                                    window.location.href = ${BASE_URL};
+                                });
+                            }
+                            
+
+                        });
+
+            }
+
+            function loadTo() {
+                let productId = document.getElementById('product-id').value;
+                if (productId === '0') {
+                    loadCartProducts();
+                } else {
+                    loadProduct();
+                }
+            }
+            loadTo();
             //            var selectElement = document.getElementById('city');
             var selectElement = $("#city");
             document.getElementById('state').addEventListener('change', () => {

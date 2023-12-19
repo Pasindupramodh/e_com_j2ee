@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.NewTable" table="new_table" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="idnewTable" type="int">

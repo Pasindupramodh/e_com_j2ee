@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.OrderItem" table="order_item" catalog="j2e_ecom_db" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="attributeVariant" class="model.AttributeVariant" fetch="select">
+            <column name="attribute_variant_id" />
+        </many-to-one>
+        <many-to-one name="order" class="model.Order" fetch="select">
+            <column name="order_id" length="150" not-null="true" />
+        </many-to-one>
+        <many-to-one name="product" class="model.Product" fetch="select">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
+        <property name="qty" type="java.lang.Double">
+            <column name="qty" precision="22" scale="0" />
+        </property>
+        <property name="unitprice" type="java.lang.Double">
+            <column name="unitprice" precision="22" scale="0" />
+        </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="discount" precision="22" scale="0" />
+        </property>
+        <property name="totaldiscount" type="java.lang.Double">
+            <column name="totaldiscount" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

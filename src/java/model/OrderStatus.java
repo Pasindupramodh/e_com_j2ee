@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,6 +24,7 @@ public class OrderStatus  implements java.io.Serializable {
 
 
      private int id;
+     private SystemUser systemUser;
      private String status;
      private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
 
@@ -29,11 +32,12 @@ public class OrderStatus  implements java.io.Serializable {
     }
 
 	
-    public OrderStatus(int id, int orderId) {
+    public OrderStatus(int id) {
         this.id = id;
     }
-    public OrderStatus(int id, String status, Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+    public OrderStatus(int id, SystemUser systemUser, String status, Set<OrderHasOrderStatus> orderHasOrderStatuses) {
        this.id = id;
+       this.systemUser = systemUser;
        this.status = status;
        this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
@@ -48,6 +52,16 @@ public class OrderStatus  implements java.io.Serializable {
     
     public void setId(int id) {
         this.id = id;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="created_by")
+    public SystemUser getSystemUser() {
+        return this.systemUser;
+    }
+    
+    public void setSystemUser(SystemUser systemUser) {
+        this.systemUser = systemUser;
     }
 
     

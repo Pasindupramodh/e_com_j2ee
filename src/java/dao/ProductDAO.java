@@ -7,6 +7,8 @@ package dao;
 
 import connection.HibernateUtil;
 import dto.BrandDTO;
+import dto.CartDTO;
+import dto.CartItemDTO;
 import dto.CategoryDTO;
 import dto.GalleryDTO;
 import dto.ProductDTO;
@@ -460,5 +462,51 @@ public class ProductDAO {
         Session session = connection.HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Product.class);
         return Integer.parseInt(criteria.add(Restrictions.eq("published", true)).setProjection(Projections.rowCount()).uniqueResult().toString());
+    }
+
+    public void updateQTY(CartDTO cart) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            Transaction transaction = session.beginTransaction();
+
+            for (CartItemDTO cartItemDTO : cart.getCartItemDTOs()) {
+                Product product = (Product) session.get(Product.class, cartItemDTO.getProductDTO().getId());
+                double newQTY = product.getQty() - cartItemDTO.getQty();
+                product.setQty(newQTY);
+                if (newQTY < 1) {
+                    product.setPublished(Boolean.FALSE);
+                }
+                session.merge(product);
+            }
+            transaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void updateQTY(Integer id, int productQTY) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            Transaction transaction = session.beginTransaction();
+
+            Product product = (Product) session.get(Product.class, id);
+            double newQTY = product.getQty() - productQTY;
+            product.setQty(newQTY);
+            if (newQTY < 1) {
+                product.setPublished(Boolean.FALSE);
+            }
+            session.merge(product);
+            transaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 }

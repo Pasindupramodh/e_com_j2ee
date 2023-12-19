@@ -55,7 +55,7 @@ public class CartDAO {
                     CartItemDTO cartItemDTO = new CartItemDTO();
                     cartItemDTO.setId(1);
                     cartItemDTO.setProductDTO(productDTO);
-                    cartItemDTO.setQty(1.0);
+                    cartItemDTO.setQty(1);
                     cartItemDTO.setTotal(productDTO.getProductPrice());
                     cartItemDTO.setUnitprice(productDTO.getProductPrice());
                     cartItemDTO.setDiscount(productDTO.getDiscountPrice());
@@ -81,7 +81,7 @@ public class CartDAO {
                         CartItemDTO cartItemDTO = new CartItemDTO();
                         cartItemDTO.setId(cartItemDTOs.size() + 1);
                         cartItemDTO.setProductDTO(productDTO);
-                        cartItemDTO.setQty(1.0);
+                        cartItemDTO.setQty(1);
                         cartItemDTO.setTotal(productDTO.getProductPrice());
                         cartItemDTO.setUnitprice(productDTO.getProductPrice());
                         cartItemDTO.setDiscount(productDTO.getDiscountPrice());
@@ -294,7 +294,7 @@ public class CartDAO {
 
                     cartItemDTO.setTotal(cartItemDTO.getUnitprice() * qty);
                     cartItemDTO.setDiscount(cartItemDTO.getUnitDiscount() * qty);
-                    cartItemDTO.setQty(Double.valueOf(qty));
+                    cartItemDTO.setQty(qty);
 
                     map.put("Message", "Success");
                     map.put("data", cartDTO);
@@ -332,7 +332,7 @@ public class CartDAO {
 
                         cartItem.setTotal(cartItem.getUnitprice() * qty);
                         cartItem.setDiscount(cartItem.getUnitDiscount() * qty);
-                        cartItem.setQty(Double.valueOf(qty));
+                        cartItem.setQty(qty);
 
                         session.merge(cart);
                         session.merge(cartItem);
@@ -445,7 +445,7 @@ public class CartDAO {
                 cartItem.setCart(cart);
                 cartItem.setDiscount(product.getDiscountPrice());
                 cartItem.setProduct(product);
-                cartItem.setQty(1.0);
+                cartItem.setQty(1);
                 cartItem.setTotal(product.getProductPrice());
                 cartItem.setUnitDiscount(product.getDiscountPrice());
                 cartItem.setUnitprice(product.getProductPrice());

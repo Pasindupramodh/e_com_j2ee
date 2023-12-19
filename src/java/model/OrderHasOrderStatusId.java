@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -45,7 +45,6 @@ public class OrderHasOrderStatusId  implements java.io.Serializable {
     }
 
 
-     @Override
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;
@@ -56,7 +55,6 @@ public class OrderHasOrderStatusId  implements java.io.Serializable {
  && (this.getOrderStatusId()==castOther.getOrderStatusId());
    }
    
-     @Override
    public int hashCode() {
          int result = 17;
          

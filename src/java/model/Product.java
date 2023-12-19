@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -82,7 +82,7 @@ public class Product  implements java.io.Serializable {
        this.cartItems = cartItems;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)

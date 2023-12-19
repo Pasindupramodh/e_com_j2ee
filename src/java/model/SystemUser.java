@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -42,8 +42,8 @@ public class SystemUser  implements java.io.Serializable {
      private boolean isActive;
      private Set<OrderStatus> orderStatuses = new HashSet<OrderStatus>(0);
      private Set<SystemUser> systemUsersForCreatedBy = new HashSet<SystemUser>(0);
-     private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
      private Set<Category> categoriesForCreatedBy = new HashSet<Category>(0);
+     private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
      private Set<Brand> brandsForUpdatedBy = new HashSet<Brand>(0);
      private Set<Category> categoriesForUpdatedBy = new HashSet<Category>(0);
      private Set<Product> productsForUpdatedBy = new HashSet<Product>(0);
@@ -62,7 +62,7 @@ public class SystemUser  implements java.io.Serializable {
         this.userType = userType;
         this.isActive = isActive;
     }
-    public SystemUser(Login login, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, UserType userType, String fname, String lname, String mobile, String email, Date createdAt, Date updatedAt, boolean isActive, Set<OrderStatus> orderStatuses, Set<SystemUser> systemUsersForCreatedBy, Set<OrderHasOrderStatus> orderHasOrderStatuses, Set<Category> categoriesForCreatedBy, Set<Brand> brandsForUpdatedBy, Set<Category> categoriesForUpdatedBy, Set<Product> productsForUpdatedBy, Set<Brand> brandsForCreatedBy, Set<AttributeVariant> attributeVariantsForUpdatedby, Set<AttributeVariant> attributeVariantsForCreatedby, Set<Product> productsForCreatedBy, Set<SystemUser> systemUsersForUpdatedBy) {
+    public SystemUser(Login login, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, UserType userType, String fname, String lname, String mobile, String email, Date createdAt, Date updatedAt, boolean isActive, Set<OrderStatus> orderStatuses, Set<SystemUser> systemUsersForCreatedBy, Set<Category> categoriesForCreatedBy, Set<OrderHasOrderStatus> orderHasOrderStatuses, Set<Brand> brandsForUpdatedBy, Set<Category> categoriesForUpdatedBy, Set<Product> productsForUpdatedBy, Set<Brand> brandsForCreatedBy, Set<AttributeVariant> attributeVariantsForUpdatedby, Set<AttributeVariant> attributeVariantsForCreatedby, Set<Product> productsForCreatedBy, Set<SystemUser> systemUsersForUpdatedBy) {
        this.login = login;
        this.systemUserByCreatedBy = systemUserByCreatedBy;
        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
@@ -76,8 +76,8 @@ public class SystemUser  implements java.io.Serializable {
        this.isActive = isActive;
        this.orderStatuses = orderStatuses;
        this.systemUsersForCreatedBy = systemUsersForCreatedBy;
-       this.orderHasOrderStatuses = orderHasOrderStatuses;
        this.categoriesForCreatedBy = categoriesForCreatedBy;
+       this.orderHasOrderStatuses = orderHasOrderStatuses;
        this.brandsForUpdatedBy = brandsForUpdatedBy;
        this.categoriesForUpdatedBy = categoriesForUpdatedBy;
        this.productsForUpdatedBy = productsForUpdatedBy;
@@ -228,15 +228,6 @@ public class SystemUser  implements java.io.Serializable {
         this.systemUsersForCreatedBy = systemUsersForCreatedBy;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUser")
-    public Set<OrderHasOrderStatus> getOrderHasOrderStatuses() {
-        return this.orderHasOrderStatuses;
-    }
-    
-    public void setOrderHasOrderStatuses(Set<OrderHasOrderStatus> orderHasOrderStatuses) {
-        this.orderHasOrderStatuses = orderHasOrderStatuses;
-    }
-
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
     public Set<Category> getCategoriesForCreatedBy() {
         return this.categoriesForCreatedBy;
@@ -244,6 +235,15 @@ public class SystemUser  implements java.io.Serializable {
     
     public void setCategoriesForCreatedBy(Set<Category> categoriesForCreatedBy) {
         this.categoriesForCreatedBy = categoriesForCreatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUser")
+    public Set<OrderHasOrderStatus> getOrderHasOrderStatuses() {
+        return this.orderHasOrderStatuses;
+    }
+    
+    public void setOrderHasOrderStatuses(Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+        this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")

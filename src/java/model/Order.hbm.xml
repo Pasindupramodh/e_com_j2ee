@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 19, 2023 1:28:58 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Order" table="order" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="orderId" type="string">
             <column name="order_id" length="150" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="address" class="model.Address" fetch="select">
+            <column name="address_id" />
+        </many-to-one>
         <many-to-one name="customer" class="model.Customer" fetch="select">
             <column name="customer_id" not-null="true" />
         </many-to-one>
@@ -32,18 +35,18 @@
         <property name="trackingNumber" type="string">
             <column name="tracking_number" length="100" />
         </property>
-        
         <property name="orderDeliveredCustomerDate" type="timestamp">
             <column name="order_delivered_customer_date" length="19" />
         </property>
-        
+        <property name="lastStatus" type="string">
+            <column name="last_status" length="200" />
+        </property>
         <set name="orderHasOrderStatuses" table="order_has_order_status" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" length="150" not-null="true" />
             </key>
             <one-to-many class="model.OrderHasOrderStatus" />
         </set>
-        
         <set name="orderItems" table="order_item" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="order_id" length="150" not-null="true" />

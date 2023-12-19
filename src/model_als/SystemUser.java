@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -30,8 +30,8 @@ public class SystemUser  implements java.io.Serializable {
 
      private Integer id;
      private Login login;
-     private SystemUser systemUserByUpdatedBy;
      private SystemUser systemUserByCreatedBy;
+     private SystemUser systemUserByUpdatedBy;
      private UserType userType;
      private String fname;
      private String lname;
@@ -40,17 +40,18 @@ public class SystemUser  implements java.io.Serializable {
      private Date createdAt;
      private Date updatedAt;
      private boolean isActive;
-     private Set<Category> categoriesForCreatedBy = new HashSet<Category>(0);
-     private Set<Category> categoriesForUpdatedBy = new HashSet<Category>(0);
      private Set<OrderStatus> orderStatuses = new HashSet<OrderStatus>(0);
-     private Set<SystemUser> systemUsersForUpdatedBy = new HashSet<SystemUser>(0);
      private Set<SystemUser> systemUsersForCreatedBy = new HashSet<SystemUser>(0);
-     private Set<AttributeVariant> attributeVariantsForUpdatedby = new HashSet<AttributeVariant>(0);
+     private Set<Category> categoriesForCreatedBy = new HashSet<Category>(0);
+     private Set<OrderHasOrderStatus> orderHasOrderStatuses = new HashSet<OrderHasOrderStatus>(0);
      private Set<Brand> brandsForUpdatedBy = new HashSet<Brand>(0);
-     private Set<AttributeVariant> attributeVariantsForCreatedby = new HashSet<AttributeVariant>(0);
-     private Set<Brand> brandsForCreatedBy = new HashSet<Brand>(0);
-     private Set<Product> productsForCreatedBy = new HashSet<Product>(0);
+     private Set<Category> categoriesForUpdatedBy = new HashSet<Category>(0);
      private Set<Product> productsForUpdatedBy = new HashSet<Product>(0);
+     private Set<Brand> brandsForCreatedBy = new HashSet<Brand>(0);
+     private Set<AttributeVariant> attributeVariantsForUpdatedby = new HashSet<AttributeVariant>(0);
+     private Set<AttributeVariant> attributeVariantsForCreatedby = new HashSet<AttributeVariant>(0);
+     private Set<Product> productsForCreatedBy = new HashSet<Product>(0);
+     private Set<SystemUser> systemUsersForUpdatedBy = new HashSet<SystemUser>(0);
 
     public SystemUser() {
     }
@@ -61,10 +62,10 @@ public class SystemUser  implements java.io.Serializable {
         this.userType = userType;
         this.isActive = isActive;
     }
-    public SystemUser(Login login, SystemUser systemUserByUpdatedBy, SystemUser systemUserByCreatedBy, UserType userType, String fname, String lname, String mobile, String email, Date createdAt, Date updatedAt, boolean isActive, Set<Category> categoriesForCreatedBy, Set<Category> categoriesForUpdatedBy, Set<OrderStatus> orderStatuses, Set<SystemUser> systemUsersForUpdatedBy, Set<SystemUser> systemUsersForCreatedBy, Set<AttributeVariant> attributeVariantsForUpdatedby, Set<Brand> brandsForUpdatedBy, Set<AttributeVariant> attributeVariantsForCreatedby, Set<Brand> brandsForCreatedBy, Set<Product> productsForCreatedBy, Set<Product> productsForUpdatedBy) {
+    public SystemUser(Login login, SystemUser systemUserByCreatedBy, SystemUser systemUserByUpdatedBy, UserType userType, String fname, String lname, String mobile, String email, Date createdAt, Date updatedAt, boolean isActive, Set<OrderStatus> orderStatuses, Set<SystemUser> systemUsersForCreatedBy, Set<Category> categoriesForCreatedBy, Set<OrderHasOrderStatus> orderHasOrderStatuses, Set<Brand> brandsForUpdatedBy, Set<Category> categoriesForUpdatedBy, Set<Product> productsForUpdatedBy, Set<Brand> brandsForCreatedBy, Set<AttributeVariant> attributeVariantsForUpdatedby, Set<AttributeVariant> attributeVariantsForCreatedby, Set<Product> productsForCreatedBy, Set<SystemUser> systemUsersForUpdatedBy) {
        this.login = login;
-       this.systemUserByUpdatedBy = systemUserByUpdatedBy;
        this.systemUserByCreatedBy = systemUserByCreatedBy;
+       this.systemUserByUpdatedBy = systemUserByUpdatedBy;
        this.userType = userType;
        this.fname = fname;
        this.lname = lname;
@@ -73,17 +74,18 @@ public class SystemUser  implements java.io.Serializable {
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
        this.isActive = isActive;
-       this.categoriesForCreatedBy = categoriesForCreatedBy;
-       this.categoriesForUpdatedBy = categoriesForUpdatedBy;
        this.orderStatuses = orderStatuses;
-       this.systemUsersForUpdatedBy = systemUsersForUpdatedBy;
        this.systemUsersForCreatedBy = systemUsersForCreatedBy;
-       this.attributeVariantsForUpdatedby = attributeVariantsForUpdatedby;
+       this.categoriesForCreatedBy = categoriesForCreatedBy;
+       this.orderHasOrderStatuses = orderHasOrderStatuses;
        this.brandsForUpdatedBy = brandsForUpdatedBy;
-       this.attributeVariantsForCreatedby = attributeVariantsForCreatedby;
-       this.brandsForCreatedBy = brandsForCreatedBy;
-       this.productsForCreatedBy = productsForCreatedBy;
+       this.categoriesForUpdatedBy = categoriesForUpdatedBy;
        this.productsForUpdatedBy = productsForUpdatedBy;
+       this.brandsForCreatedBy = brandsForCreatedBy;
+       this.attributeVariantsForUpdatedby = attributeVariantsForUpdatedby;
+       this.attributeVariantsForCreatedby = attributeVariantsForCreatedby;
+       this.productsForCreatedBy = productsForCreatedBy;
+       this.systemUsersForUpdatedBy = systemUsersForUpdatedBy;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -109,16 +111,6 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="updated_by")
-    public SystemUser getSystemUserByUpdatedBy() {
-        return this.systemUserByUpdatedBy;
-    }
-    
-    public void setSystemUserByUpdatedBy(SystemUser systemUserByUpdatedBy) {
-        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="created_by")
     public SystemUser getSystemUserByCreatedBy() {
         return this.systemUserByCreatedBy;
@@ -126,6 +118,16 @@ public class SystemUser  implements java.io.Serializable {
     
     public void setSystemUserByCreatedBy(SystemUser systemUserByCreatedBy) {
         this.systemUserByCreatedBy = systemUserByCreatedBy;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="updated_by")
+    public SystemUser getSystemUserByUpdatedBy() {
+        return this.systemUserByUpdatedBy;
+    }
+    
+    public void setSystemUserByUpdatedBy(SystemUser systemUserByUpdatedBy) {
+        this.systemUserByUpdatedBy = systemUserByUpdatedBy;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -208,24 +210,6 @@ public class SystemUser  implements java.io.Serializable {
         this.isActive = isActive;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
-    public Set<Category> getCategoriesForCreatedBy() {
-        return this.categoriesForCreatedBy;
-    }
-    
-    public void setCategoriesForCreatedBy(Set<Category> categoriesForCreatedBy) {
-        this.categoriesForCreatedBy = categoriesForCreatedBy;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
-    public Set<Category> getCategoriesForUpdatedBy() {
-        return this.categoriesForUpdatedBy;
-    }
-    
-    public void setCategoriesForUpdatedBy(Set<Category> categoriesForUpdatedBy) {
-        this.categoriesForUpdatedBy = categoriesForUpdatedBy;
-    }
-
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUser")
     public Set<OrderStatus> getOrderStatuses() {
         return this.orderStatuses;
@@ -233,15 +217,6 @@ public class SystemUser  implements java.io.Serializable {
     
     public void setOrderStatuses(Set<OrderStatus> orderStatuses) {
         this.orderStatuses = orderStatuses;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
-    public Set<SystemUser> getSystemUsersForUpdatedBy() {
-        return this.systemUsersForUpdatedBy;
-    }
-    
-    public void setSystemUsersForUpdatedBy(Set<SystemUser> systemUsersForUpdatedBy) {
-        this.systemUsersForUpdatedBy = systemUsersForUpdatedBy;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
@@ -253,13 +228,22 @@ public class SystemUser  implements java.io.Serializable {
         this.systemUsersForCreatedBy = systemUsersForCreatedBy;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedby")
-    public Set<AttributeVariant> getAttributeVariantsForUpdatedby() {
-        return this.attributeVariantsForUpdatedby;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
+    public Set<Category> getCategoriesForCreatedBy() {
+        return this.categoriesForCreatedBy;
     }
     
-    public void setAttributeVariantsForUpdatedby(Set<AttributeVariant> attributeVariantsForUpdatedby) {
-        this.attributeVariantsForUpdatedby = attributeVariantsForUpdatedby;
+    public void setCategoriesForCreatedBy(Set<Category> categoriesForCreatedBy) {
+        this.categoriesForCreatedBy = categoriesForCreatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUser")
+    public Set<OrderHasOrderStatus> getOrderHasOrderStatuses() {
+        return this.orderHasOrderStatuses;
+    }
+    
+    public void setOrderHasOrderStatuses(Set<OrderHasOrderStatus> orderHasOrderStatuses) {
+        this.orderHasOrderStatuses = orderHasOrderStatuses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
@@ -269,6 +253,42 @@ public class SystemUser  implements java.io.Serializable {
     
     public void setBrandsForUpdatedBy(Set<Brand> brandsForUpdatedBy) {
         this.brandsForUpdatedBy = brandsForUpdatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
+    public Set<Category> getCategoriesForUpdatedBy() {
+        return this.categoriesForUpdatedBy;
+    }
+    
+    public void setCategoriesForUpdatedBy(Set<Category> categoriesForUpdatedBy) {
+        this.categoriesForUpdatedBy = categoriesForUpdatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
+    public Set<Product> getProductsForUpdatedBy() {
+        return this.productsForUpdatedBy;
+    }
+    
+    public void setProductsForUpdatedBy(Set<Product> productsForUpdatedBy) {
+        this.productsForUpdatedBy = productsForUpdatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
+    public Set<Brand> getBrandsForCreatedBy() {
+        return this.brandsForCreatedBy;
+    }
+    
+    public void setBrandsForCreatedBy(Set<Brand> brandsForCreatedBy) {
+        this.brandsForCreatedBy = brandsForCreatedBy;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedby")
+    public Set<AttributeVariant> getAttributeVariantsForUpdatedby() {
+        return this.attributeVariantsForUpdatedby;
+    }
+    
+    public void setAttributeVariantsForUpdatedby(Set<AttributeVariant> attributeVariantsForUpdatedby) {
+        this.attributeVariantsForUpdatedby = attributeVariantsForUpdatedby;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedby")
@@ -281,15 +301,6 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
-    public Set<Brand> getBrandsForCreatedBy() {
-        return this.brandsForCreatedBy;
-    }
-    
-    public void setBrandsForCreatedBy(Set<Brand> brandsForCreatedBy) {
-        this.brandsForCreatedBy = brandsForCreatedBy;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByCreatedBy")
     public Set<Product> getProductsForCreatedBy() {
         return this.productsForCreatedBy;
     }
@@ -299,12 +310,12 @@ public class SystemUser  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="systemUserByUpdatedBy")
-    public Set<Product> getProductsForUpdatedBy() {
-        return this.productsForUpdatedBy;
+    public Set<SystemUser> getSystemUsersForUpdatedBy() {
+        return this.systemUsersForUpdatedBy;
     }
     
-    public void setProductsForUpdatedBy(Set<Product> productsForUpdatedBy) {
-        this.productsForUpdatedBy = productsForUpdatedBy;
+    public void setSystemUsersForUpdatedBy(Set<SystemUser> systemUsersForUpdatedBy) {
+        this.systemUsersForUpdatedBy = systemUsersForUpdatedBy;
     }
 
 

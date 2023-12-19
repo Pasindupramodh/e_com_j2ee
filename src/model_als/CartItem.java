@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -26,9 +26,11 @@ public class CartItem  implements java.io.Serializable {
      private AttributeVariant attributeVariant;
      private Cart cart;
      private Product product;
-     private String qty;
+     private Integer qty;
      private Double unitprice;
      private Double total;
+     private Double discount;
+     private Double unitDiscount;
 
     public CartItem() {
     }
@@ -38,13 +40,15 @@ public class CartItem  implements java.io.Serializable {
         this.cart = cart;
         this.product = product;
     }
-    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, String qty, Double unitprice, Double total) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, Integer qty, Double unitprice, Double total, Double discount, Double unitDiscount) {
        this.attributeVariant = attributeVariant;
        this.cart = cart;
        this.product = product;
        this.qty = qty;
        this.unitprice = unitprice;
        this.total = total;
+       this.discount = discount;
+       this.unitDiscount = unitDiscount;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -90,12 +94,12 @@ public class CartItem  implements java.io.Serializable {
     }
 
     
-    @Column(name="qty", length=45)
-    public String getQty() {
+    @Column(name="qty")
+    public Integer getQty() {
         return this.qty;
     }
     
-    public void setQty(String qty) {
+    public void setQty(Integer qty) {
         this.qty = qty;
     }
 
@@ -117,6 +121,26 @@ public class CartItem  implements java.io.Serializable {
     
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    
+    @Column(name="discount", precision=22, scale=0)
+    public Double getDiscount() {
+        return this.discount;
+    }
+    
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    
+    @Column(name="unit_discount", precision=22, scale=0)
+    public Double getUnitDiscount() {
+        return this.unitDiscount;
+    }
+    
+    public void setUnitDiscount(Double unitDiscount) {
+        this.unitDiscount = unitDiscount;
     }
 
 

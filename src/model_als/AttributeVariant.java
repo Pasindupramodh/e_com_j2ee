@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -37,22 +37,24 @@ public class AttributeVariant  implements java.io.Serializable {
      private Double price;
      private Double discountPrice;
      private Integer qty;
+     private int produvtAttributeId;
      private Date createdat;
      private Date updatedat;
+     private Set<OrderItem> orderItems = new HashSet<OrderItem>(0);
      private Set<CartItem> cartItems = new HashSet<CartItem>(0);
-     private Set<Order> orders = new HashSet<Order>(0);
 
     public AttributeVariant() {
     }
 
 	
-    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby) {
+    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, int produvtAttributeId) {
         this.gallery = gallery;
         this.product = product;
         this.systemUserByUpdatedby = systemUserByUpdatedby;
         this.systemUserByCreatedby = systemUserByCreatedby;
+        this.produvtAttributeId = produvtAttributeId;
     }
-    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, String variantName, Double price, Double discountPrice, Integer qty, Date createdat, Date updatedat, Set<CartItem> cartItems, Set<Order> orders) {
+    public AttributeVariant(Gallery gallery, Product product, SystemUser systemUserByUpdatedby, SystemUser systemUserByCreatedby, String variantName, Double price, Double discountPrice, Integer qty, int produvtAttributeId, Date createdat, Date updatedat, Set<OrderItem> orderItems, Set<CartItem> cartItems) {
        this.gallery = gallery;
        this.product = product;
        this.systemUserByUpdatedby = systemUserByUpdatedby;
@@ -61,10 +63,11 @@ public class AttributeVariant  implements java.io.Serializable {
        this.price = price;
        this.discountPrice = discountPrice;
        this.qty = qty;
+       this.produvtAttributeId = produvtAttributeId;
        this.createdat = createdat;
        this.updatedat = updatedat;
+       this.orderItems = orderItems;
        this.cartItems = cartItems;
-       this.orders = orders;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -159,6 +162,16 @@ public class AttributeVariant  implements java.io.Serializable {
         this.qty = qty;
     }
 
+    
+    @Column(name="produvt_attribute_id", nullable=false)
+    public int getProduvtAttributeId() {
+        return this.produvtAttributeId;
+    }
+    
+    public void setProduvtAttributeId(int produvtAttributeId) {
+        this.produvtAttributeId = produvtAttributeId;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="createdat", length=19)
     public Date getCreatedat() {
@@ -180,21 +193,21 @@ public class AttributeVariant  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
+    public Set<OrderItem> getOrderItems() {
+        return this.orderItems;
+    }
+    
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
     public Set<CartItem> getCartItems() {
         return this.cartItems;
     }
     
     public void setCartItems(Set<CartItem> cartItems) {
         this.cartItems = cartItems;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="attributeVariant")
-    public Set<Order> getOrders() {
-        return this.orders;
-    }
-    
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 
 

@@ -308,14 +308,10 @@
                             <!--====== List ======-->
                             <ul class="ah-list ah-list--design2 ah-list--link-color-white">
                                 <li>
-                                    <a href="shop-side-version-2.html">NEW ARRIVALS</a>
-                                </li>
-                                <li>
-                                    <a href="shop-side-version-2.html">NEW ARRIVALS</a>
-                                </li>
-                                <li>
-                                    <a href="shop-side-version-2.html">NEW ARRIVALS</a>
-                                </li>
+
+                                <a href="products.jsp">All Products</a>
+                            </li>
+                                
 
                             </ul>
                             <!--====== End - List ======-->
@@ -345,15 +341,15 @@
                                 <li>
 
                                     <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                <li class="has-dropdown">
+                               <li class="has-dropdown">
 
-                                    <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                                <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                                    <%
+                                    CartDAO cartDAO = new CartDAO();
+                                    CartDTO cartDTO = cartDAO.getCart(session);
+                                    %>
+                                    <span class="total-item-round">
                                         <%
-                                            CartDAO cartDAO = new CartDAO();
-                                            CartDTO cartDTO = cartDAO.getCart(session);
-                                        %>
-                                        <span class="total-item-round">
-                                            <%
                                                 if (cartDTO == null || cartDTO.getCartItemDTOs() == null) {
                                             %>
                                             0
@@ -365,89 +361,90 @@
                                             <%
                                                 }
                                             %>
-                                        </span></a>
+                                    </span></a>
 
-                                    <!--====== Dropdown ======-->
+                                <!--====== Dropdown ======-->
 
-                                    <span class="js-menu-toggle"></span>
-                                    <%
-                                        if (cartDTO != null) {
-                                    %>
-                                    <div class="mini-cart">
+                                <span class="js-menu-toggle"></span>
+                                <%
+                                        
+                                    if (cartDTO != null) {
+                                %>
+                                <div class="mini-cart">
 
-                                        <!--====== Mini Product Container ======-->
-                                        <div class="mini-product-container gl-scroll u-s-m-b-15">
+                                    <!--====== Mini Product Container ======-->
+                                    <div class="mini-product-container gl-scroll u-s-m-b-15">
 
-                                            <!--====== Card for mini cart ======-->
-                                            <%
-                                                if (!cartDTO.getCartItemDTOs().isEmpty()) {
-                                                    for (CartItemDTO cartItemDTO : cartDTO.getCartItemDTOs()) {
-                                                        String href = "product_detail_v.jsp?id=" + cartItemDTO.getProductDTO().getId();
-                                                        if (cartItemDTO.getProductDTO().getProductAttributes() != null && cartItemDTO.getProductDTO().getProductAttributes().isEmpty()) {
-                                                            href = "product_detail.jsp?id=" + cartItemDTO.getProductDTO().getId();
-                                                        }
-                                                        String image = "";
-                                                        for (GalleryDTO galleryDTO : cartItemDTO.getProductDTO().getGalleries()) {
-                                                            if (galleryDTO.getThumbnail()) {
-                                                                image = galleryDTO.getImgPath();
-                                                            }
-                                                        }
-                                            %>
-                                            <div class="card-mini-product">
-                                                <div class="mini-product">
-                                                    <div class="mini-product__image-wrapper">
-
-                                                        <a class="mini-product__link" href="<%= href%>">
-
-                                                            <img class="u-img-fluid" src="<%= image%>" alt=""></a></div>
-                                                    <div class="mini-product__info-wrapper">
-
-                                                        <span class="mini-product__category">
-
-                                                            <a href=""><%= cartItemDTO.getProductDTO().getBrand().getCategory().getCategoryName()%></a></span>
-
-                                                        <span class="mini-product__name">
-
-                                                            <a href="<%= href%>"><%= cartItemDTO.getProductDTO().getProductName()%></a></span>
-
-                                                        <span class="mini-product__quantity"><%= cartItemDTO.getQty()%></span>
-
-                                                        <span class="mini-product__price"><%= cartItemDTO.getTotal()%></span></div>
-                                                </div>
-
-                                                <button class="mini-product__delete-link far fa-trash-alt" type="button" onclick="deleteFromCart(<%= cartItemDTO.getId() %>)"></button>
-                                            </div>
-                                            <%
+                                        <!--====== Card for mini cart ======-->
+                                        <%
+                                            if (!cartDTO.getCartItemDTOs().isEmpty()) {
+                                                for (CartItemDTO cartItemDTO : cartDTO.getCartItemDTOs()) {
+                                                    String href = "product_detail_v.jsp?id=" + cartItemDTO.getProductDTO().getId();
+                                                    if (cartItemDTO.getProductDTO().getProductAttributes()!=null && cartItemDTO.getProductDTO().getProductAttributes().isEmpty()) {
+                                                        href = "product_detail.jsp?id=" + cartItemDTO.getProductDTO().getId();
                                                     }
+                                                    String image = "";
+                                                    for(GalleryDTO galleryDTO : cartItemDTO.getProductDTO().getGalleries()){
+                                                        if(galleryDTO.getThumbnail()){
+                                                            image = galleryDTO.getImgPath();
+                                                        }
+                                                    }
+                                        %>
+                                        <div class="card-mini-product">
+                                            <div class="mini-product">
+                                                <div class="mini-product__image-wrapper">
+
+                                                    <a class="mini-product__link" href="<%= href %>">
+
+                                                        <img class="u-img-fluid" src="<%= image %>" alt=""></a></div>
+                                                <div class="mini-product__info-wrapper">
+
+                                                    <span class="mini-product__category">
+
+                                                        <a href=""><%= cartItemDTO.getProductDTO().getBrand().getCategory().getCategoryName() %></a></span>
+
+                                                    <span class="mini-product__name">
+
+                                                        <a href="<%= href %>"><%= cartItemDTO.getProductDTO().getProductName() %></a></span>
+
+                                                    <span class="mini-product__quantity"><%= cartItemDTO.getQty() %></span>
+
+                                                    <span class="mini-product__price"><%= cartItemDTO.getTotal() %></span></div>
+                                            </div>
+
+                                            <button class="mini-product__delete-link far fa-trash-alt" type="button" onclick="deleteFromCart(<%= cartItemDTO.getId() %>)"></button>
+                                        </div>
+                                        <%
                                                 }
-                                            %>
-                                            <!--====== End - Card for mini cart ======-->
+                                            }
+                                        %>
+                                        <!--====== End - Card for mini cart ======-->
 
-                                        </div>
-                                        <!--====== End - Mini Product Container ======-->
-
-
-                                        <!--====== Mini Product Statistics ======-->
-                                        <div class="mini-product-stat">
-                                            <div class="mini-total">
-
-                                                <span class="subtotal-text">SUBTOTAL</span>
-
-                                                <span class="subtotal-value"><%= cartDTO.getTotal() - cartDTO.getDiscount()%></span></div>
-                                            <div class="mini-action">
-
-                                                <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
-
-                                                <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.jsp">VIEW CART</a></div>
-                                        </div>
-                                        <!--====== End - Mini Product Statistics ======-->
                                     </div>
-                                    <%
-                                        }
-                                    %>
+                                    <!--====== End - Mini Product Container ======-->
 
-                                    <!--====== End - Dropdown ======-->
-                                </li>
+
+                                    <!--====== Mini Product Statistics ======-->
+                                    <div class="mini-product-stat">
+                                        <div class="mini-total">
+
+                                            <span class="subtotal-text">SUBTOTAL</span>
+
+                                            <span class="subtotal-value"><%= cartDTO.getTotal() - cartDTO.getDiscount() %></span></div>
+                                        <div class="mini-action">
+
+                                            <a class="mini-link btn--e-brand-b-2" href="auth/checkout.jsp?product=0">PROCEED TO CHECKOUT</a>
+
+                                            <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.jsp">VIEW CART</a></div>
+                                    </div>
+                                    <!--====== End - Mini Product Statistics ======-->
+                                </div>
+                                <%
+                                    }
+                                %>
+
+                                <!--====== End - Dropdown ======-->
+                            </li>
                             </ul>
                             <!--====== End - List ======-->
                         </div>

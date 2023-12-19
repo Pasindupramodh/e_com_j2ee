@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.AttributeVariant" table="attribute_variant" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -32,23 +32,26 @@
         <property name="qty" type="java.lang.Integer">
             <column name="qty" />
         </property>
+        <property name="produvtAttributeId" type="int">
+            <column name="produvt_attribute_id" not-null="true" />
+        </property>
         <property name="createdat" type="timestamp">
             <column name="createdat" length="19" />
         </property>
         <property name="updatedat" type="timestamp">
             <column name="updatedat" length="19" />
         </property>
+        <set name="orderItems" table="order_item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="attribute_variant_id" />
+            </key>
+            <one-to-many class="model.OrderItem" />
+        </set>
         <set name="cartItems" table="cart_item" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="attribute_variant_id" />
             </key>
             <one-to-many class="model.CartItem" />
-        </set>
-        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="attribute_variant_id" />
-            </key>
-            <one-to-many class="model.Order" />
         </set>
     </class>
 </hibernate-mapping>

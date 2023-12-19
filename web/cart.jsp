@@ -163,7 +163,7 @@
                                                     </div>
                                                     <div>
 
-                                                        <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                                        <button class="btn btn--e-brand-b-2" type="button" id="goto-checkout"> PROCEED TO CHECKOUT</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@
                             <span class="table-p__category">
 
                                 <a href="shop-side-version-2.html" id="product-category">Electronics</a></span>
-                            
+
                         </div>
                     </div>
                 </td>
@@ -235,6 +235,11 @@
         <%@include file="js.jsp" %>
         <%@include file="js/js.jsp" %>
         <script>
+
+            document.getElementById('goto-checkout').addEventListener('click', () => {
+                window.location.href = '${BASE_URL}/auth/checkout.jsp?product=0';
+            });
+
             function loadToCart() {
                 fetch("${BASE_URL}/Cart")
                         .then(response => response.json())
@@ -272,7 +277,7 @@
                                                 }
                                             });
                                             productName.innerHTML = product.productName;
-                                            productName.setAttribute("href",'product_detail.jsp?id='+product.id);
+                                            productName.setAttribute("href", 'product_detail.jsp?id=' + product.id);
                                             productCategory.innerHTML = product.brand.category.categoryName;
                                             productPrice.innerHTML = cartItem.total + ' LKR';
                                             qty.setAttribute("value", cartItem.qty);
@@ -281,11 +286,13 @@
                                             plus.setAttribute('onclick', 'updateCart(`plus`, ' + cartItem.id + ', ' + cartItem.productDTO.qty + ')');
                                             minus.setAttribute('onclick', 'updateCart(`minus`, ' + cartItem.id + ', ' + cartItem.productDTO.qty + ')');
                                             qty.setAttribute('onchange', 'updateCart(`change`, ' + cartItem.id + ', ' + cartItem.productDTO.qty + ')');
-                                            deletebtn.setAttribute('onclick', 'deleteFromCart('+cartItem.id+')');
+                                            deletebtn.setAttribute('onclick', 'deleteFromCart(' + cartItem.id + ')');
                                             tbody.innerHTML += tableContent.innerHTML;
 
                                         });
 
+                            } else {
+                                document.getElementById('goto-checkout').setAttribute('style',"display: none");
                             }
 
                         });

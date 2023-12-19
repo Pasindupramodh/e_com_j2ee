@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -37,10 +37,10 @@ public class Customer  implements java.io.Serializable {
      private String gender;
      private Date createdAt;
      private Date updatedAt;
-     private Set<Order> orders = new HashSet<Order>(0);
      private Set<Reviews> reviewses = new HashSet<Reviews>(0);
      private Set<Address> addresses = new HashSet<Address>(0);
      private Set<Cart> carts = new HashSet<Cart>(0);
+     private Set<Order> orders = new HashSet<Order>(0);
 
     public Customer() {
     }
@@ -49,7 +49,7 @@ public class Customer  implements java.io.Serializable {
     public Customer(CusLogin cusLogin) {
         this.cusLogin = cusLogin;
     }
-    public Customer(CusLogin cusLogin, String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Order> orders, Set<Reviews> reviewses, Set<Address> addresses, Set<Cart> carts) {
+    public Customer(CusLogin cusLogin, String fname, String lname, String mobile, String email, String gender, Date createdAt, Date updatedAt, Set<Reviews> reviewses, Set<Address> addresses, Set<Cart> carts, Set<Order> orders) {
        this.cusLogin = cusLogin;
        this.fname = fname;
        this.lname = lname;
@@ -58,10 +58,10 @@ public class Customer  implements java.io.Serializable {
        this.gender = gender;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
-       this.orders = orders;
        this.reviewses = reviewses;
        this.addresses = addresses;
        this.carts = carts;
+       this.orders = orders;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -157,15 +157,6 @@ public class Customer  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
-    public Set<Order> getOrders() {
-        return this.orders;
-    }
-    
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
     public Set<Reviews> getReviewses() {
         return this.reviewses;
     }
@@ -190,6 +181,15 @@ public class Customer  implements java.io.Serializable {
     
     public void setCarts(Set<Cart> carts) {
         this.carts = carts;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="customer")
+    public Set<Order> getOrders() {
+        return this.orders;
+    }
+    
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
 

@@ -302,16 +302,7 @@
                         <!--====== List ======-->
                         <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                             <li>
-
-                                <a href="shop-side-version-2.html">NEW ARRIVALS</a>
-                            </li>
-                            <li>
-
-                                <a href="shop-side-version-2.html">NEW ARRIVALS</a>
-                            </li>
-                            <li>
-
-                                <a href="shop-side-version-2.html">NEW ARRIVALS</a>
+                                <a href="products.jsp">All Products</a>
                             </li>
                         </ul>
                         <!--====== End - List ======-->
@@ -433,7 +424,7 @@
                                             <span class="subtotal-value"><%= cartDTO.getTotal() - cartDTO.getDiscount() %></span></div>
                                         <div class="mini-action">
 
-                                            <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
+                                            <a class="mini-link btn--e-brand-b-2" href="auth/checkout.jsp?product=0">PROCEED TO CHECKOUT</a>
 
                                             <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.jsp">VIEW CART</a></div>
                                     </div>

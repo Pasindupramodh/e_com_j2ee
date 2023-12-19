@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.SystemUser" table="system_user" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -11,11 +11,11 @@
         <many-to-one name="login" class="model.Login" fetch="select">
             <column name="login_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="systemUserByUpdatedBy" class="model.SystemUser" fetch="select">
-            <column name="updated_by" />
-        </many-to-one>
         <many-to-one name="systemUserByCreatedBy" class="model.SystemUser" fetch="select">
             <column name="created_by" />
+        </many-to-one>
+        <many-to-one name="systemUserByUpdatedBy" class="model.SystemUser" fetch="select">
+            <column name="updated_by" />
         </many-to-one>
         <many-to-one name="userType" class="model.UserType" fetch="select">
             <column name="user_type_id" not-null="true" />
@@ -41,29 +41,11 @@
         <property name="isActive" type="boolean">
             <column name="is_active" not-null="true" />
         </property>
-        <set name="categoriesForCreatedBy" table="category" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="created_by" not-null="true" />
-            </key>
-            <one-to-many class="model.Category" />
-        </set>
-        <set name="categoriesForUpdatedBy" table="category" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="updated_by" not-null="true" />
-            </key>
-            <one-to-many class="model.Category" />
-        </set>
         <set name="orderStatuses" table="order_status" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="created_by" />
             </key>
             <one-to-many class="model.OrderStatus" />
-        </set>
-        <set name="systemUsersForUpdatedBy" table="system_user" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="updated_by" />
-            </key>
-            <one-to-many class="model.SystemUser" />
         </set>
         <set name="systemUsersForCreatedBy" table="system_user" inverse="true" lazy="true" fetch="select">
             <key>
@@ -71,11 +53,17 @@
             </key>
             <one-to-many class="model.SystemUser" />
         </set>
-        <set name="attributeVariantsForUpdatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+        <set name="categoriesForCreatedBy" table="category" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="updatedby" not-null="true" />
+                <column name="created_by" not-null="true" />
             </key>
-            <one-to-many class="model.AttributeVariant" />
+            <one-to-many class="model.Category" />
+        </set>
+        <set name="orderHasOrderStatuses" table="order_has_order_status" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" />
+            </key>
+            <one-to-many class="model.OrderHasOrderStatus" />
         </set>
         <set name="brandsForUpdatedBy" table="brand" inverse="true" lazy="true" fetch="select">
             <key>
@@ -83,11 +71,17 @@
             </key>
             <one-to-many class="model.Brand" />
         </set>
-        <set name="attributeVariantsForCreatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+        <set name="categoriesForUpdatedBy" table="category" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="createdby" not-null="true" />
+                <column name="updated_by" not-null="true" />
             </key>
-            <one-to-many class="model.AttributeVariant" />
+            <one-to-many class="model.Category" />
+        </set>
+        <set name="productsForUpdatedBy" table="product" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updated_by" not-null="true" />
+            </key>
+            <one-to-many class="model.Product" />
         </set>
         <set name="brandsForCreatedBy" table="brand" inverse="true" lazy="true" fetch="select">
             <key>
@@ -95,17 +89,29 @@
             </key>
             <one-to-many class="model.Brand" />
         </set>
+        <set name="attributeVariantsForUpdatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="updatedby" not-null="true" />
+            </key>
+            <one-to-many class="model.AttributeVariant" />
+        </set>
+        <set name="attributeVariantsForCreatedby" table="attribute_variant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="createdby" not-null="true" />
+            </key>
+            <one-to-many class="model.AttributeVariant" />
+        </set>
         <set name="productsForCreatedBy" table="product" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="created_by" not-null="true" />
             </key>
             <one-to-many class="model.Product" />
         </set>
-        <set name="productsForUpdatedBy" table="product" inverse="true" lazy="true" fetch="select">
+        <set name="systemUsersForUpdatedBy" table="system_user" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="updated_by" not-null="true" />
+                <column name="updated_by" />
             </key>
-            <one-to-many class="model.Product" />
+            <one-to-many class="model.SystemUser" />
         </set>
     </class>
 </hibernate-mapping>

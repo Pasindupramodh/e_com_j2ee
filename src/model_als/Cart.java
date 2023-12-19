@@ -1,5 +1,5 @@
 package model;
-// Generated Nov 22, 2023 10:15:03 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2023 10:41:18 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,6 +33,7 @@ public class Cart  implements java.io.Serializable {
      private Double total;
      private Date createdAt;
      private Date updatedAt;
+     private Double discount;
      private Set<CartItem> cartItems = new HashSet<CartItem>(0);
 
     public Cart() {
@@ -42,11 +43,12 @@ public class Cart  implements java.io.Serializable {
     public Cart(Customer customer) {
         this.customer = customer;
     }
-    public Cart(Customer customer, Double total, Date createdAt, Date updatedAt, Set<CartItem> cartItems) {
+    public Cart(Customer customer, Double total, Date createdAt, Date updatedAt, Double discount, Set<CartItem> cartItems) {
        this.customer = customer;
        this.total = total;
        this.createdAt = createdAt;
        this.updatedAt = updatedAt;
+       this.discount = discount;
        this.cartItems = cartItems;
     }
    
@@ -100,6 +102,16 @@ public class Cart  implements java.io.Serializable {
     
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    
+    @Column(name="discount", precision=22, scale=0)
+    public Double getDiscount() {
+        return this.discount;
+    }
+    
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="cart")

@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Dec 15, 2023 11:19:01 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 19, 2023 1:28:58 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.OrderStatus" table="order_status" catalog="j2e_ecom_db" optimistic-lock="version">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="systemUser" class="model.SystemUser" fetch="select">
+            <column name="created_by" />
+        </many-to-one>
         <property name="status" type="string">
             <column name="status" length="50" />
         </property>

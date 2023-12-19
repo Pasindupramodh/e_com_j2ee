@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -48,10 +48,12 @@ public class OrderHasOrderStatus  implements java.io.Serializable {
        this.date = date;
     }
    
-    @EmbeddedId
+     @EmbeddedId
+
+    
     @AttributeOverrides( {
-    @AttributeOverride(name="orderId", column=@Column(name="order_id", nullable=false, length=150) ), 
-    @AttributeOverride(name="orderStatusId", column=@Column(name="order_status_id", nullable=false) ) } )
+        @AttributeOverride(name="orderId", column=@Column(name="order_id", nullable=false, length=150) ), 
+        @AttributeOverride(name="orderStatusId", column=@Column(name="order_status_id", nullable=false) ) } )
     public OrderHasOrderStatusId getId() {
         return this.id;
     }

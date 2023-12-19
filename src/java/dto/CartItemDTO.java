@@ -16,7 +16,7 @@ public class CartItemDTO {
 
     private Integer id;
     private int variantId;
-    private Double qty;
+    private int qty;
     private Double unitprice;
     private Double total;
     private Double unitDiscount;

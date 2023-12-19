@@ -35,7 +35,7 @@ public class PaymentController extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         try {
-            
+
             String paymentStatus = req.getParameter("paymentStatus");
             String errorCode = req.getParameter("errorCode");
             String reason = req.getParameter("reason");
@@ -43,29 +43,39 @@ public class PaymentController extends HttpServlet {
             String paymentId = req.getParameter("paymentId");
             int productId = Integer.parseInt(req.getParameter("productId"));
             int addressId = Integer.parseInt(req.getParameter("addressId"));
-            
-            if(paymentStatus.equals("success")){
+
+            if (paymentStatus.equals("success")) {
                 errorCode = "200";
                 reason = "Success";
             }
             //Get Loged in customer 
             CusLoginDTO cusLoginDTO = (CusLoginDTO) req.getSession().getAttribute("customer");
             Customer customer = new CustomerDAO().getByEmail(cusLoginDTO.getEmail());
-            
+
             //Get address by id
             Address address = new AddressDAO().getAddressModelById(addressId);
-            
+
             OrderDAO orderDAO = new OrderDAO();
 
-            if(productId == 0){
-                
+            if (productId == 0) {
+
                 //get customer's cart
                 CartDTO cart = new CartDAO().getCart(req.getSession());
-                
-                boolean isSaved = orderDAO.saveOrderViCart(customer,address,errorCode,reason,orderId,paymentId,cart,req.getSession());
-                
-            }else{
+
+                boolean isSaved = orderDAO.saveOrderViCart(customer, address, errorCode, reason, orderId, paymentId, cart, req.getSession());
+                if (isSaved) {
+                    new ProductDAO().updateQTY(cart);
+                    out.print("Success");
+                }
+            } else {
+                System.out.println(req.getParameter("productQTY"));
+                int productQTY = Integer.parseInt(req.getParameter("productQTY"));
                 Product product = new ProductDAO().getById(req.getParameter("productId"));
+                boolean isSaved = orderDAO.saveOrderViProduct(customer, address, errorCode, reason, orderId, paymentId, product, productQTY);
+                if (isSaved) {
+                    new ProductDAO().updateQTY(product.getId(), productQTY);
+                    out.print("Success");
+                }
             }
 
         } catch (Exception e) {

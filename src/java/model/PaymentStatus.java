@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ import javax.persistence.Table;
 public class PaymentStatus  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String statusCode;
      private String status;
      private Set<Order> orders = new HashSet<Order>(0);
@@ -29,26 +31,21 @@ public class PaymentStatus  implements java.io.Serializable {
     public PaymentStatus() {
     }
 
-	
-    public PaymentStatus(int id) {
-        this.id = id;
-    }
-    public PaymentStatus(int id, String statusCode, String status, Set<Order> orders) {
-       this.id = id;
+    public PaymentStatus(String statusCode, String status, Set<Order> orders) {
        this.statusCode = statusCode;
        this.status = status;
        this.orders = orders;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,5 +1,5 @@
 package model;
-// Generated Dec 15, 2023 11:19:00 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2023 1:28:57 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ public class CartItem  implements java.io.Serializable {
      private AttributeVariant attributeVariant;
      private Cart cart;
      private Product product;
-     private Double qty;
+     private Integer qty;
      private Double unitprice;
      private Double total;
      private Double discount;
@@ -40,7 +40,7 @@ public class CartItem  implements java.io.Serializable {
         this.cart = cart;
         this.product = product;
     }
-    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, Double qty, Double unitprice, Double total, Double discount, Double unitDiscount) {
+    public CartItem(AttributeVariant attributeVariant, Cart cart, Product product, Integer qty, Double unitprice, Double total, Double discount, Double unitDiscount) {
        this.attributeVariant = attributeVariant;
        this.cart = cart;
        this.product = product;
@@ -94,12 +94,12 @@ public class CartItem  implements java.io.Serializable {
     }
 
     
-    @Column(name="qty")
-    public Double getQty() {
+    @Column(name="qty", precision=22, scale=0)
+    public Integer getQty() {
         return this.qty;
     }
     
-    public void setQty(Double qty) {
+    public void setQty(Integer qty) {
         this.qty = qty;
     }
 

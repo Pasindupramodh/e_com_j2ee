@@ -87,7 +87,7 @@
                                                 <%
                                                     String image = "";
                                                     for (Gallery gallery : product.getGalleries()) {
-                                                        if(gallery.getThumbnail()){
+                                                        if (gallery.getThumbnail()) {
                                                             image = gallery.getImgPath();
                                                         }
                                                 %>
@@ -123,7 +123,7 @@
                                     <div class="u-s-m-b-15">
                                         <div class="pd-detail__inline">
 
-                                            <span class="pd-detail__stock"><%= product.getQty() %> in stock</span>
+                                            <span class="pd-detail__stock"><%= product.getQty()%> in stock</span>
 
                                         </div>
                                     </div>
@@ -150,15 +150,15 @@
 
                                                         <span class="input-counter__minus fas fa-minus"></span>
 
-                                                        <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="<%= product.getQty()%>">
+                                                        <input class="input-counter__text input-counter--text-primary-style" id="qty_product" type="text" value="1" data-min="1" data-max="<%= product.getQty()%>">
 
                                                         <span class="input-counter__plus fas fa-plus"></span></div>
                                                     <!--====== End - Input Counter ======-->
                                                 </div>
                                                 <div class="u-s-m-b-15">
 
-                                                    <button class="btn btn--e-brand-b-2" type="button" onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= image %>')">Add to Cart</button>
-                                                    <button class="btn btn--e-brand-b-2" type="submit">Buy Now</button>
+                                                    <button class="btn btn--e-brand-b-2" type="button" onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= image%>')">Add to Cart</button>
+                                                    <button class="btn btn--e-brand-b-2" onclick="proceedToCheckout(<%= product.getId()%>)" type="button">Buy Now</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -308,8 +308,8 @@
                                             for (Product productRelated : brand.getProducts()) {
                                                 if (productRelated.getPublished() && productRelated.getQty() > 0) {
                                                     String imagepath = "";
-                                                    for(Gallery gallery : productRelated.getGalleries()){
-                                                        if(gallery.getThumbnail()){
+                                                    for (Gallery gallery : productRelated.getGalleries()) {
+                                                        if (gallery.getThumbnail()) {
                                                             imagepath = gallery.getImgPath();
                                                             break;
                                                         }
@@ -319,40 +319,40 @@
                                         <div class="product-o product-o--hover-on">
                                             <div class="product-o__wrap">
 
-                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product_detail.jsp?id=<%= productRelated.getId() %>">
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product_detail.jsp?id=<%= productRelated.getId()%>">
 
-                                                    <img class="aspect__img" src="<%= imagepath %>" alt=""></a>
+                                                    <img class="aspect__img" src="<%= imagepath%>" alt=""></a>
                                                 <div class="product-o__action-wrap">
                                                     <ul class="product-o__action-list">
                                                         <li>
 
-                                                            <a data-modal="modal" onclick="setDataToQuickLook('<%= imagepath %>', '<%= productRelated.getProductName()%>',<%= productRelated.getDiscountPrice()%>,<%= productRelated.getProductPrice()%>,<%= productRelated.getQty()%>, '<%= productRelated.getShortDescription()%>')" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a>
+                                                            <a data-modal="modal" onclick="setDataToQuickLook('<%= imagepath%>', '<%= productRelated.getProductName()%>',<%= productRelated.getDiscountPrice()%>,<%= productRelated.getProductPrice()%>,<%= productRelated.getQty()%>, '<%= productRelated.getShortDescription()%>')" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick View"><i class="fas fa-search-plus"></i></a>
                                                         </li>
                                                         <li>
 
-                                                            <a  onclick="setDataToAddToCart('<%= productRelated.getId()%>', '<%= productRelated.getProductName()%>', '<%= productRelated.getProductPrice() - productRelated.getDiscountPrice()%> ', '<%= imagepath %>')"  data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
+                                                            <a  onclick="setDataToAddToCart('<%= productRelated.getId()%>', '<%= productRelated.getProductName()%>', '<%= productRelated.getProductPrice() - productRelated.getDiscountPrice()%> ', '<%= imagepath%>')"  data-tooltip="tooltip" data-placement="top" title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
                                                         </li>
                                                         <li>
 
                                                             <a href="signin.html" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"><i class="fas fa-heart"></i></a>
                                                         </li>
-                                                        
+
                                                     </ul>
                                                 </div>
                                             </div>
 
                                             <span class="product-o__category">
 
-                                                <a href="shop-side-version-2.html"><%= productRelated.getBrand().getCategory().getCategoryName() %></a></span>
+                                                <a href="shop-side-version-2.html"><%= productRelated.getBrand().getCategory().getCategoryName()%></a></span>
 
                                             <span class="product-o__name">
 
-                                                <a href="product_detail.jsp?id=<%= productRelated.getId() %>"><%= productRelated.getProductName() %></a></span>
-                                            
+                                                <a href="product_detail.jsp?id=<%= productRelated.getId()%>"><%= productRelated.getProductName()%></a></span>
 
-                                            <span class="product-o__price"><%= productRelated.getProductPrice() - productRelated.getDiscountPrice() %> LKR
 
-                                                <span class="product-o__discount"><%= productRelated.getProductPrice() %></span></span>
+                                            <span class="product-o__price"><%= productRelated.getProductPrice() - productRelated.getDiscountPrice()%> LKR
+
+                                                <span class="product-o__discount"><%= productRelated.getProductPrice()%></span></span>
                                         </div>
                                     </div>
                                     <%
@@ -528,6 +528,12 @@
 
         <%@include file="js/js.jsp" %>
         <!--====== Noscript ======-->
+        <script>
+            function proceedToCheckout(id){
+                var qty = document.getElementById('qty_product').value;
+                window.location.href = '${BASE_URL}/auth/checkout.jsp?product='+id+'&qty='+qty;
+            }
+        </script>
         <noscript>
         <div class="app-setting">
             <div class="container">

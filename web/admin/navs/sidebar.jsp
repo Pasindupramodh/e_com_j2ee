@@ -133,6 +133,47 @@
                         
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-boxes text-color"></i>
+                        <p class="text-color">
+                            Orders
+                            <i class="fas fa-angle-left right text-color"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="pendingOrders.jsp" class="nav-link">
+                                <i class="fas fa-spinner nav-icon text-color"></i>
+                                <p  class="text-color">Pending</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="viewProducts.jsp" class="nav-link">
+                                <i class="fas fa-truck-moving nav-icon text-color"></i> 
+                                <p  class="text-color">Out For Delivery</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="viewProducts.jsp" class="nav-link">
+                                <i class="fas fa-check-double nav-icon text-color"></i> 
+                                <p  class="text-color">Delivered</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="viewProducts.jsp" class="nav-link">
+                                <i class="fas fa-window-close nav-icon text-color"></i> 
+                                <p  class="text-color">Canceled</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="viewProducts.jsp" class="nav-link">
+                                <i class="fas fa-clock nav-icon text-color"></i>
+                                <p  class="text-color">Unpaids</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
