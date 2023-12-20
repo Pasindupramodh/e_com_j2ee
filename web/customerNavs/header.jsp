@@ -78,7 +78,7 @@
                                     } else {
                                     %>
                                     <li>
-                                        <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                        <a href="${BASE_URL}auth/profile.jsp"><i class="fas fa-user-circle u-s-m-r-6"></i>
                                             <span>Account</span>
                                         </a>
                                     </li>

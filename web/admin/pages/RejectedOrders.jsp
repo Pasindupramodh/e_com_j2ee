@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pendingOrders
-    Created on : Dec 19, 2023, 9:18:28 AM
+    Document   : OutForDeliveryOrders
+    Created on : Dec 20, 2023, 10:17:56 AM
     Author     : REDTECH
 --%>
 
@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pending Orders</h1>
+                            <h1>Rejected Orders</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pending Orders</li>
+                                <li class="breadcrumb-item active">Rejected Orders</li>
                             </ol>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
         });
         var orders;
         function loadOrders() {
-            fetch("${ADMIN_BASE_URL}Orders?type=pending")
+            fetch("${ADMIN_BASE_URL}Orders?type=reject")
                     .then(response => response.json())
                     .then(data => {
                         let table = document.querySelector('#table-users');
@@ -229,59 +229,11 @@
                             cell = row.insertCell();
                             cell.innerHTML = order.orderDate;
                             cell = row.insertCell();
-                            cell.innerHTML = '<a class="badge bg-success" onclick="updateOrder(`' + order.orderId + '`,`confirm`)"  href="javascript:;" >Confirm</a>' +
-                                    '<a class="badge bg-danger ml-2" onclick="updateOrder(`' + order.orderId + '`,`reject`)"  href="javascript:;" >Reject</a>';
+                            cell.innerHTML = '<a class="badge bg-danger" href="javascript:;" >Rejected</a>';
                         });
                     })
         }
 
-
-        
-        
-        function updateOrder(id,type){
-            console.log(id+' '+type);
-            $.ajax({
-                type: 'PUT',
-                url: '${ADMIN_BASE_URL}Orders?' + 'id=' + id + '&type=' + type,
-
-                success: function (data) {
-                    console.log(data);
-                    if (data == "Success") {
-                        Swal.fire({
-                            title: 'Updated',
-                            showDenyButton: false,
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            icon: 'success'
-                        }).then((result) => {
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Cannot Update',
-                            showDenyButton: false,
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            icon: 'error'
-                        }).then((result) => {
-                            
-                        });
-                    }
-                },
-                error: function () {
-                    Swal.fire({
-                        title: 'Cannot Update',
-                        showDenyButton: false,
-                        showCancelButton: false,
-                        confirmButtonText: 'OK',
-                        icon: 'error'
-                    }).then((result) => {
-                        
-                    });
-                }
-            });
-        }
-        
         function viewOrderProducts(id) {
             let table = document.querySelector('#table-order-product');
             table.innerHTML = "";
@@ -308,7 +260,6 @@
             $('#order_product_details').modal('show');
         }
         function viewCustomer(id) {
-
             orders.forEach(order => {
                 if (order.addresss.id == id) {
                     document.getElementById('address_line1').innerHTML = order.addresss.addressLine1;

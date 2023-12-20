@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pendingOrders
-    Created on : Dec 19, 2023, 9:18:28 AM
+    Document   : OutForDeliveryOrders
+    Created on : Dec 20, 2023, 10:17:56 AM
     Author     : REDTECH
 --%>
 
@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pending Orders</h1>
+                            <h1>In Delivery Orders</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pending Orders</li>
+                                <li class="breadcrumb-item active">In Delivery Orders</li>
                             </ol>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
         });
         var orders;
         function loadOrders() {
-            fetch("${ADMIN_BASE_URL}Orders?type=pending")
+            fetch("${ADMIN_BASE_URL}Orders?type=out")
                     .then(response => response.json())
                     .then(data => {
                         let table = document.querySelector('#table-users');
@@ -229,8 +229,7 @@
                             cell = row.insertCell();
                             cell.innerHTML = order.orderDate;
                             cell = row.insertCell();
-                            cell.innerHTML = '<a class="badge bg-success" onclick="updateOrder(`' + order.orderId + '`,`confirm`)"  href="javascript:;" >Confirm</a>' +
-                                    '<a class="badge bg-danger ml-2" onclick="updateOrder(`' + order.orderId + '`,`reject`)"  href="javascript:;" >Reject</a>';
+                            cell.innerHTML = '<a class="badge bg-success" onclick="updateOrder(`' + order.orderId + '`,`delivered`)"  href="javascript:;" >Delivered</a>';
                         });
                     })
         }

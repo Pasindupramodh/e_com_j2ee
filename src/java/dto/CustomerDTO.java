@@ -19,5 +19,6 @@ public class CustomerDTO {
      private String mobile;
      private String email;
      private String gender;
+     private String status;
      private AddressDTO address;
 }

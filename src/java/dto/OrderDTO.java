@@ -26,6 +26,7 @@ public class OrderDTO {
     private Double total;
     private Double discount;
     private String trackingNumber;
+    private String lastStatus;
     private Date orderDeliveredCustomerDate;
     private List<OrderStatusDTO> orderStatus;
     private List<OrderItemDTO> orderItems;

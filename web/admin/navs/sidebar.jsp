@@ -56,11 +56,6 @@
                     </a>
                      
                 </li>
-                
-                
-               
-               
-                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shield-alt text-color"></i>
@@ -135,6 +130,24 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users text-color"></i>
+                        <p class="text-color">
+                            Customers
+                            <i class="fas fa-angle-left right text-color"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="ViewCustomers.jsp" class="nav-link">
+                                <i class="far fa-eye nav-icon text-color"></i>
+                                <p  class="text-color">View All</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-boxes text-color"></i>
                         <p class="text-color">
                             Orders
@@ -149,29 +162,36 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="viewProducts.jsp" class="nav-link">
+                            <a href="ConfirmedOrders.jsp" class="nav-link">
+                                <i class="fas fa-check nav-icon text-color"></i>
+                                <p  class="text-color">Confirmed</p> 
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="OutForDeliveryOrders.jsp" class="nav-link">
                                 <i class="fas fa-truck-moving nav-icon text-color"></i> 
                                 <p  class="text-color">Out For Delivery</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="viewProducts.jsp" class="nav-link">
+                            <a href="FinishedOrders.jsp" class="nav-link">
                                 <i class="fas fa-check-double nav-icon text-color"></i> 
                                 <p  class="text-color">Delivered</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="viewProducts.jsp" class="nav-link">
+                            <a href="RejectedOrders.jsp" class="nav-link">
                                 <i class="fas fa-window-close nav-icon text-color"></i> 
-                                <p  class="text-color">Canceled</p>
+                                <p  class="text-color">Rejected</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="viewProducts.jsp" class="nav-link">
+                            <a href="UnpaidOrders.jsp" class="nav-link">
                                 <i class="fas fa-clock nav-icon text-color"></i>
                                 <p  class="text-color">Unpaids</p>
                             </a>
                         </li>
+                        
                     </ul>
                 </li>
             </ul>

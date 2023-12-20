@@ -22,4 +22,5 @@ public class CartItemDTO {
     private Double unitDiscount;
     private Double discount;
     private ProductDTO productDTO;
+    
 }

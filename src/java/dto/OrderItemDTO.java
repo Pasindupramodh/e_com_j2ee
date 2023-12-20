@@ -20,4 +20,5 @@ public class OrderItemDTO {
     private Double unitprice;
     private Double discount;
     private Double totaldiscount;
+    private OrderDTO order;
 }

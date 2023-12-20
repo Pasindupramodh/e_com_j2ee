@@ -3733,7 +3733,12 @@ input::-ms-clear {
 
 .badge--processing {
   background-color: rgba(49, 133, 252, 0.14);
-  color: #3185FC; }
+  color: #3185FC; 
+}
+.badge--warning {
+  background-color: rgba(252, 169, 49, 0.14);
+  color: #FCA931; 
+}
 
 .badge--shipped {
   background-color: rgba(0, 148, 68, 0.14);
@@ -3741,7 +3746,8 @@ input::-ms-clear {
 
 .badge--delivered {
   background-color: rgba(255, 69, 0, 0.14);
-  color: #3d9970; }
+  color: #ff4500; 
+}
 
 @media (max-width: 991px) {
   .dash__box--w {

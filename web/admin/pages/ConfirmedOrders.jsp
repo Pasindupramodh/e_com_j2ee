@@ -1,6 +1,6 @@
 <%-- 
-    Document   : pendingOrders
-    Created on : Dec 19, 2023, 9:18:28 AM
+    Document   : ConfirmedOrders
+    Created on : Dec 20, 2023, 7:29:19 AM
     Author     : REDTECH
 --%>
 
@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Pending Orders</h1>
+                            <h1>Confirmed Orders</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Pending Orders</li>
+                                <li class="breadcrumb-item active">Confirmed Orders</li>
                             </ol>
                         </div>
                     </div>
@@ -183,6 +183,34 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+
+        <!-- Tracking number modal  -->
+        <div class="modal fade" id="updateTrackingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tracking Number</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Tracking Number</label>
+                                <input type="text" class="form-control" id="trackingNumber">
+                                <input type="hidden" class="form-control" id="updateOrderId">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="update-tracking">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="../navs/footer.jsp" %>
         <%@include file="js.jsp" %>
     </body>
@@ -203,8 +231,54 @@
             });
         });
         var orders;
+        document.getElementById("update-tracking").addEventListener('click', () => {
+            var id = document.getElementById('updateOrderId').value;
+            var trackingNumber = document.getElementById('trackingNumber').value;
+            if (trackingNumber != null && trackingNumber != '') {
+                $.ajax({
+                    type: 'PUT',
+                    url: '${ADMIN_BASE_URL}Orders?' + 'id=' + id + '&type=tracking&trackingNumber=' + trackingNumber,
+
+                    success: function (data) {
+                        console.log(data);
+                        if (data == "Success") {
+                            Swal.fire({
+                                title: 'Updated',
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                icon: 'success'
+                            }).then((result) => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Cannot Update',
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                icon: 'error'
+                            }).then((result) => {
+
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Cannot Update',
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'OK',
+                            icon: 'error'
+                        }).then((result) => {
+
+                        });
+                    }
+                });
+            }
+        });
         function loadOrders() {
-            fetch("${ADMIN_BASE_URL}Orders?type=pending")
+            fetch("${ADMIN_BASE_URL}Orders?type=confirm")
                     .then(response => response.json())
                     .then(data => {
                         let table = document.querySelector('#table-users');
@@ -229,59 +303,20 @@
                             cell = row.insertCell();
                             cell.innerHTML = order.orderDate;
                             cell = row.insertCell();
-                            cell.innerHTML = '<a class="badge bg-success" onclick="updateOrder(`' + order.orderId + '`,`confirm`)"  href="javascript:;" >Confirm</a>' +
-                                    '<a class="badge bg-danger ml-2" onclick="updateOrder(`' + order.orderId + '`,`reject`)"  href="javascript:;" >Reject</a>';
+                            cell.innerHTML = '<a class="badge bg-success" onclick="updateOrder(`' + order.orderId + '`,`tracking`)"  href="javascript:;" >Provide Tracking</a>';
                         });
                     })
         }
 
 
-        
-        
-        function updateOrder(id,type){
-            console.log(id+' '+type);
-            $.ajax({
-                type: 'PUT',
-                url: '${ADMIN_BASE_URL}Orders?' + 'id=' + id + '&type=' + type,
 
-                success: function (data) {
-                    console.log(data);
-                    if (data == "Success") {
-                        Swal.fire({
-                            title: 'Updated',
-                            showDenyButton: false,
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            icon: 'success'
-                        }).then((result) => {
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire({
-                            title: 'Cannot Update',
-                            showDenyButton: false,
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            icon: 'error'
-                        }).then((result) => {
-                            
-                        });
-                    }
-                },
-                error: function () {
-                    Swal.fire({
-                        title: 'Cannot Update',
-                        showDenyButton: false,
-                        showCancelButton: false,
-                        confirmButtonText: 'OK',
-                        icon: 'error'
-                    }).then((result) => {
-                        
-                    });
-                }
-            });
+
+        function updateOrder(id, type) {
+            console.log(id + ' ' + type);
+            document.getElementById('updateOrderId').value = id;
+            $('#updateTrackingModal').modal('show');
         }
-        
+
         function viewOrderProducts(id) {
             let table = document.querySelector('#table-order-product');
             table.innerHTML = "";
@@ -294,13 +329,13 @@
                         cell = row.insertCell();
                         cell.innerHTML = orderItem.qty;
                         cell = row.insertCell();
-                        cell.innerHTML = orderItem.unitprice +' LKR';
+                        cell.innerHTML = orderItem.unitprice + ' LKR';
                         cell = row.insertCell();
-                        cell.innerHTML = (orderItem.unitprice*orderItem.qty) +' LKR';
+                        cell.innerHTML = (orderItem.unitprice * orderItem.qty) + ' LKR';
                         cell = row.insertCell();
-                        cell.innerHTML = orderItem.totaldiscount+' LKR';
+                        cell.innerHTML = orderItem.totaldiscount + ' LKR';
                         cell = row.insertCell();
-                        cell.innerHTML = ((orderItem.unitprice*orderItem.qty)-orderItem.totaldiscount) +' LKR';
+                        cell.innerHTML = ((orderItem.unitprice * orderItem.qty) - orderItem.totaldiscount) + ' LKR';
                     });
 
                 }
