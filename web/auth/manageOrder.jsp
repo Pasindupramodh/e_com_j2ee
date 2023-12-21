@@ -235,15 +235,15 @@
                                                         <div class="description__container">
                                                             <div class="description__img-wrap">
 
-                                                                <img class="u-img-fluid" src="<%= orderItemDTO.getProduct().getGalleries().get(0).getImgPath() %>" alt=""></div>
-                                                            <div class="description-title"><%= orderItemDTO.getProduct().getProductName() %></div>
+                                                                <img class="u-img-fluid" src="<%= orderItemDTO.getProduct().getGalleries().get(0).getImgPath()%>" alt=""></div>
+                                                            <div class="description-title"><%= orderItemDTO.getProduct().getProductName()%></div>
                                                         </div>
                                                         <div class="description__info-wrap">
                                                             <div>
 
                                                                 <span class="manage-o__text-2 u-c-silver">Quantity:
 
-                                                                    <span class="manage-o__text-2 u-c-secondary"><%= orderItemDTO.getQty() %></span></span></div>
+                                                                    <span class="manage-o__text-2 u-c-secondary"><%= orderItemDTO.getQty()%></span></span></div>
                                                             <div>
 
                                                                 <span class="manage-o__text-2 u-c-silver">Total:
@@ -258,24 +258,168 @@
                                             <div class="col-lg-6">
                                                 <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                                     <div class="dash__pad-3">
-                                                        <% 
-                                                        AddressDTO addressDTO = orderItemDTO.getOrder().getAddresss();
+                                                        <%
+                                                            AddressDTO addressDTO = orderItemDTO.getOrder().getAddresss();
                                                         %>
                                                         <h2 class="dash__h2 u-s-m-b-8">Shipping & Billing Address</h2>
-                                                        <h2 class="dash__h2 u-s-m-b-8"><%= addressDTO.getFname()+" " + addressDTO.getLname() %></h2>
+                                                        <h2 class="dash__h2 u-s-m-b-8"><%= addressDTO.getFname() + " " + addressDTO.getLname()%></h2>
 
-                                                        <span class="dash__text-2"><%= addressDTO.getAddressLine1()+" "+addressDTO.getAddressLine2()+" "+addressDTO.getCity().getName()+" "+addressDTO.getCity().getProvinceDTO().getName() %></span>
+                                                        <span class="dash__text-2"><%= addressDTO.getAddressLine1() + " " + addressDTO.getAddressLine2() + " " + addressDTO.getCity().getName() + " " + addressDTO.getCity().getProvinceDTO().getName()%></span>
 
-                                                        <span class="dash__text-2"><%= addressDTO.getPhone() %></span>
+                                                        <span class="dash__text-2"><%= addressDTO.getPhone()%></span>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="col-lg-6">
-                                                
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="u-s-m-b-30">
+                                                <form class="pd-tab__rev-f2">
+                                                    <h2 class="u-s-m-b-15">Add a Review</h2>
+
+                                                    <span class="gl-text u-s-m-b-15">Your email address will not be published. Required fields are marked *</span>
+                                                    <div class="u-s-m-b-30">
+                                                        <div class="rev-f2__table-wrap gl-scroll">
+                                                            <table class="rev-f2__table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>
+                                                                            <div class="gl-rating-style-2"><i class="fas fa-star"></i>
+
+                                                                                <span>(1)</span></div>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <div class="gl-rating-style-2"><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                                                                <span>(2)</span></div>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <div class="gl-rating-style-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                                                                <span>(3)</span></div>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <div class="gl-rating-style-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                                                                <span>(4)</span></div>
+                                                                        </th>
+
+                                                                        <th>
+                                                                            <div class="gl-rating-style-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                                                                <span>(5)</span></div>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+
+                                                                            <!--====== Radio Box ======-->
+                                                                            <div class="radio-box">
+
+                                                                                <input type="radio" onclick="addStarCount(1)" id="star-1" name="rating">
+                                                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                                                    <label class="radio-box__label" for="star-1"></label></div>
+                                                                            </div>
+                                                                            <!--====== End - Radio Box ======-->
+                                                                        </td>
+
+                                                                        <td>
+
+                                                                            <!--====== Radio Box ======-->
+                                                                            <div class="radio-box">
+
+                                                                                <input type="radio" id="star-2" onclick="addStarCount(2)" name="rating">
+                                                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                                                    <label class="radio-box__label" for="star-2"></label></div>
+                                                                            </div>
+                                                                            <!--====== End - Radio Box ======-->
+                                                                        </td>
+
+                                                                        <td>
+
+                                                                            <!--====== Radio Box ======-->
+                                                                            <div class="radio-box">
+
+                                                                                <input type="radio" onclick="addStarCount(3)" id="star-3" name="rating">
+                                                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                                                    <label class="radio-box__label" for="star-3"></label></div>
+                                                                            </div>
+                                                                            <!--====== End - Radio Box ======-->
+                                                                        </td>
+
+                                                                        <td>
+
+                                                                            <!--====== Radio Box ======-->
+                                                                            <div class="radio-box">
+
+                                                                                <input type="radio" id="star-4" onclick="addStarCount(4)" name="rating">
+                                                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                                                    <label class="radio-box__label" for="star-4"></label></div>
+                                                                            </div>
+                                                                            <!--====== End - Radio Box ======-->
+                                                                        </td>
+
+                                                                        <td>
+
+                                                                            <!--====== Radio Box ======-->
+                                                                            <div class="radio-box">
+
+                                                                                <input type="radio" id="star-5" onclick="addStarCount(5)" name="rating">
+                                                                                <div class="radio-box__state radio-box__state--primary">
+
+                                                                                    <label class="radio-box__label" for="star-5"></label></div>
+                                                                            </div>
+                                                                            <!--====== End - Radio Box ======-->
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rev-f2__group">
+                                                        <div class="u-s-m-b-30">
+
+                                                            <label class="gl-label" for="reviewer-text">YOUR REVIEW *</label>
+                                                            <textarea class="text-area text-area--primary-style" id="reviewer-text"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="u-s-m-b-10">
+                                                        <div class="check-box">
+                                                            <input type="hidden" id="product" value="<%= orderItemDTO.getProduct().getId()%>"/>
+                                                            <input type="hidden" id="starCount"/>
+                                                            <input type="checkbox" id="anonymous" value="default" data-bill="">
+                                                            <div class="check-box__state check-box__state--primary">
+
+                                                                <label class="check-box__label" for="make-default-address">
+                                                                    Leave as Anonymous</label></div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+
+                                                        <button class="btn btn--e-brand-shadow" type="button" id="addReview">SUBMIT</button></div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
+
+
                                     <%
                                     } else {
                                     %>
@@ -322,6 +466,95 @@
         <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
         <%@include file="../js.jsp" %>
 
+        <script>
+            function addStarCount(count) {
+                document.getElementById("starCount").value = count;
+            }
+            document.getElementById("addReview").addEventListener('click', () => {
+                let product = document.getElementById("product").value;
+                let stars = document.getElementById("starCount").value;
+                let review = document.getElementById("reviewer-text").value;
+                let isanonymous = document.getElementById('anonymous').checked;
+
+                if (product == null || product == '' || product == undefined) {
+                    Swal.fire({
+                        title: "Something went wrong",
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                        icon: 'warning'
+                    }).then((result) => {
+                    });
+                }else if(stars == null || stars == '' || stars == undefined){
+                    Swal.fire({
+                        title: "Please select star count",
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                        icon: 'warning'
+                    }).then((result) => {
+                    });
+                }else if(review == null || review == '' || review == undefined){
+                    Swal.fire({
+                        title: "Please add review...",
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'OK',
+                        icon: 'warning'
+                    }).then((result) => {
+                    });
+                }else{
+                    
+                    $.ajax({
+                            type: 'POST',
+                            url: '${BASE_URL}auth/Review',
+                            data: {
+                                product: product,
+                                stars: stars,
+                                review: review,
+                                isanonymous: isanonymous
+                            },
+                            success: function (data) {
+                                if (data == "Success") {
+                                    Swal.fire({
+                                        title: 'Saved',
+                                        showDenyButton: false,
+                                        showCancelButton: false,
+                                        confirmButtonText: 'OK',
+                                        icon: 'success'
+                                    }).then((result) => {
+                                        window.location.reload()
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: data,
+                                        showDenyButton: false,
+                                        showCancelButton: false,
+                                        confirmButtonText: 'OK',
+                                        icon: 'error'
+                                    }).then((result) => {
+
+                                    });
+                                }
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    title: 'Cannot save try again',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'error'
+                                }).then((result) => {
+                                });
+                            }
+                        })
+                    
+                    alert(product + " " + stars + ' ' + review + ' ' + isanonymous)
+                }
+
+                
+            });
+        </script>
         <!--====== Noscript ======-->
         <noscript>
         <div class="app-setting">

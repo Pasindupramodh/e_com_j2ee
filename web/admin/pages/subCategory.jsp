@@ -60,8 +60,8 @@
                         <div class="card">
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#brand" data-toggle="tab">Brand</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#sub" data-toggle="tab">Sub Category</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#brand" data-toggle="tab">Sub Category</a></li>
+                                    <!--<li class="nav-item"><a class="nav-link" href="#sub" data-toggle="tab">Sub Category</a></li>-->
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">

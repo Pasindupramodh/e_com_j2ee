@@ -149,7 +149,7 @@
                                                         <tr>
                                                             <td>
 
-                                                                <a class="address-book-edit btn--e-transparent-platinum-b-2" href="dash-address-edit.html">Edit</a></td>
+                                                                <a class="address-book-edit btn--e-transparent-platinum-b-2" href="EditAddress.jsp?id=<%= addressDTO.getId() %>">Edit</a></td>
                                                             <td><%= addressDTO.getFname()+" "+addressDTO.getLname() %></td>
                                                             <td><%= addressDTO.getAddressLine1()+" "+addressDTO.getAddressLine2()+" "+addressDTO.getCity().getName()+" "+addressDTO.getCity().getProvinceDTO().getName() %></td>
                                                             <td><%= addressDTO.getPhone() %></td>

@@ -120,4 +120,51 @@ public class AddressController extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
+        try {
+
+            String defaultAddress = req.getParameter("defaultAddress");
+            String fname = req.getParameter("fname");
+            String lname = req.getParameter("lname");
+            String street = req.getParameter("street");
+            String streetOptional = req.getParameter("streetOptional");
+            String city = req.getParameter("city");
+            String state = req.getParameter("state");
+            String zip = req.getParameter("zip");
+            String phone = req.getParameter("phone");
+            int id = Integer.parseInt(req.getParameter("id"));
+            if (defaultAddress.isEmpty() || fname.isEmpty()
+                    || lname.isEmpty() || street.isEmpty()
+                    || city.isEmpty() || state.isEmpty() || zip.isEmpty()
+                    || phone.isEmpty()) {
+                out.print("Please fill all required fields..");
+            } else {
+                boolean isDefault = false;
+
+                if (defaultAddress.equals("true")) {
+                    isDefault = true;
+                }
+
+                CusLoginDTO cusLoginDTO = (CusLoginDTO) req.getSession().getAttribute("customer");
+                Customer customer = new CustomerDAO().getByEmail(cusLoginDTO.getEmail());
+
+                AddressDAO addressDAO = new AddressDAO();
+                boolean isUpdated = addressDAO.updateAddress(id,customer, fname, lname, street, streetOptional, city, state, zip, phone, isDefault);
+
+                if (isUpdated) {
+                    out.print("Success");
+                } else {
+                    out.print("Can't save try again...");
+                }
+            }
+
+        } catch (Exception e) {
+            out.print("Something went wrong..");
+        }
+    }
+    
+    
+    
 }

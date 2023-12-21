@@ -123,6 +123,28 @@
                                                     <%
                                                         List<OrderDTO> orderDTOs = new OrderDAO().getOrdersByCustomer(customer);
                                                         for (OrderDTO order : orderDTOs) {
+
+
+                                                    %>
+                                                    <div class="m-order__get">
+                                                        <div class="manage-o__header u-s-m-b-30">
+                                                            <div class="dash-l-r">
+                                                                <div>
+                                                                    <div class="manage-o__text-2 u-c-secondary">Order id : <%= order.getOrderId()%>&emsp; 
+
+                                                                    </div>
+                                                                    <div class="manage-o__text u-c-silver">Placed on <%= order.getOrderDate()%></div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="dash__link dash__link--brand">
+                                                                        <a target="_blank" rel="noopener noreferrer"  href="Invoice.jsp?id=<%= order.getOrderId()%>"> <i class="fas fa-print"></i>  Invoice</a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <%
                                                             for (OrderItemDTO orderItem : order.getOrderItems()) {
                                                                 ProductDTO product = orderItem.getProduct();
 
@@ -133,23 +155,13 @@
                                                                         img = gallery.getImgPath();
                                                                     }
                                                                 }
+                                                        %>
 
-                                                    %>
-                                                    <div class="m-order__get">
-                                                        <div class="manage-o__header u-s-m-b-30">
-                                                            <div class="dash-l-r">
-                                                                <div>
-                                                                    <div class="manage-o__text-2 u-c-secondary">Order <%= order.getOrderId()%></div>
-                                                                    <div class="manage-o__text u-c-silver">Placed on <%= order.getOrderDate()%></div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="dash__link dash__link--brand">
+                                                        <div class="dash__link dash__link--brand" style="background-color:rgba(0,0,0,0.05);padding: 5px;">
 
-                                                                        <a href="manageOrder.jsp?id=<%= orderItem.getId()%>">MANAGE</a></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="manage-o__description">
+                                                            <a href="manageOrder.jsp?id=<%= orderItem.getId()%>">MANAGE</a></div>
+                                                            <div class="manage-o__description " style="background-color:rgba(0,0,0,0.05);padding: 5px;">
+
                                                             <div class="description__container">
                                                                 <div class="description__img-wrap">
 
@@ -160,17 +172,17 @@
                                                                 <div>
                                                                     <%
                                                                         String badge = "";
-                                                                        if(order.getLastStatus().equals("Delivered")){
-                                                                            badge= "badge--warning";
-                                                                        }else if(order.getLastStatus().equals("Pending") || order.getLastStatus().equals("Confirmed")){
+                                                                        if (order.getLastStatus().equals("Delivered")) {
+                                                                            badge = "badge--warning";
+                                                                        } else if (order.getLastStatus().equals("Pending") || order.getLastStatus().equals("Confirmed")) {
                                                                             badge = "badge--shipped";
-                                                                        }else if(order.getLastStatus().equals("Out For Delivery")){
+                                                                        } else if (order.getLastStatus().equals("Out For Delivery")) {
                                                                             badge = "badge--processing";
-                                                                        }else if(order.getLastStatus().equals("Rejected")){
+                                                                        } else if (order.getLastStatus().equals("Rejected")) {
                                                                             badge = "badge--delivered";
                                                                         }
                                                                     %>
-                                                                    <span class="manage-o__badge <%= badge %>"><%= order.getLastStatus()%></span></div>
+                                                                    <span class="manage-o__badge <%= badge%>"><%= order.getLastStatus()%></span></div>
                                                                 <div>
 
                                                                     <span class="manage-o__text-2 u-c-silver">Quantity:
@@ -183,9 +195,12 @@
                                                                         <span class="manage-o__text-2 u-c-secondary"><%= (orderItem.getUnitprice() * orderItem.getQty()) - (orderItem.getTotaldiscount())%> LKR</span></span></div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    
                                                     <%
                                                             }
+%>
+                                                    </div>
+                                                        <%
                                                         }
                                                     %>
 

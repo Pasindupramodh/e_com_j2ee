@@ -42,8 +42,6 @@ public class CustomerAuthFilter implements Filter {
         }else{
             chain.doFilter(request, response);
         }
-        
-
     }
 
     @Override

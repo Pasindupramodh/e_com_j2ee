@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import model.Address;
+import model.City;
 import model.Customer;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -140,7 +141,7 @@ public class AddressDAO {
             addressDTO.setLname(address.getLname());
             addressDTO.setPhone(address.getPhone());
             addressDTO.setZipcode(address.getZipcode());
-            
+
             return addressDTO;
         } catch (Exception e) {
             return null;
@@ -148,17 +149,86 @@ public class AddressDAO {
             session.close();
         }
     }
-    
-    public Address getAddressModelById(int id){
+
+    public Address getAddressModelById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
+
         try {
             return (Address) session.get(Address.class, id);
         } catch (Exception e) {
             return null;
-        }finally{
+        } finally {
             session.close();
         }
     }
-    
+
+    public AddressDTO getByIdAndCustomer(int id, Customer customer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Address address = (Address) session.createCriteria(Address.class)
+                    .add(Restrictions.eq("id", id))
+                    .add(Restrictions.eq("customer", customer))
+                    .uniqueResult();
+
+            AddressDTO addressDTO = new AddressDTO();
+            addressDTO.setId(address.getId());
+            addressDTO.setAddressLine1(address.getAddressLine1());
+            addressDTO.setAddressLine2(address.getAddressLine2());
+            addressDTO.setCity(new CityDAO().getCityById(address.getCity().getId()));
+            addressDTO.setFname(address.getFname());
+            addressDTO.setIsDefault(address.getIsDefault());
+            addressDTO.setLname(address.getLname());
+            addressDTO.setPhone(address.getPhone());
+            addressDTO.setZipcode(address.getZipcode());
+
+            return addressDTO;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public boolean updateAddress(int id, Customer customer, String fname,
+            String lname, String street, String streetOptional, String city,
+            String state, String zip, String phone, boolean aDefault) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            Address address = (Address) session.createCriteria(Address.class)
+                    .add(Restrictions.eq("id", id))
+                    .add(Restrictions.eq("customer", customer))
+                    .uniqueResult();
+
+            if (address != null) {
+                Transaction transaction = session.beginTransaction();
+                //Get current date of Sri Lanka
+                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
+                Date currentDate = calendar.getTime();
+
+                City cityModel = new CityDAO().getCityModelById(Integer.valueOf(city));
+
+                address.setAddressLine1(street);
+                address.setAddressLine2(streetOptional);
+                address.setCity(cityModel);
+                address.setFname(fname);
+                address.setIsDefault(aDefault);
+                address.setLname(lname);
+                address.setPhone(phone);
+                address.setUpdatedAt(currentDate);
+                address.setZipcode(zip);
+                
+                session.merge(address);
+                
+                transaction.commit();
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
 }

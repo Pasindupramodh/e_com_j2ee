@@ -519,6 +519,84 @@ public class OrderDAO {
         }
     }
 
+    public OrderDTO getOrderDtoByCusomerAndId(Customer customer , String id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            
+            Order order = (Order) session.createCriteria(Order.class)
+                    .add(Restrictions.eq("orderId", id))
+                    .add(Restrictions.eq("customer", customer))
+                    .uniqueResult();
+            
+            if (order.getPaymentStatus().getStatusCode().equals("200")) {
+                OrderDTO orderDTO = new OrderDTO();
+
+                AddressDTO addressDTO = new AddressDAO().getById(order.getAddress().getId());
+
+
+                CustomerDTO customerDTO = new CustomerDTO();
+                customerDTO.setEmail(customer.getEmail());
+                customerDTO.setFname(customer.getFname());
+                customerDTO.setGender(customer.getGender());
+                customerDTO.setId(customer.getId());
+                customerDTO.setLname(customer.getLname());
+                customerDTO.setMobile(customer.getMobile());
+
+                List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+
+                for (OrderItem orderItem : order.getOrderItems()) {
+                    OrderItemDTO orderItemDTO = new OrderItemDTO();
+                    orderItemDTO.setDiscount(orderItem.getDiscount());
+                    orderItemDTO.setId(orderItem.getId());
+                    orderItemDTO.setQty(orderItem.getQty());
+                    orderItemDTO.setTotaldiscount(orderItem.getTotaldiscount());
+                    orderItemDTO.setUnitprice(orderItem.getUnitprice());
+                    orderItemDTO.setProduct(new ProductDAO().getById(orderItem.getProduct().getId()));
+                    orderItemDTOs.add(orderItemDTO);
+
+                }
+
+                List<OrderStatusDTO> orderStatusDTOs = new ArrayList<>();
+
+                for (OrderHasOrderStatus ohos : order.getOrderHasOrderStatuses()) {
+                    OrderStatusDTO orderStatusDTO = new OrderStatusDTO();
+                    orderStatusDTO.setDate(ohos.getDate());
+                    orderStatusDTO.setId(ohos.getOrderStatus().getId());
+                    orderStatusDTO.setStatus(ohos.getOrderStatus().getStatus());
+                    orderStatusDTOs.add(orderStatusDTO);
+                }
+
+                PaymentStatus paymentStatus = order.getPaymentStatus();
+
+                PaymentStatusDTO paymentStatusDTO = new PaymentStatusDTO();
+                paymentStatusDTO.setId(paymentStatus.getId());
+                paymentStatusDTO.setStatus(paymentStatus.getStatus());
+                paymentStatusDTO.setStatusCode(paymentStatus.getStatusCode());
+
+                orderDTO.setAddresss(addressDTO);
+                orderDTO.setOrderStatus(orderStatusDTOs);
+                orderDTO.setOrderItems(orderItemDTOs);
+                orderDTO.setCustomer(customerDTO);
+                orderDTO.setDiscount(order.getDiscount());
+                orderDTO.setEstimatedDeliveryDate(order.getEstimatedDeliveryDate());
+                orderDTO.setOrderDeliveredCustomerDate(order.getOrderDeliveredCustomerDate());
+                orderDTO.setOrderDate(order.getOrderDate());
+                orderDTO.setLastStatus(order.getLastStatus());
+                orderDTO.setOrderId(order.getOrderId());
+                orderDTO.setPaymentStatus(paymentStatusDTO);
+                orderDTO.setTotal(order.getTotal());
+                orderDTO.setTrackingNumber(order.getTrackingNumber());
+                orderDTO.setUpdateDate(order.getUpdateDate());
+                return orderDTO;
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }finally{
+            session.close();
+        }
+    }
+    
     public OrderItemDTO getOrderByIdAndCustomer(int id, Customer customer) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
