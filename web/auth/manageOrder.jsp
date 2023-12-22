@@ -9,12 +9,6 @@
 <%@page import="dao.OrderDAO"%>
 <%@page import="model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%-- 
-    Document   : profile
-    Created on : Dec 20, 2023, 2:01:33 PM
-    Author     : REDTECH
---%>
-
 <%@page import="model.Customer"%>
 <%@page import="dao.CustomerDAO"%>
 <%@page import="dto.CusLoginDTO"%>
@@ -275,6 +269,9 @@
 
                                             </div>
                                         </div>
+                                        <%
+                                            if (orderItemDTO.getOrder().getLastStatus().equals("Delivered")) {
+                                        %>
                                         <div class="row">
                                             <div class="u-s-m-b-30">
                                                 <form class="pd-tab__rev-f2">
@@ -413,6 +410,10 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        <%
+                                            }
+                                        %>
+
                                     </div>
 
 
@@ -485,7 +486,7 @@
                         icon: 'warning'
                     }).then((result) => {
                     });
-                }else if(stars == null || stars == '' || stars == undefined){
+                } else if (stars == null || stars == '' || stars == undefined) {
                     Swal.fire({
                         title: "Please select star count",
                         showDenyButton: false,
@@ -494,7 +495,7 @@
                         icon: 'warning'
                     }).then((result) => {
                     });
-                }else if(review == null || review == '' || review == undefined){
+                } else if (review == null || review == '' || review == undefined) {
                     Swal.fire({
                         title: "Please add review...",
                         showDenyButton: false,
@@ -503,56 +504,56 @@
                         icon: 'warning'
                     }).then((result) => {
                     });
-                }else{
-                    
-                    $.ajax({
-                            type: 'POST',
-                            url: '${BASE_URL}auth/Review',
-                            data: {
-                                product: product,
-                                stars: stars,
-                                review: review,
-                                isanonymous: isanonymous
-                            },
-                            success: function (data) {
-                                if (data == "Success") {
-                                    Swal.fire({
-                                        title: 'Saved',
-                                        showDenyButton: false,
-                                        showCancelButton: false,
-                                        confirmButtonText: 'OK',
-                                        icon: 'success'
-                                    }).then((result) => {
-                                        window.location.reload()
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: data,
-                                        showDenyButton: false,
-                                        showCancelButton: false,
-                                        confirmButtonText: 'OK',
-                                        icon: 'error'
-                                    }).then((result) => {
+                } else {
 
-                                    });
-                                }
-                            },
-                            error: function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: '${BASE_URL}auth/Review',
+                        data: {
+                            product: product,
+                            stars: stars,
+                            review: review,
+                            isanonymous: isanonymous
+                        },
+                        success: function (data) {
+                            if (data == "Success") {
                                 Swal.fire({
-                                    title: 'Cannot save try again',
+                                    title: 'Saved',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'success'
+                                }).then((result) => {
+                                    window.location.reload()
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: data,
                                     showDenyButton: false,
                                     showCancelButton: false,
                                     confirmButtonText: 'OK',
                                     icon: 'error'
                                 }).then((result) => {
+
                                 });
                             }
-                        })
-                    
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Cannot save try again',
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                icon: 'error'
+                            }).then((result) => {
+                            });
+                        }
+                    })
+
                     alert(product + " " + stars + ' ' + review + ' ' + isanonymous)
                 }
 
-                
+
             });
         </script>
         <!--====== Noscript ======-->

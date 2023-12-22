@@ -17,6 +17,9 @@
         <property name="starCount" type="java.lang.Integer">
             <column name="star_count" />
         </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" />
+        </property>
         <property name="review" type="string">
             <column name="review" />
         </property>

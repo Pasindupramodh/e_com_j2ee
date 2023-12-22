@@ -136,9 +136,16 @@
                                                                     <div class="manage-o__text u-c-silver">Placed on <%= order.getOrderDate()%></div>
                                                                 </div>
                                                                 <div>
+                                                                    <%
+                                                                        if(!order.getLastStatus().equals("Pending") && !order.getLastStatus().equals("Rejected")){
+                                                                        %>
                                                                     <div class="dash__link dash__link--brand">
                                                                         <a target="_blank" rel="noopener noreferrer"  href="Invoice.jsp?id=<%= order.getOrderId()%>"> <i class="fas fa-print"></i>  Invoice</a>
                                                                     </div>
+                                                                    <%
+                                                                    }
+                                                                    %>
+                                                                    
 
                                                                 </div>
                                                             </div>

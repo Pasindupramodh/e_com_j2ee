@@ -13,10 +13,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars text-color"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link text-color">Home</a>
+        <a href="${BASE_URL}admin" class="nav-link text-color">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link text-color">Contact</a>
+        <a href="${ADMIN_BASE_URL}LogOut" class="nav-link text-color">Log Out</a>
       </li>
     </ul>
 
@@ -29,10 +29,10 @@
     
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+<!--        <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
-        </a>
+        </a>-->
         
       </li>
      

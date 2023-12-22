@@ -24,9 +24,9 @@
 
                 <!--====== Main Logo ======-->
 
-                <a class="main-logo" href="index.jsp">
+                <a class="main-logo" href="${BASE_URL}index.jsp">
 
-                    <img src="images/logo/logo-1.png" alt=""></a>
+                    <img src="${BASE_URL}images/logo/logo-1.png" alt=""></a>
                 <!--====== End - Main Logo ======-->
 
 
@@ -35,9 +35,10 @@
 
                     <label for="main-search"></label>
 
-                    <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search">
+                    <input class="input-text input-text--border-radius input-text--style-1" type="text" id="search-inp" placeholder="Search">
 
-                    <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
+                    <button class="btn btn--icon fas fa-search main-search-button" type="button" id="search"></button>
+                </form>
                 <!--====== End - Search Form ======-->
 
 
@@ -65,12 +66,12 @@
                                         if (session.getAttribute("customer") == null) {
                                     %>
                                     <li>
-                                        <a href="signup.jsp"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                        <a href="${BASE_URL}signup.jsp"><i class="fas fa-user-plus u-s-m-r-6"></i>
                                             <span>Signup</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="signin.jsp"><i class="fas fa-lock u-s-m-r-6"></i>
+                                        <a href="${BASE_URL}signin.jsp"><i class="fas fa-lock u-s-m-r-6"></i>
                                             <span>Signin</span>
                                         </a>
                                     </li>
@@ -84,7 +85,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                        <a href="${BASE_URL}SignOut"><i class="fas fa-lock-open u-s-m-r-6"></i>
                                             <span>Signout</span>
                                         </a>
                                     </li>
@@ -246,7 +247,7 @@
                                                 <div class="col-lg-4 mega-image">
                                                     <div class="mega-banner">
 
-                                                        <a class="u-d-block" href="shop-side-version-2.html">
+                                                        <a class="u-d-block" href="product.jsp?brand=<%= brand.getId() %>">
 
                                                             <img class="u-img-fluid u-d-block" src="<%= brand.getBrandImage()%>" alt=""></a></div>
                                                     <div class="col-lg-12">
@@ -302,7 +303,7 @@
                         <!--====== List ======-->
                         <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                             <li>
-                                <a href="products.jsp">All Products</a>
+                                <a href="${BASE_URL}products.jsp">All Products</a>
                             </li>
                         </ul>
                         <!--====== End - List ======-->
@@ -329,9 +330,9 @@
                             <li>
 
                                 <a href="index.html"><i class="fas fa-home"></i></a></li>
-                            <li>
+<!--                            <li>
 
-                                <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                <a href="wishlist.html"><i class="far fa-heart"></i></a></li>-->
                             <li class="has-dropdown">
 
                                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
@@ -449,3 +450,11 @@
     <!--====== End - Nav 2 ======-->
 </header>
 <!--====== End - Main Header ======-->
+<script>
+    document.getElementById('search').addEventListener('click',()=>{
+        let searchText = document.getElementById('search-inp').value.trim();;
+        if(searchText != null && searchText != '' && searchText != undefined){
+            window.location.href = '${BASE_URL}product.jsp?tag='+searchText;
+        }
+    });
+</script>

@@ -4,6 +4,7 @@
     Author     : pasin
 --%>
 
+<%@page import="model.Reviews"%>
 <%@page import="model.Gallery"%>
 <%@page import="model.Product"%>
 <%@page import="dao.ProductDAO"%>
@@ -201,7 +202,7 @@
 
                                                 <a class="nav-link" id="view-review" data-toggle="tab" href="#pd-rev">REVIEWS
 
-                                                    <span>(23)</span></a></li>
+                                                    <span>(<%= product.getReviewses().size()%>)</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="tab-content">
@@ -221,51 +222,51 @@
                                         <!--====== Tab 3 ======-->
                                         <div class="tab-pane" id="pd-rev">
                                             <div class="pd-tab__rev">
-                                                <div class="u-s-m-b-30">
-                                                    <div class="pd-tab__rev-score">
-                                                        <div class="u-s-m-b-8">
-                                                            <h2>23 Reviews - 4.6 (Overall)</h2>
-                                                        </div>
-                                                        <div class="gl-rating-style-2 u-s-m-b-8">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star-half-alt"></i>
-                                                        </div>
-                                                        <div class="u-s-m-b-8">
-                                                            <h4>We want to hear from you!</h4>
-                                                        </div>
 
-                                                        <span class="gl-text">Tell us what you think about this item</span>
-                                                    </div>
-                                                </div>
                                                 <div class="u-s-m-b-30">
                                                     <form class="pd-tab__rev-f1">
-                                                        <div class="rev-f1__group">
-                                                            <div class="u-s-m-b-15">
-                                                                <h2>23 Review(s) for Man Ruched Floral Applique Tee</h2>
-                                                            </div>
-                                                            <div class="u-s-m-b-15">
 
-                                                                <label for="sort-review"></label><select class="select-box select-box--primary-style" id="sort-review">
-                                                                    <option selected>Sort by: Best Rating</option>
-                                                                    <option>Sort by: Worst Rating</option>
-                                                                </select></div>
-                                                        </div>
+                                                        <%
+                                                            if (product.getReviewses().isEmpty()) {
+                                                        %>
                                                         <div class="rev-f1__review">
                                                             <div class="review-o u-s-m-b-15">
                                                                 <div class="review-o__info u-s-m-b-8">
 
-                                                                    <span class="review-o__name">John Doe</span>
+                                                                    <span class="review-o__name">No Reviews</span>
 
-                                                                    <span class="review-o__date">27 Feb 2018 10:57:43</span></div>
-                                                                <div class="review-o__rating gl-rating-style u-s-m-b-8"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                                                </div>
 
-                                                                    <span>(4)</span></div>
-                                                                <p class="review-o__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                                             </div>
                                                         </div>
+                                                        <%
+                                                        } else {
+                                                            for (Reviews reviews : product.getReviewses()) {
+                                                        %>
+                                                        <div class="rev-f1__review">
+                                                            <div class="review-o u-s-m-b-15">
+                                                                <div class="review-o__info u-s-m-b-8">
+
+                                                                    <span class="review-o__name"><%= (reviews.getIsAnonymous())? "******":reviews.getCustomer().getFname()+" "+reviews.getCustomer().getLname() %></span>
+
+                                                                    <span class="review-o__date"><%= reviews.getDate() %></span></div>
+                                                                <div class="review-o__rating gl-rating-style u-s-m-b-8">
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="<%= (reviews.getStarCount()>=2)? "fas":"far" %> fa-star"></i>
+                                                                    <i class="<%= (reviews.getStarCount()>=3)? "fas":"far" %> fa-star"></i>
+                                                                    <i class="<%= (reviews.getStarCount()>=4)? "fas":"far" %> fa-star"></i>
+                                                                    <i class="<%= (reviews.getStarCount()>=5)? "fas":"far" %> fa-star"></i>
+
+                                                                    <span>(4)</span></div>
+                                                                <p class="review-o__text"><%= reviews.getReview() %></p>
+                                                            </div>
+                                                        </div>
+                                                        <%
+                                                                }
+                                                            }
+                                                        %>
+
+
                                                     </form>
                                                 </div>
 
@@ -529,9 +530,9 @@
         <%@include file="js/js.jsp" %>
         <!--====== Noscript ======-->
         <script>
-            function proceedToCheckout(id){
+            function proceedToCheckout(id) {
                 var qty = document.getElementById('qty_product').value;
-                window.location.href = '${BASE_URL}/auth/checkout.jsp?product='+id+'&qty='+qty;
+                window.location.href = '${BASE_URL}/auth/checkout.jsp?product=' + id + '&qty=' + qty;
             }
         </script>
         <noscript>

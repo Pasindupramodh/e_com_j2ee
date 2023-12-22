@@ -1,10 +1,9 @@
 <%-- 
-    Document   : signup
-    Created on : Nov 24, 2023, 1:42:01 AM
-    Author     : pasin
+    Document   : ResetPassword
+    Created on : Dec 22, 2023, 1:35:11 PM
+    Author     : REDTECH
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
@@ -31,11 +30,6 @@
         <%
             }
         %>
-        <div class="preloader is-active">
-            <div class="preloader__wrap">
-
-                <img class="preloader__img" src="images/preloader.png" alt=""></div>
-        </div>
 
         <!--====== Main App ======-->
         <div id="app">
@@ -60,7 +54,7 @@
                                             <a href="index.jsp">Home</a></li>
                                         <li class="is-marked">
 
-                                            <a href="signup.jsp">Signup</a></li>
+                                            <a href="">Reset Password</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -79,14 +73,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="section__text-wrap">
-                                        <h1 class="section__heading u-c-secondary">CREATE AN ACCOUNT</h1>
+                                        <h1 class="section__heading u-c-secondary">Reset Password?</h1>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--====== End - Section Intro ======-->
-
 
                     <!--====== Section Content ======-->
                     <div class="section__content">
@@ -95,55 +88,28 @@
                                 <div class="col-lg-6 col-md-8 u-s-m-b-30">
                                     <div class="l-f-o">
                                         <div class="l-f-o__pad-box">
-                                            <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                                            <form class="l-f-o__form" id="register">
-                                                <!--<div class="gl-s-api">
-                                                    <div class="u-s-m-b-15">
-                                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
-                                                <span>Signup with Facebook</span></button></div>
-                                                    <div class="u-s-m-b-30">
-                                                <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
-                                                <span>Signup with Google</span></button></div>
-                                                </div>-->
+                                            <h1 class="gl-h1"></h1>
+
+                                            <span class="gl-text u-s-m-b-30"></span>
+
+                                            <form class="l-f-o__form" id="login_form">
+
                                                 <div class="u-s-m-b-30">
 
-                                                    <label class="gl-label" for="reg_fname">FIRST NAME *</label>
-
-                                                    <input class="input-text input-text--primary-style" type="text" id="reg_fname" name="reg_fname" placeholder="First Name"></div>
+                                                    <label class="gl-label" for="login_email">NEW PASSWORD *</label>
+                                                    <input type="hidden" value="<%= request.getParameter("token")%>" id="token"/>
+                                                    <input class="input-text input-text--primary-style" type="password" id="new_password"  name="new_password" placeholder="Enter E-mail"></div>
                                                 <div class="u-s-m-b-30">
 
-                                                    <label class="gl-label" for="reg_lname">LAST NAME *</label>
+                                                    <label class="gl-label" for="login_password">PASSWORD *</label>
 
-                                                    <input class="input-text input-text--primary-style" type="text" id="reg_lname" name="reg_lname" placeholder="Last Name"></div>
+                                                    <input class="input-text input-text--primary-style" type="password" id="repassword" name="repassword" placeholder="Enter Password"></div>
                                                 <div class="gl-inline">
-
                                                     <div class="u-s-m-b-30">
 
-                                                        <label class="gl-label" for="gender">GENDER</label>
-                                                        <select class="select-box select-box--primary-style u-w-100" id="gender" name="gender">
-                                                            <option value="" selected>Select</option>
-                                                            <option value="male">Male</option>
-                                                            <option value="male">Female</option>
-                                                        </select>
-                                                    </div>
+                                                        <button class="btn btn--e-transparent-brand-b-2" type="submit">Reset Password</button></div>
+
                                                 </div>
-                                                <div class="u-s-m-b-30">
-
-                                                    <label class="gl-label" for="reg_email"  >E-MAIL *</label>
-
-                                                    <input class="input-text input-text--primary-style" type="text" id="reg_email" name="reg_email" placeholder="Enter E-mail">
-                                                </div>
-                                                <div class="u-s-m-b-30">
-
-                                                    <label class="gl-label" for="reg_password">PASSWORD *</label>
-
-                                                    <input class="input-text input-text--primary-style" type="text" id="reg_password" name="reg_password" placeholder="Enter Password">
-                                                </div>
-                                                <div class="u-s-m-b-15">
-
-                                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button></div>
-
-                                                <!--<a class="gl-link" href="#">Return to Store</a>-->
                                             </form>
                                         </div>
                                     </div>
@@ -158,7 +124,10 @@
             <!--====== End - App Content ======-->
 
 
+            <!--====== Main Footer ======-->
             <%@include file="customerNavs/footer.jsp" %>
+
+
         </div>
         <!--====== End - Main App ======-->
 
@@ -187,24 +156,28 @@
             $.validator.setDefaults({
                 submitHandler: function (form, event) {
                     event.preventDefault();
-                    let fname = document.getElementById('reg_fname').value;
-                    let lname = document.getElementById('reg_lname').value;
-                    let email = document.getElementById('reg_email').value;
-                    let password = document.getElementById('reg_password').value;
-                    let gender = document.getElementById('gender').value;
+                    let new_password = document.getElementById('new_password').value;
+                    let repassword = document.getElementById('repassword').value;
+                    let token = document.getElementById('token').value;
                     $.ajax({
                         type: 'POST',
-                        url: '${BASE_URL}Register',
+                        url: '${BASE_URL}ResetCusPassword',
                         data: {
-                            fname: fname,
-                            lname: lname,
-                            email: email,
-                            gender: gender,
-                            password: password,
+                            new_password: new_password,
+                            repassword: repassword,
+                            token: token
                         },
                         success: function (data) {
-                            if (data === "Sucess") {
-                                window.location = 'verify.jsp';
+                            if (data === "Success") {
+                                Swal.fire({
+                                    title: 'Updated',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'OK',
+                                    icon: 'success'
+                                }).then((result) => {
+                                    window.location = '${BASE_URL}signin.jsp';
+                                });
                             } else {
                                 Swal.fire({
                                     title: data,
@@ -219,7 +192,7 @@
                         },
                         error: function () {
                             Swal.fire({
-                                title: 'Cannot Register try again',
+                                title: 'Cannot Reset try again',
                                 showDenyButton: false,
                                 showCancelButton: false,
                                 confirmButtonText: 'OK',
@@ -230,28 +203,23 @@
                     })
                 }
             });
-            $('#register').validate({
+            $('#login_form').validate({
                 rules: {
-                    reg_fname: {
+
+                    new_password: {
                         required: true,
+                        minlength: 5
                     },
-                    reg_lname: {
-                        required: true,
-                    },
-                    reg_email: {
-                        required: true,
-                        email: true
-                    },
-                    reg_password: {
+                    repassword: {
                         required: true,
                         minlength: 5
                     },
                 },
                 messages: {
-                    reg_email: {
+                    login_email: {
                         required: "Please enter your Email",
                     },
-                    reg_password: {
+                    login_password: {
                         required: "Please provide a password",
                     },
                 },
@@ -268,5 +236,6 @@
                 }
             });
         });
+
     </script>
 </html>

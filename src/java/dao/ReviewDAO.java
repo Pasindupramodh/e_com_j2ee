@@ -6,6 +6,9 @@
 package dao;
 
 import connection.HibernateUtil;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import model.Customer;
 import model.Product;
 import model.Reviews;
@@ -22,6 +25,10 @@ public class ReviewDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             
+            //Get current date of Sri Lanka
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
+            Date currentDate = calendar.getTime();
+            
             Transaction transaction = session.beginTransaction();
             
             Reviews reviews = new Reviews();
@@ -30,6 +37,7 @@ public class ReviewDAO {
             reviews.setProduct(product1);
             reviews.setReview(review);
             reviews.setStarCount(starCount);
+            reviews.setDate(currentDate);
             
             session.persist(reviews);
             

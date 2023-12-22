@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Green Tech</title>
         <%@include file="style.jsp" %>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,12 +26,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Unpaid Orders</h1>
+                            <h1>Manage Customers</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Unpaid Orders</li>
+                                <li class="breadcrumb-item active">Manage Customers</li>
                             </ol>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Orders</h3>
+                                    <h3 class="card-title">Customers</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">

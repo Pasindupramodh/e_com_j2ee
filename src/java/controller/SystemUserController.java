@@ -34,84 +34,109 @@ public class SystemUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String fname = req.getParameter("fname");
-        String lname = req.getParameter("lname");
-        String mobile = req.getParameter("mobile");
-        String email = req.getParameter("email");
-        String user_type = req.getParameter("user_type");
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        
-        //Encrypt Passwprd using MD5
-        String encrypt = Encryption.encrypt(password);
-        
-        //Get current date of Sri Lanka
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
-        Date currentDate = calendar.getTime();
-        
         //Get loged in user details
         UserData userData = (UserData) req.getSession().getAttribute("user");
-        
-        
-        SystemUserDAO systemUserDAO = new SystemUserDAO();
-        UserType userTypeById = systemUserDAO.getUserTypeById(Integer.valueOf(user_type));
-        
-        Login login = new Login();
-        login.setCreatedAt(currentDate);
-        login.setUpdatedAt(currentDate);
-        login.setUsername(username);
-        login.setPassword(encrypt);
-        login.setStatus("Active");
-        
-        SystemUser systemUser = new SystemUser();
-        systemUser.setCreatedAt(currentDate);
-        systemUser.setSystemUserByCreatedBy(systemUserDAO.getUserById(userData.getId()));
-        systemUser.setSystemUserByUpdatedBy(systemUserDAO.getUserById(userData.getId()));
-        systemUser.setUpdatedAt(currentDate);
-        systemUser.setEmail(email);
-        systemUser.setFname(fname);
-        systemUser.setLname(lname);
-        systemUser.setMobile(mobile);
-        systemUser.setUserType(userTypeById);
-        systemUser.setIsActive(true);
-        systemUser.setLogin(login);
-        
-        String response = systemUserDAO.save(login,systemUser,userData);
-        resp.getWriter().write(response);
+
+        if (userData.getUserType().equals("Super Admin")) {
+            String fname = req.getParameter("fname");
+            String lname = req.getParameter("lname");
+            String mobile = req.getParameter("mobile");
+            String email = req.getParameter("email");
+            String user_type = req.getParameter("user_type");
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
+
+            //Encrypt Passwprd using MD5
+            String encrypt = Encryption.encrypt(password);
+
+            //Get current date of Sri Lanka
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
+            Date currentDate = calendar.getTime();
+
+            SystemUserDAO systemUserDAO = new SystemUserDAO();
+            UserType userTypeById = systemUserDAO.getUserTypeById(Integer.valueOf(user_type));
+
+            Login login = new Login();
+            login.setCreatedAt(currentDate);
+            login.setUpdatedAt(currentDate);
+            login.setUsername(username);
+            login.setPassword(encrypt);
+            login.setStatus("Active");
+
+            SystemUser systemUser = new SystemUser();
+            systemUser.setCreatedAt(currentDate);
+            systemUser.setSystemUserByCreatedBy(systemUserDAO.getUserById(userData.getId()));
+            systemUser.setSystemUserByUpdatedBy(systemUserDAO.getUserById(userData.getId()));
+            systemUser.setUpdatedAt(currentDate);
+            systemUser.setEmail(email);
+            systemUser.setFname(fname);
+            systemUser.setLname(lname);
+            systemUser.setMobile(mobile);
+            systemUser.setUserType(userTypeById);
+            systemUser.setIsActive(true);
+            systemUser.setLogin(login);
+
+            String response = systemUserDAO.save(login, systemUser, userData);
+            resp.getWriter().write(response);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized access!");
+        }
+
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SystemUserDAO systemUserDAO = new SystemUserDAO();
-        List<SystemUserDTO> dtos = systemUserDAO.getAllSystemUsers();
-        JSONArray array = new JSONArray(dtos);
-        resp.getWriter().print(array);
+        //Get loged in user details
+        UserData userData = (UserData) req.getSession().getAttribute("user");
+
+        if (userData.getUserType().equals("Super Admin")) {
+            SystemUserDAO systemUserDAO = new SystemUserDAO();
+            List<SystemUserDTO> dtos = systemUserDAO.getAllSystemUsers();
+            JSONArray array = new JSONArray(dtos);
+            resp.getWriter().print(array);
+        }else{
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized access!");
+        }
+
     }
- 
+
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+        //Get loged in user details
+        UserData userData = (UserData) req.getSession().getAttribute("user");
+
+        if (userData.getUserType().equals("Super Admin")) {
+            String id = req.getParameter("id");
         SystemUserDAO systemUserDAO = new SystemUserDAO();
         systemUserDAO.delete(Integer.parseInt(id));
+        }else{
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized access!");
+        }
+        
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Get loged in user details
+        UserData userData = (UserData) req.getSession().getAttribute("user");
+
+        if (userData.getUserType().equals("Super Admin")) {
         PrintWriter writer = resp.getWriter();
-        
+
         String id = req.getParameter("id");
         String fname = req.getParameter("fname");
         String lname = req.getParameter("lname");
         String mobile = req.getParameter("mobile");
         String email = req.getParameter("email");
         String user_type = req.getParameter("user_type");
-        
-        UserData userData = (UserData) req.getSession().getAttribute("user");
-        
+
+
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Colombo"));
         Date currentDate = calendar.getTime();
-        
+
         SystemUserDAO systemUserDAO = new SystemUserDAO();
         SystemUser systemUser = systemUserDAO.getUserById(Integer.parseInt(id));
         systemUser.setFname(fname);
@@ -121,16 +146,19 @@ public class SystemUserController extends HttpServlet {
         systemUser.setUserType(systemUserDAO.getUserTypeById(Integer.parseInt(user_type)));
         systemUser.setUpdatedAt(currentDate);
         systemUser.setSystemUserByUpdatedBy(systemUserDAO.getUserById(userData.getId()));
-        
+
         boolean isUpdate = systemUserDAO.update(systemUser);
-        
-        if(isUpdate){
+
+        if (isUpdate) {
             writer.write("Success");
-        }else{
+        } else {
             writer.write("Error");
         }
-        
+        }else{
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            resp.getWriter().println("Unauthorized access!");
+        }
+
     }
-    
-    
+
 }

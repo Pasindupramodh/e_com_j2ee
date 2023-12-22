@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     UserData userData = (UserData) session.getAttribute("user");
-    
+
 %>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-olive elevation-4" style="background-color: #EAF9E7; ">
@@ -26,7 +26,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block text-color" style=" font-weight: bold"><%= userData.getFname()+" "+userData.getLname() %></a>
+                <a href="#" class="d-block text-color" style=" font-weight: bold"><%= userData.getFname() + " " + userData.getLname()%></a>
             </div>
         </div>
 
@@ -48,14 +48,17 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item ">
-                    <a href="pages/dashboard.jsp" class="nav-link active">
+                    <a href="dashboard.jsp" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
-                     
+
                 </li>
+                <%
+                    if (userData.getUserType().equals("Super Admin")) {
+                %>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shield-alt text-color"></i>
@@ -77,9 +80,13 @@
                                 <p  class="text-color">View All</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
+                <%
+                    }
+                %>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-th-large text-color"></i>
@@ -101,7 +108,7 @@
                                 <p  class="text-color">Brand / Sub Category</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -125,7 +132,7 @@
                                 <p  class="text-color">View All</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -143,7 +150,7 @@
                                 <p  class="text-color">View All</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -191,7 +198,7 @@
                                 <p  class="text-color">Unpaids</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
             </ul>

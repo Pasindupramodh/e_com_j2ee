@@ -45,18 +45,19 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="slider-content slider-content--animation">
+                                                <span class="content-span-2 u-c-white">Welcome to GreenTech!</span>
+                                                <span class="content-span-1 u-c-white">Revolutionize your computing experience with GreenTech - your one-stop destination for top-tier computer parts and laptops.</span>
 
-                                                <span class="content-span-1 u-c-white">Update Your Fashion</span>
 
-                                                <span class="content-span-2 u-c-white">10% Discount on Outwear</span>
 
-                                                <span class="content-span-3 u-c-white">Find outwear on best prices</span>
-
-                                                <span class="content-span-4 u-c-white">Starting At
-
-                                                    <span class="u-c-brand">$100.00</span></span>
-
-                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                                <!--<span class="content-span-3 u-c-white"></span>-->
+                                                <!--
+                                                                                                <span class="content-span-4 u-c-white">Starting At
+                                                
+                                                                                                    <span class="u-c-brand">$100.00</span></span>
+                                                
+                                                                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -69,17 +70,18 @@
                                         <div class="col-12">
                                             <div class="slider-content slider-content--animation">
 
-                                                <span class="content-span-1 u-c-white">Open Your Eyes</span>
+                                                <!--<span class="content-span-1 u-c-white">Open Your Eyes</span>-->
 
-                                                <span class="content-span-2 u-c-white">10% Off On Intimates</span>
+                                                <span class="content-span-2 u-c-white">Elevate Your Tech Game with GreenTech!</span>
 
-                                                <span class="content-span-3 u-c-white">Find intimates on best prices</span>
-
-                                                <span class="content-span-4 u-c-white">Starting At
-
-                                                    <span class="u-c-brand">$100.00</span></span>
-
-                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                                <span class="content-span-3 u-c-white">Unleash innovation with GreenTech. Explore high-performance computer parts and cutting-edge laptops. Exclusive deals on the latest arrivals ? upgrade your tech experience today!</span>
+                                                <!--
+                                                                                                <span class="content-span-4 u-c-white">Starting At
+                                                
+                                                                                                    <span class="u-c-brand">$100.00</span></span>
+                                                
+                                                                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,17 +94,18 @@
                                         <div class="col-12">
                                             <div class="slider-content slider-content--animation">
 
-                                                <span class="content-span-1 u-c-white">Find Top Brands</span>
+                                                <!--<span class="content-span-1 u-c-white">Find Top Brands</span>-->
 
-                                                <span class="content-span-2 u-c-white">10% Off On Outwear</span>
+                                                <span class="content-span-2 u-c-white">Power Up with Tech Trends!</span>
 
-                                                <span class="content-span-3 u-c-white">Find outwear on best prices</span>
-
-                                                <span class="content-span-4 u-c-white">Starting At
-
-                                                    <span class="u-c-brand">$100.00</span></span>
-
-                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                                <span class="content-span-3 u-c-white">Discover top-tier computer parts and laptops at GreenTech. Explore exclusive deals on the latest tech releases. Your journey to unmatched performance starts here!</span>
+                                                <!--
+                                                                                                <span class="content-span-4 u-c-white">Starting At
+                                                
+                                                                                                    <span class="u-c-brand">$100.00</span></span>
+                                                
+                                                                                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +130,7 @@
                                             <img class="aspect__img" src="images/home/laptop.jpg" alt=""></div>
                                         <div class="promotion-o__content">
 
-                                            <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Laptops</a></div>
+                                            <a class="promotion-o__link btn--e-white-brand" href="product.jsp?category=2">Laptops</a></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -137,7 +140,7 @@
                                             <img class="aspect__img" src="images/home/mobile.jpg" alt=""></div>
                                         <div class="promotion-o__content">
 
-                                            <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Mobile Phones</a></div>
+                                            <a class="promotion-o__link btn--e-white-brand" href="product.jsp?category=1">Mobile Phones</a></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -147,7 +150,7 @@
                                             <img class="aspect__img" src="images/home/parts.jpg" alt=""></div>
                                         <div class="promotion-o__content">
 
-                                            <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Computer Parts</a></div>
+                                            <a class="promotion-o__link btn--e-white-brand" href="product.jsp?category=3">Computer Parts</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -226,715 +229,722 @@
                                             <div class="col-lg-12">
                                                 <div class="load-more">
 
-                                                    <button class="btn btn--e-brand" type="button">Load More</button></div>
+                                                    <!--<button class="btn btn--e-brand" type="button">Load More</button></div>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--====== End - Section Content ======-->
                     </div>
-                    <!--====== End - Section Content ======-->
-                </div>
-                <!--====== End - Section 2 ======-->
+                    <!--====== End - Section 2 ======-->
 
 
-                <!--====== Section 3 ======-->
-                <div class="u-s-p-b-60">
+                    <!--====== Section 3 ======-->
+                    <div class="u-s-p-b-60">
 
-                    <!--====== Section Intro ======-->
-                    <div class="section__intro u-s-m-b-46">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="section__text-wrap">
-                                        <h1 class="section__heading u-c-secondary u-s-m-b-12">RECENT PRODUCTS</h1>
+                        <!--====== Section Intro ======-->
+                        <div class="section__intro u-s-m-b-46">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="section__text-wrap">
+                                            <h1 class="section__heading u-c-secondary u-s-m-b-12">RECENT PRODUCTS</h1>
 
-                                        <span class="section__span u-c-silver">NEWLY ADDED PRODUCTS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--====== End - Section Intro ======-->
-
-
-                    <!--====== Section Content ======-->
-                    <div class="section__content">
-                        <div class="container">
-                            <div class="row">
-                                <%
-                                    List<Product> recentProducts = productDAO.getAllPublished("createdAt", 8);
-                                    if (recentProducts != null) {
-                                        for (Product product : recentProducts) {
-//                                                        response.getWriter().write("asas");
-                                            String imgPath = "";
-                                            for (Gallery gallery : product.getGalleries()) {
-                                                if (gallery.getThumbnail()) {
-                                                    imgPath = gallery.getImgPath();
-                                                    break;
-                                                }
-                                            }
-                                            String href = "product_detail_v.jsp?id="+product.getId();
-                                                        if(product.getAttributeVariants().isEmpty()){
-                                                            href = "product_detail.jsp?id="+product.getId();
-                                                        }
-                                %>
-                                <div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
-                                    <div class="product-r u-h-100">
-                                        <div class="product-r__container">
-
-                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="<%= href %>">
-
-                                                <img class="aspect__img" src="<%= imgPath%>" alt="">
-                                            </a>
-                                            <div class="product-r__action-wrap">
-                                                <ul class="product-r__action-list">
-                                                    <li>
-
-                                                        <a data-modal="modal" onclick="setDataToQuickLook('<%= imgPath%>', '<%= product.getProductName()%>',<%= product.getDiscountPrice()%>,<%= product.getProductPrice()%>,<%= product.getQty()%>, '<%= product.getShortDescription()%>')" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                    <li>
-
-                                                        <a  onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= imgPath%>')"><i class="fas fa-plus-circle"></i></a></li>
-                                                    <li>
-
-                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-r__info-wrap">
-
-                                            <span class="product-r__category">
-
-                                                <a href="shop-side-version-2.html"><%= product.getBrand().getCategory().getCategoryName()%></a></span>
-                                            <span class="product-r__price"><%= product.getProductPrice() - product.getDiscountPrice()%> LKR</span>
-                                            <div class="product-r__n-p-wrap">
-
-                                                <span class="product-r__name">
-
-                                                    <a href="<%= href %>"><%= product.getProductName()%></a></span>
-
-
-                                            </div>
-
-                                            <span class="product-r__description"><%= product.getShortDescription()%></span>
+                                            <span class="section__span u-c-silver">NEWLY ADDED PRODUCTS</span>
                                         </div>
                                     </div>
                                 </div>
-                                <%
-                                        }
-                                    }
-                                %>
-                                <div class="col-lg-12">
-                                    <div class="load-more">
-
-                                        <button class="btn btn--e-brand" type="button">Load More</button></div>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
-                    <!--====== End - Section Content ======-->
-                </div>
-                <!--====== End - Section 3 ======-->
-
-
-                <!--====== Section 4
-                <div class="u-s-p-b-60">
-
-                 
-                    <div class="section__intro u-s-m-b-16">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="section__text-wrap">
-                                        <h1 class="section__heading u-c-secondary u-s-m-b-12">ALL PRODUCT</h1>
-
-                                        <span class="section__span u-c-silver u-s-m-b-16">FIND PRODUCTS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-
-                  
-                    <div class="section__content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                                                        <div class="filter-category-container">
-                                                                            <div class="filter__category-wrapper">
-                                    
-                                                                                <button class="btn filter__btn filter__btn--style-2 js-checked" type="button" data-filter="*">ALL</button></div>
-                                                                            <div class="filter__category-wrapper">
-                                    
-                                                                                <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".outwear">OUTWEAR</button></div>
-                                                                            <div class="filter__category-wrapper">
-                                    
-                                                                                <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".bottom">BOTTOM</button></div>
-                                                                            <div class="filter__category-wrapper">
-                                    
-                                                                                <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".footwear">FOOTWEAR</button></div>
-                                                                            <div class="filter__category-wrapper">
-                                    
-                                                                                <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".accessories">ACCESSORIES</button></div>
-                                                                        </div>
-                                    <div class="filter__grid-wrapper u-s-m-t-30">
-                                        <div class="row">
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item outwear">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/men/product11.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Black &amp; White Sweater</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item outwear">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/women/product15.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Color Yellow Modest A Fashion</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bottom">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/men/product2.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">White Full Men Underwear</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bottom">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/women/product3.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Color Yellow Modest B Fashion</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item accessories">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/men/product3.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Blown Sunglasses For Deux</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item accessories">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/women/product4.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Ladies Black Bag</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item footwear">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/men/product13.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Casual Shoes Independence</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item footwear">
-                                                <div class="product-bs">
-                                                    <div class="product-bs__container">
-                                                        <div class="product-bs__wrap">
-
-                                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-
-                                                                <img class="aspect__img" src="images/product/men/product14.jpg" alt=""></a>
-                                                            <div class="product-bs__action-wrap">
-                                                                <ul class="product-bs__action-list">
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
-                                                                    <li>
-
-                                                                        <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-heart"></i></a></li>
-                                                                    <li>
-
-                                                                        <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
-                                                        <span class="product-bs__category">
-
-                                                            <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                        <span class="product-bs__name">
-
-                                                            <a href="product-detail.html">Men Casual Shoes Charcoal</a></span>
-                                                        <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-
-                                                            <span class="product-bs__review">(23)</span></div>
-
-                                                        <span class="product-bs__price">$125.00
-
-                                                            <span class="product-bs__discount">$160.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!--====== End - Section 4 ======-->
-
-
-
-
-
-
-
-                <!--====== Section 7 ======-->
-                <div class="u-s-p-b-60">
-
-                    <!--====== Section Content ======-->
-                    <div class="section__content">
-                        <div class="container">
-
-                            <!--====== Brand Slider ======-->
-                            <div class="slider-fouc">
-                                <div class="owl-carousel" id="brand-slider" data-item="5">
-                                    <%                                 
-                                        BrandDao brandDao = new BrandDao();
-                                        List<Brand> brands = brandDao.getAllBrands();
-                                        if (brands != null) {
-                                            for (Brand brand : brands) {
-                                    %>
-                                    <div class="brand-slide">
-
-                                        <a href="shop-side-version-2.html">
-
-                                            <img src="<%= brand.getBrandImage()%>" alt=""></a></div>
-                                            <%
+                        <!--====== End - Section Intro ======-->
+
+
+                        <!--====== Section Content ======-->
+                        <div class="section__content">
+                            <div class="container">
+                                <div class="row">
+                                    <%
+                                        List<Product> recentProducts = productDAO.getAllPublished("createdAt", 8);
+                                        if (recentProducts != null) {
+                                            for (Product product : recentProducts) {
+                                                //                                                        response.getWriter().write("asas");
+                                                String imgPath = "";
+                                                for (Gallery gallery : product.getGalleries()) {
+                                                    if (gallery.getThumbnail()) {
+                                                        imgPath = gallery.getImgPath();
+                                                        break;
                                                     }
                                                 }
-                                            %>
+                                                String href = "product_detail_v.jsp?id=" + product.getId();
+                                                if (product.getAttributeVariants().isEmpty()) {
+                                                    href = "product_detail.jsp?id=" + product.getId();
+                                                }
+                                    %>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
+                                        <div class="product-r u-h-100">
+                                            <div class="product-r__container">
+
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="<%= href%>">
+
+                                                    <img class="aspect__img" src="<%= imgPath%>" alt="">
+                                                </a>
+                                                <div class="product-r__action-wrap">
+                                                    <ul class="product-r__action-list">
+                                                        <li>
+
+                                                            <a data-modal="modal" onclick="setDataToQuickLook('<%= imgPath%>', '<%= product.getProductName()%>',<%= product.getDiscountPrice()%>,<%= product.getProductPrice()%>,<%= product.getQty()%>, '<%= product.getShortDescription()%>')" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                        <li>
+
+                                                            <a  onclick="setDataToAddToCart('<%= product.getId()%>', '<%= product.getProductName()%>', '<%= product.getProductPrice() - product.getDiscountPrice()%> ', '<%= imgPath%>')"><i class="fas fa-plus-circle"></i></a></li>
+                                                        <li>
+
+                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-r__info-wrap">
+
+                                                <span class="product-r__category">
+
+                                                    <a href="shop-side-version-2.html"><%= product.getBrand().getCategory().getCategoryName()%></a></span>
+                                                <span class="product-r__price"><%= product.getProductPrice() - product.getDiscountPrice()%> LKR</span>
+                                                <div class="product-r__n-p-wrap">
+
+                                                    <span class="product-r__name">
+
+                                                        <a href="<%= href%>"><%= product.getProductName()%></a></span>
+
+
+                                                </div>
+
+                                                <span class="product-r__description"><%= product.getShortDescription()%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%
+                                            }
+                                        }
+                                    %>
+                                    <div class="col-lg-12">
+                                        <div class="load-more">
+
+                                            <button class="btn btn--e-brand" type="button" id="load_more">Load More</button></div>
+                                    </div>
 
                                 </div>
                             </div>
-                            <!--====== End - Brand Slider ======-->
                         </div>
+                        <!--====== End - Section Content ======-->
                     </div>
-                    <!--====== End - Section Content ======-->
-                </div>
-                <!--====== End - Section 7 ======-->
-            </div>
-            <!--====== End - App Content ======-->
+                    <!--====== End - Section 3 ======-->
 
 
-            <%@include file="customerNavs/footer.jsp" %>
-
-            <%@include file="common_use/cart_add.jsp" %>
-            
-            <div class="modal fade" id="quick-look">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content modal--shadow">
-
-                        <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-5">
-
-
-                                    <!--====== Product Detail ======-->
-                                    <div class="pd u-s-m-b-30">
-                                        <div class="pd-wrap">
-                                            <div id="js-product-detail-modal">
-                                                <div>
-
-                                                    <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt="">
+                    <!--====== Section 4
+                    <div class="u-s-p-b-60">
+    
+                     
+                        <div class="section__intro u-s-m-b-16">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="section__text-wrap">
+                                            <h1 class="section__heading u-c-secondary u-s-m-b-12">ALL PRODUCT</h1>
+    
+                                            <span class="section__span u-c-silver u-s-m-b-16">FIND PRODUCTS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+    
+    
+                      
+                        <div class="section__content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                                                            <div class="filter-category-container">
+                                                                                <div class="filter__category-wrapper">
+                                        
+                                                                                    <button class="btn filter__btn filter__btn--style-2 js-checked" type="button" data-filter="*">ALL</button></div>
+                                                                                <div class="filter__category-wrapper">
+                                        
+                                                                                    <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".outwear">OUTWEAR</button></div>
+                                                                                <div class="filter__category-wrapper">
+                                        
+                                                                                    <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".bottom">BOTTOM</button></div>
+                                                                                <div class="filter__category-wrapper">
+                                        
+                                                                                    <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".footwear">FOOTWEAR</button></div>
+                                                                                <div class="filter__category-wrapper">
+                                        
+                                                                                    <button class="btn filter__btn filter__btn--style-2" type="button" data-filter=".accessories">ACCESSORIES</button></div>
+                                                                            </div>
+                                        <div class="filter__grid-wrapper u-s-m-t-30">
+                                            <div class="row">
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item outwear">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/men/product11.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Black &amp; White Sweater</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-
-                                                    <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt="">
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item outwear">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/women/product15.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Color Yellow Modest A Fashion</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-
-                                                    <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt="">
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bottom">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/men/product2.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">White Full Men Underwear</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-
-                                                    <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt="">
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bottom">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/women/product3.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Color Yellow Modest B Fashion</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-
-                                                    <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt="">
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item accessories">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/men/product3.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Blown Sunglasses For Deux</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item accessories">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/women/product4.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Ladies Black Bag</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item footwear">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/men/product13.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Casual Shoes Independence</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item footwear">
+                                                    <div class="product-bs">
+                                                        <div class="product-bs__container">
+                                                            <div class="product-bs__wrap">
+    
+                                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+    
+                                                                    <img class="aspect__img" src="images/product/men/product14.jpg" alt=""></a>
+                                                                <div class="product-bs__action-wrap">
+                                                                    <ul class="product-bs__action-list">
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#quick-look"><i class="fas fa-search-plus"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a data-modal="modal" data-modal-id="#add-to-cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-heart"></i></a></li>
+                                                                        <li>
+    
+                                                                            <a href="signin.html"><i class="fas fa-envelope"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+    
+                                                            <span class="product-bs__category">
+    
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+    
+                                                            <span class="product-bs__name">
+    
+                                                                <a href="product-detail.html">Men Casual Shoes Charcoal</a></span>
+                                                            <div class="product-bs__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+    
+                                                                <span class="product-bs__review">(23)</span></div>
+    
+                                                            <span class="product-bs__price">$125.00
+    
+                                                                <span class="product-bs__discount">$160.00</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
                                             </div>
                                         </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--====== End - Section 4 ======-->
+
+
+
+
+
+
+
+                    <!--====== Section 7 ======-->
+                    <div class="u-s-p-b-60">
+
+                        <!--====== Section Content ======-->
+                        <div class="section__content">
+                            <div class="container">
+
+                                <!--====== Brand Slider ======-->
+                                <div class="slider-fouc">
+                                    <div class="owl-carousel" id="brand-slider" data-item="5">
+                                        <%
+                                            BrandDao brandDao = new BrandDao();
+                                            List<Brand> brands = brandDao.getAllBrands();
+                                            if (brands != null) {
+                                                for (Brand brand : brands) {
+                                        %>
+                                        <div class="brand-slide">
+
+                                            <a href="shop-side-version-2.html">
+
+                                                <img src="<%= brand.getBrandImage()%>" alt=""></a></div>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
 
                                     </div>
-                                    <!--====== End - Product Detail ======-->
                                 </div>
-                                <div class="col-lg-7">
+                                <!--====== End - Brand Slider ======-->
+                            </div>
+                        </div>
+                        <!--====== End - Section Content ======-->
+                    </div>
+                    <!--====== End - Section 7 ======-->
+                </div>
+                <!--====== End - App Content ======-->
 
-                                    <!--====== Product Right Side Details ======-->
-                                    <div class="pd-detail">
-                                        <div>
 
-                                            <span class="pd-detail__name" id="product-name">Product</span></div>
-                                        <div>
-                                            <div class="pd-detail__inline">
+                <%@include file="customerNavs/footer.jsp" %>
 
-                                                <span class="pd-detail__price"id="product-price">price</span>
+                <%@include file="common_use/cart_add.jsp" %>
 
-                                                <span class="pd-detail__discount" id="discount">discount</span><del class="pd-detail__del" id="afterDiscount">afterdis</del></div>
-                                        </div>
+                <div class="modal fade" id="quick-look">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content modal--shadow">
 
-                                        <div class="u-s-m-b-15">
-                                            <div class="pd-detail__inline">
+                            <button class="btn dismiss-button fas fa-times" type="button" data-dismiss="modal"></button>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-5">
 
-                                                <span class="pd-detail__stock" id="qty"> in stock</span>
 
-                                                <!--<span class="pd-detail__left">Only 2 left</span></div>-->
+                                        <!--====== Product Detail ======-->
+                                        <div class="pd u-s-m-b-30">
+                                            <div class="pd-wrap">
+                                                <div id="js-product-detail-modal">
+                                                    <div>
+
+                                                        <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt="">
+                                                    </div>
+                                                    <div>
+
+                                                        <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt="">
+                                                    </div>
+                                                    <div>
+
+                                                        <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt="">
+                                                    </div>
+                                                    <div>
+
+                                                        <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt="">
+                                                    </div>
+                                                    <div>
+
+                                                        <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt="">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="u-s-m-b-15">
 
-                                                <span class="pd-detail__preview-desc" id="product_desc">desc</span></div>
+                                        </div>
+                                        <!--====== End - Product Detail ======-->
+                                    </div>
+                                    <div class="col-lg-7">
+
+                                        <!--====== Product Right Side Details ======-->
+                                        <div class="pd-detail">
+                                            <div>
+
+                                                <span class="pd-detail__name" id="product-name">Product</span></div>
+                                            <div>
+                                                <div class="pd-detail__inline">
+
+                                                    <span class="pd-detail__price"id="product-price">price</span>
+
+                                                    <span class="pd-detail__discount" id="discount">discount</span><del class="pd-detail__del" id="afterDiscount">afterdis</del></div>
+                                            </div>
+
                                             <div class="u-s-m-b-15">
                                                 <div class="pd-detail__inline">
 
-                                                    <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+                                                    <span class="pd-detail__stock" id="qty"> in stock</span>
 
-                                                        <a href="signin.html">Add to Wishlist</a>
+                                                    <!--<span class="pd-detail__left">Only 2 left</span></div>-->
+                                                </div>
+                                                <div class="u-s-m-b-15">
 
-                                                        <span class="pd-detail__click-count">(222)</span></span></div>
-                                            </div>
+                                                    <span class="pd-detail__preview-desc" id="product_desc">desc</span></div>
+                                                <div class="u-s-m-b-15">
+                                                    <div class="pd-detail__inline">
+
+                                                        <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
+
+                                                            <a href="signin.html">Add to Wishlist</a>
+
+                                                            <span class="pd-detail__click-count">(222)</span></span></div>
+                                                </div>
 
 
-                                            <div class="u-s-m-b-15">
-                                                <form class="pd-detail__form">
-                                                    <div class="pd-detail-inline-2">
-                                                        <div class="u-s-m-b-15">
+                                                <div class="u-s-m-b-15">
+                                                    <form class="pd-detail__form">
+                                                        <div class="pd-detail-inline-2">
+                                                            <div class="u-s-m-b-15">
 
-                                                            <!--====== Input Counter ======-->
-                                                            <div class="input-counter">
+                                                                <!--====== Input Counter ======-->
+                                                                <div class="input-counter">
 
-                                                                <span class="input-counter__minus fas fa-minus"></span>
+                                                                    <span class="input-counter__minus fas fa-minus"></span>
 
-                                                                <input class="input-counter__text input-counter--text-primary-style" type="text" id="max_qty" value="1" data-min="1" data-max="3">
+                                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" id="max_qty" value="1" data-min="1" data-max="3">
 
-                                                                <span class="input-counter__plus fas fa-plus"></span></div>
-                                                            <!--====== End - Input Counter ======-->
+                                                                    <span class="input-counter__plus fas fa-plus"></span></div>
+                                                                <!--====== End - Input Counter ======-->
+                                                            </div>
+                                                            <div class="u-s-m-b-15">
+
+                                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
                                                         </div>
-                                                        <div class="u-s-m-b-15">
+                                                    </form>
+                                                </div>
+                                                <div class="u-s-m-b-15">
 
-                                                            <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
-                                                    </div>
-                                                </form>
+                                                    <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
+                                                    <ul class="pd-detail__policy-list">
+                                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                                            <span>Buyer Protection.</span></li>
+                                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                                            <span>Full Refund if you don't receive your order.</span></li>
+                                                        <li><i class="fas fa-check-circle u-s-m-r-8"></i>
+
+                                                            <span>Returns accepted if product not as described.</span></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <div class="u-s-m-b-15">
-
-                                                <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
-                                                <ul class="pd-detail__policy-list">
-                                                    <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                        <span>Buyer Protection.</span></li>
-                                                    <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                        <span>Full Refund if you don't receive your order.</span></li>
-                                                    <li><i class="fas fa-check-circle u-s-m-r-8"></i>
-
-                                                        <span>Returns accepted if product not as described.</span></li>
-                                                </ul>
-                                            </div>
+                                            <!--====== End - Product Right Side Details ======-->
                                         </div>
-                                        <!--====== End - Product Right Side Details ======-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--====== End - Quick Look Modal ======-->
+
+
+                    <!--====== End - Add to Cart Modal ======-->
+
                 </div>
-                <!--====== End - Quick Look Modal ======-->
+                <!--====== End - Main App ======-->
 
 
-                <!--====== End - Add to Cart Modal ======-->
+                <%@include file="js.jsp" %>
 
-            </div>
-            <!--====== End - Main App ======-->
+                <%@include file="js/js.jsp" %>
+                <script>
 
+                    document.getElementById('load_more').addEventListener('click', () => {
+                        window.location.href = '${BASE_URL}products.jsp'
+                    });
 
-            <%@include file="js.jsp" %>
+                </script>
+                <!--====== Noscript ======-->
+                <noscript>
+                <div class="app-setting">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="app-setting__wrap">
+                                    <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
 
-            <%@include file="js/js.jsp" %>
-            <!--====== Noscript ======-->
-            <noscript>
-            <div class="app-setting">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="app-setting__wrap">
-                                <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
-
-                                <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
+                                    <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </noscript>
-    </body>
-</html>
+                </noscript>
+                </body>
+                </html>

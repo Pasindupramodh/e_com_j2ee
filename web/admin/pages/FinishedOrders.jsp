@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Green Tech</title>
         <%@include file="style.jsp" %>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -260,14 +260,16 @@
             $('#order_product_details').modal('show');
         }
         function viewCustomer(id) {
+
             orders.forEach(order => {
                 if (order.addresss.id == id) {
+                    
                     document.getElementById('address_line1').innerHTML = order.addresss.addressLine1;
                     document.getElementById('address_line2').innerHTML = order.addresss.addressLine2;
                     document.getElementById('address_city').innerHTML = order.addresss.city.name;
                     document.getElementById('address_province').innerHTML = order.addresss.city.provinceDTO.name;
-                    document.getElementById('address_zip').innerHTML = order.addresss.addressLine1;
-                    document.getElementById('address_mobile').innerHTML = order.addresss.zipcode;
+                    document.getElementById('address_zip').innerHTML = order.addresss.zipcode;
+                    document.getElementById('address_mobile').innerHTML = order.addresss.phone;
                 }
             });
             $('#customer_details').modal('show');

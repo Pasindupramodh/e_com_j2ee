@@ -4,36 +4,14 @@
     Author     : REDTECH
 --%>
 
-<%-- 
-    Document   : AddAddress.jsp
-    Created on : Dec 20, 2023, 10:13:24 PM
-    Author     : REDTECH
---%>
 
 <%@page import="model.Province"%>
 <%@page import="model.Province"%>
 <%@page import="dao.ProvinceDAO"%>
-<%-- 
-    Document   : Address.jsp
-    Created on : Dec 20, 2023, 9:39:36 PM
-    Author     : REDTECH
---%>
-
 <%@page import="dto.AddressDTO"%>
 <%@page import="dao.AddressDAO"%>
-<%-- 
-    Document   : manageOrder
-    Created on : Dec 20, 2023, 4:34:01 PM
-    Author     : REDTECH
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%-- 
-    Document   : profile
-    Created on : Dec 20, 2023, 2:01:33 PM
-    Author     : REDTECH
---%>
-
 <%@page import="model.Customer"%>
 <%@page import="dao.CustomerDAO"%>
 <%@page import="dto.CusLoginDTO"%>

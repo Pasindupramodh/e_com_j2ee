@@ -12,12 +12,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Green Tech</title>
         <%@include file="style.jsp" %>
     </head>
     <body>
         <%@include file="../navs/nav.jsp" %>
         <%@include file="../navs/sidebar.jsp" %>
+        <%
+             if (userData.getUserType().equals("Admin")) {
+                 %>
+                 <script>
+                     
+                     window.location.href = '${BASE_URL}admin/pages/dashboard.jsp';
+                     
+                 </script>
+        <%
+             }
+        %>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

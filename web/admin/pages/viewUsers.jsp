@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Green Tech</title>
         <%@include file="style.jsp" %>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,6 +20,17 @@
         
         <%@include file="../navs/nav.jsp" %>
         <%@include file="../navs/sidebar.jsp" %>
+        <%
+             if (userData.getUserType().equals("Admin")) {
+                 %>
+                 <script>
+                     
+                     window.location.href = '${BASE_URL}admin/pages/dashboard.jsp';
+                     
+                 </script>
+        <%
+             }
+        %>
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">

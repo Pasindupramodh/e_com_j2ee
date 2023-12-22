@@ -19,5 +19,5 @@ public class UserData {
     private int id;
     private String fname;
     private String lname;
-    
+    private String userType;
 }

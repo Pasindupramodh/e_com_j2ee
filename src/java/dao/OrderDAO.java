@@ -14,10 +14,13 @@ import dto.OrderDTO;
 import dto.OrderItemDTO;
 import dto.OrderStatusDTO;
 import dto.PaymentStatusDTO;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 import javax.servlet.http.HttpSession;
 import model.Address;
@@ -33,7 +36,9 @@ import model.SystemUser;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 /**
  *
@@ -291,8 +296,8 @@ public class OrderDAO {
         }
     }
 
-    public List<OrderDTO> getOrdersByCustomer(Customer customer){
-         Session session = HibernateUtil.getSessionFactory().openSession();
+    public List<OrderDTO> getOrdersByCustomer(Customer customer) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria criteria = session.createCriteria(Order.class);
             criteria.add(Restrictions.eq("customer", customer));
@@ -308,7 +313,7 @@ public class OrderDAO {
             session.close();
         }
     }
-    
+
     List<OrderDTO> getOrderDTOS(List<Order> orders) {
         List<OrderDTO> dTOs = new ArrayList<>();
 
@@ -519,20 +524,19 @@ public class OrderDAO {
         }
     }
 
-    public OrderDTO getOrderDtoByCusomerAndId(Customer customer , String id){
+    public OrderDTO getOrderDtoByCusomerAndId(Customer customer, String id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            
+
             Order order = (Order) session.createCriteria(Order.class)
                     .add(Restrictions.eq("orderId", id))
                     .add(Restrictions.eq("customer", customer))
                     .uniqueResult();
-            
+
             if (order.getPaymentStatus().getStatusCode().equals("200")) {
                 OrderDTO orderDTO = new OrderDTO();
 
                 AddressDTO addressDTO = new AddressDAO().getById(order.getAddress().getId());
-
 
                 CustomerDTO customerDTO = new CustomerDTO();
                 customerDTO.setEmail(customer.getEmail());
@@ -592,11 +596,11 @@ public class OrderDAO {
             return null;
         } catch (Exception e) {
             return null;
-        }finally{
+        } finally {
             session.close();
         }
     }
-    
+
     public OrderItemDTO getOrderByIdAndCustomer(int id, Customer customer) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -673,4 +677,36 @@ public class OrderDAO {
         }
 
     }
+
+    public Map<String, Object> getTotal() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Map<String,Object> data = new HashMap<>();
+        try {
+            Criteria criteria = session.createCriteria(Order.class);
+            criteria.add(Restrictions.ne("lastStatus", "Rejected"));
+            criteria.createAlias("paymentStatus", "p", JoinType.INNER_JOIN);
+
+            List<Order> orders = criteria.add(Restrictions.eq("p.statusCode", "200")).list();
+
+            criteria.setProjection(Projections.sum("total"));
+
+            double totalAmount = (Double) criteria.uniqueResult();
+            
+            data.put("count", orders.size());
+            data.put("ammount", totalAmount);
+            return data;
+        } catch (Exception e) {
+            data.put("count", 0);
+            data.put("ammount", 0);
+            return data;
+        } finally {
+            session.close();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        new OrderDAO().getTotal();
+    }
+
 }

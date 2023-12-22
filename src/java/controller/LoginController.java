@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
             userData.setFname(systemUser.getFname());
             userData.setLname(systemUser.getLname());
             userData.setId(systemUser.getId());
+            userData.setUserType(systemUser.getUserType().getUserType());
             HttpSession session = req.getSession(false);
             session.setAttribute("user", userData);
             out.print("Sucess");

@@ -318,7 +318,7 @@
                             document.getElementById('products').innerHTML = data.content;
                             document.getElementById("links").innerHTML = data.links;
                         })
-            }
+            }        
             
             function changeOrder(){
                 var order = document.getElementById('order').value;

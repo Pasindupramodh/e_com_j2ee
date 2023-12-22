@@ -16,7 +16,15 @@
     </head>
     <body class="config">
 
-
+        <%
+            if(session.getAttribute("customer") !=null){
+                %>
+                <script>
+                    window.location.href = '${BASE_URL}'
+                </script>
+        <%
+            }
+        %>
         <!--====== Main App ======-->
         <div id="app">
 
@@ -85,18 +93,7 @@
 
                                             <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
                                             <form class="l-f-o__form" id="login_form">
-<!--                                                <div class="gl-s-api">
-                                                    <div class="u-s-m-b-15">
 
-                                                        <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
-
-                                                            <span>Signin with Facebook</span></button></div>
-                                                    <div class="u-s-m-b-15">
-
-                                                        <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
-
-                                                            <span>Signin with Google</span></button></div>
-                                                </div>-->
                                                 <div class="u-s-m-b-30">
 
                                                     <label class="gl-label" for="login_email">E-MAIL *</label>
@@ -113,20 +110,8 @@
                                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
                                                     <div class="u-s-m-b-30">
 
-                                                        <a class="gl-link" href="lost-password.jsp">Lost Your Password?</a></div>
+                                                        <button class="gl-link" type="button" onclick="" id="forgetPasswordBTN" >Lost Your Password?</button></div>
                                                 </div>
-<!--                                                <div class="u-s-m-b-30">
-
-                                                    ====== Check Box ======
-                                                    <div class="check-box">
-
-                                                        <input type="checkbox" id="remember-me">
-                                                        <div class="check-box__state check-box__state--primary">
-
-                                                            <label class="check-box__label" for="remember-me">Remember Me</label></div>
-                                                    </div>
-                                                    ====== End - Check Box ======
-                                                </div>-->
                                             </form>
                                         </div>
                                     </div>
@@ -140,7 +125,31 @@
             </div>
             <!--====== End - App Content ======-->
 
+            <div class="modal fade" id="forget_password" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Forget Password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Email Address</label>
+                                    <input type="text" class="form-control" id="email_forget">
+                                </div>
 
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" id="update-tracking">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--====== Main Footer ======-->
             <%@include file="customerNavs/footer.jsp" %>
 
@@ -150,8 +159,7 @@
 
 
         <%@include file="js.jsp" %>
-        <%
-            if (request.getParameter("status")!=null && request.getParameter("status").equals("0")) {
+        <%            if (request.getParameter("status") != null && request.getParameter("status").equals("0")) {
         %>
         <script>
             Swal.fire({
@@ -163,6 +171,7 @@
             }).then((result) => {
 
             });
+
         </script>
         <%
             }
@@ -257,6 +266,64 @@
                 unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 }
+            });
+        });
+        document.getElementById('forgetPasswordBTN').addEventListener('click', () => {
+            Swal.fire({
+                title: "Submit your email to get password reset link",
+                input: "email",
+                inputAttributes: {
+                    autocapitalize: "off"
+                },
+                showCancelButton: true,
+                confirmButtonText: "Submit",
+                showLoaderOnConfirm: true,
+                preConfirm: async (login) => {
+                    return login;
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let token = localStorage.getItem('vtoken');
+                    $.ajax({
+                        type: 'POST',
+                        url: '${BASE_URL}ForgotPassword',
+                        data: {
+                            email: result.value,
+                            token: token
+                        },
+                        success: function (responseText) {
+                            var data = JSON.parse(responseText);
+                            console.log(data);
+                            if (data.status === "Success") {
+                                Swal.fire(
+                                        data.status,
+                                        'Check Your email',
+                                        'success'
+                                        );
+                                localStorage.setItem("vtoken", data.accessToken);
+                                localStorage.setItem("expireIn", data.expireIn);
+//                                window.location = '/e_com_j2ee/admin/pages/dashboard.jsp';
+                            } else {
+                                Swal.fire(
+                                        data.status,
+                                        'Try again !',
+                                        'error'
+                                        );
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                            Swal.fire(
+                                    'Something went wrong',
+                                    'Try again later!',
+                                    'error'
+                                    );
+                        }
+                    });
+
+                }
+
             });
         });
     </script>

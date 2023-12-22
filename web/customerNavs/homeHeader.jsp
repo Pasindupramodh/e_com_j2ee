@@ -39,9 +39,9 @@
 
                         <label for="main-search"></label>
 
-                        <input class="input-text input-text--border-radius input-text--only-white" type="text" id="main-search" placeholder="Search">
+                        <input class="input-text input-text--border-radius input-text--only-white" type="text" id="search-inp" placeholder="Search">
 
-                        <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
+                        <button class="btn btn--icon fas fa-search main-search-button" type="button" id="search"></button></form>
                     <!--====== End - Search Form ======-->
 
 
@@ -338,9 +338,9 @@
                                 <li>
 
                                     <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
-                                <li>
+<!--                                <li>
 
-                                    <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                    <a href="wishlist.html"><i class="far fa-heart"></i></a></li>-->
                                <li class="has-dropdown">
 
                                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
@@ -460,3 +460,11 @@
     <!--====== End - Main Header ======-->
 </div>
 <!--====== End - Header Wrapper ======-->
+<script>
+    document.getElementById('search').addEventListener('click',()=>{
+        let searchText = document.getElementById('search-inp').value.trim();;
+        if(searchText != null && searchText != '' && searchText != undefined){
+            window.location.href = '${BASE_URL}product.jsp?tag='+searchText;
+        }
+    });
+</script>

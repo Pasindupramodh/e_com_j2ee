@@ -142,7 +142,7 @@
 
                                     <span>Copyright © 2018</span>
 
-                                    <a href="index.html">Reshop</a>
+                                    <a href="index.html">Greentech</a>
 
                                     <span>All Right Reserved</span></div>
                                 <div class="lower-footer__payment">

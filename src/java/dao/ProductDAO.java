@@ -509,4 +509,157 @@ public class ProductDAO {
             session.close();
         }
     }
+
+    public List<ProductDTO> getByBrand(String brandid) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            Brand brand = (Brand) session.createCriteria(Brand.class)
+                    .add(Restrictions.eq("id", Integer.parseInt(brandid)))
+                    .uniqueResult();
+            if (brand.getProducts().isEmpty()) {
+                return null;
+            } else {
+                List<ProductDTO> productDTOs = new ArrayList<>();
+                for (Product product : brand.getProducts()) {
+                    if(getProductDto(product) != null){
+                            productDTOs.add(getProductDto(product));
+                        }
+                }
+                return productDTOs;
+            }
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<ProductDTO> getByCategory(String parameter) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            Category category = (Category) session.createCriteria(Category.class)
+                    .add(Restrictions.eq("id", Integer.parseInt(parameter)))
+                    .uniqueResult();
+            if (category.getBrands().isEmpty()) {
+                return null;
+            } else {
+                List<ProductDTO> productDTOs = new ArrayList<>();
+                for (Brand brand : category.getBrands()) {
+                    for (Product product : brand.getProducts()) {
+                        if(getProductDto(product) != null){
+                            productDTOs.add(getProductDto(product));
+                        }
+                    }
+                }
+
+                return productDTOs;
+            }
+
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<ProductDTO> getByTag(String tagName) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            List<Tag> tags = session.createCriteria(Tag.class).add(Restrictions.like("tagName", tagName + "%")).list();
+
+            if (tags != null && !tags.isEmpty()) {
+                List<ProductDTO> productDTOs = new ArrayList<>();
+                for (Tag tag : tags) {
+
+                    for (Product product : tag.getProducts()) {
+                        if(getProductDto(product) != null){
+                            productDTOs.add(getProductDto(product));
+                        }
+                    }
+                }
+                return productDTOs;
+            } else {
+                return null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    ProductDTO getProductDto(Product product) {
+        if (product != null) {
+
+            if (product.getPublished() && product.getQty() > 0) {
+                ProductDTO productDTO = new ProductDTO();
+
+                Brand brand = product.getBrand();
+                Category category = brand.getCategory();
+
+                CategoryDTO categoryDTO = new CategoryDTO();
+                categoryDTO.setCategoryDesc(category.getCategoryDesc());
+                categoryDTO.setCategoryIcon(category.getCategoryIcon());
+                categoryDTO.setCategoryName(category.getCategoryName());
+                categoryDTO.setId(category.getId());
+                categoryDTO.setStatus(category.getIsActive());
+
+                BrandDTO brandDTO = new BrandDTO();
+                brandDTO.setBrandDesc(brand.getBrandDesc());
+                brandDTO.setBrandImage(brand.getBrandImage());
+                brandDTO.setBrandName(brand.getBrandName());
+                brandDTO.setId(brand.getId());
+                brandDTO.setCategory(categoryDTO);
+
+                List<GalleryDTO> galleryDTOs = null;
+                if (!product.getGalleries().isEmpty()) {
+                    galleryDTOs = new ArrayList<>();
+                    for (Gallery gallery : product.getGalleries()) {
+                        GalleryDTO galleryDTO = new GalleryDTO();
+                        galleryDTO.setId(gallery.getId());
+                        galleryDTO.setImgPath(gallery.getImgPath());
+                        galleryDTO.setThumbnail(gallery.getThumbnail());
+                        galleryDTOs.add(galleryDTO);
+                    }
+                }
+
+                List<TagDTO> tagDTOs = null;
+
+                if (!product.getTags().isEmpty()) {
+                    tagDTOs = new ArrayList<>();
+                    for (Tag tag : product.getTags()) {
+                        TagDTO tagDTO = new TagDTO();
+                        tagDTO.setId(tag.getId());
+                        tagDTO.setTagName(tag.getTagName());
+                        tagDTOs.add(tagDTO);
+                    }
+                }
+
+                productDTO.setBrand(brandDTO);
+                productDTO.setDescription(product.getDescription());
+                productDTO.setDiscountPrice(product.getDiscountPrice());
+                productDTO.setGalleries(galleryDTOs);
+                productDTO.setId(product.getId());
+                productDTO.setProductName(product.getProductName());
+                productDTO.setProductPrice(product.getProductPrice());
+                productDTO.setPublished(product.getPublished());
+                productDTO.setQty(product.getQty());
+                productDTO.setShortDescription(product.getShortDescription());
+                productDTO.setTags(tagDTOs);
+                return productDTO;
+            }else{
+                return  null;
+            }
+
+        } else {
+            return null;
+        }
+    }
+
 }

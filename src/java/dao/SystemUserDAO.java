@@ -18,6 +18,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -130,6 +131,22 @@ public class SystemUserDAO {
             return true;
         } catch (HibernateException e) {
             return false;
+        }
+    }
+    
+    public Long getCount(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            
+            Criteria criteria = session.createCriteria(SystemUser.class);
+
+            criteria.setProjection(Projections.rowCount());
+
+            return (Long) criteria.uniqueResult();
+        } catch (Exception e) {
+            return 0l;
+        }finally{
+            session.close();
         }
     }
 }

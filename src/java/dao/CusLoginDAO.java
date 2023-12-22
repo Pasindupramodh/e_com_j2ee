@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import util.Encryption;
 
 /**
  *
@@ -63,6 +64,30 @@ public class CusLoginDAO {
 
         }
 
+    }
+
+    public boolean updatePassword(String userName, String newPassword) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            
+            Transaction transaction = session.beginTransaction();
+            
+            CusLogin cusLogin = (CusLogin) session.createCriteria(CusLogin.class)
+                    .add(Restrictions.eq("username", userName))
+                    .uniqueResult();
+            if(cusLogin == null){
+                return false;
+            }else{
+                cusLogin.setPassword(Encryption.encrypt(newPassword));
+                transaction.commit();
+                return true;
+            }
+        } catch (Exception e) {
+            
+            return false;
+        }finally{
+            session.close();
+        }
     }
 
 }

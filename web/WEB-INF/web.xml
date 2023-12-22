@@ -9,8 +9,10 @@
             300
         </session-timeout>
     </session-config>
-    <context-param>
-        <param-name>name</param-name>
-        <param-value>Pasmoduf</param-value>
-    </context-param>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
+    </error-page>
+
 </web-app>

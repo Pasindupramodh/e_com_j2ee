@@ -19,7 +19,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AdminLTE 3 | Invoice Print</title>
+        <title>GreenTech</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -150,7 +150,7 @@
                             <table class="table">
                                 <tr>
                                     <th style="width:50%">Subtotal:</th>
-                                    <td><%= orderDTO.getTotal()-orderDTO.getDiscount() %> LKR</td>
+                                    <td><%= orderDTO.getTotal() %> LKR</td>
                                 </tr>
                                 <tr>
                                     <th>Shipping:</th>
@@ -158,7 +158,7 @@
                                 </tr>
                                 <tr>
                                     <th>Total:</th>
-                                    <td><%= (orderDTO.getTotal()-orderDTO.getDiscount())+300 %> LKR</td>
+                                    <td><%= (orderDTO.getTotal())+300 %> LKR</td>
                                 </tr>
                             </table>
                         </div>
